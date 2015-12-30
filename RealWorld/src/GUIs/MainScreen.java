@@ -5,22 +5,10 @@
  */
 package GUIs;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.firebase.client.Firebase;
-import java.awt.Dimension;
-import java.util.LinkedList;
-import javax.swing.Box;
-import java.awt.*;
-import java.net.URL;
-import javax.net.ssl.HttpsURLConnection;
-import javax.swing.BorderFactory;
+import GUIs.MainScreenAssets.FillAssignmentPanel;
+import GUIs.MainScreenAssets.FillClassesPanel;
 import org.jdesktop.swingx.*;
 import pearson.AuthenticationData;
-import pearson.ClassInfo;
-import pearson.CourseInstructors.*;
-import pearson.StudentsEnrolled.*;
-import pearson.myrole.MyRole;
-import pearson.usercourses.*;
 
 /**
  *
@@ -36,10 +24,13 @@ public class MainScreen extends JXPanel {
     public MainScreen(AuthenticationData data) {
         this.data = data;
         initComponents();
+        newAssignmentButton.setVisible(false);
+        this.revalidate();
+        this.repaint();
         Classes_Panel.setSize(301, 500);
         Classes_Panel.repaint();
         Classes_Panel.revalidate();
-        new Thread(new fillClassPanel(Classes_Panel, data)).start();
+        new Thread(new FillClassesPanel(Classes_Panel, data)).start();
 
     }
 
@@ -82,6 +73,7 @@ public class MainScreen extends JXPanel {
         jXLabel6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
 
         newAssignmentButton.setText("New Assignment");
+        newAssignmentButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -96,7 +88,7 @@ public class MainScreen extends JXPanel {
                         .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jXLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(640, Short.MAX_VALUE))
+                        .addContainerGap(632, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jXLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,375 +138,4 @@ public class MainScreen extends JXPanel {
     private org.jdesktop.swingx.JXLabel jXLabel6;
     private org.jdesktop.swingx.JXButton newAssignmentButton;
     // End of variables declaration//GEN-END:variables
-}
-
-class AssignmentPanel extends JXPanel {
-
-    /**
-     * Creates new form AssignmentPanel
-     */
-    boolean teacher;
-    String assignmentName;
-
-    public AssignmentPanel(boolean teach, String assignment) {
-        this.teacher = teach;
-        this.assignmentName = assignment;
-        initComponents();
-        this.setBorder(BorderFactory.createLineBorder(Color.black, 2, true));
-        if (teach == true) {
-            startButton.setVisible(false);
-            infoButton.setVisible(false);
-            this.revalidate();
-        } else {
-            editButton.setVisible(false);
-            disableButton.setVisible(false);
-            deleteButton.setVisible(false);
-            this.revalidate();
-        }
-        
-    }
-
-    private void initComponents() {
-
-        jXLabel1 = new org.jdesktop.swingx.JXLabel();
-        editButton = new org.jdesktop.swingx.JXButton();
-        disableButton = new org.jdesktop.swingx.JXButton();
-        deleteButton = new org.jdesktop.swingx.JXButton();
-        infoButton = new org.jdesktop.swingx.JXButton();
-        startButton = new org.jdesktop.swingx.JXButton();
-
-        jXLabel1.setText(assignmentName);
-
-        editButton.setText("Edit");
-
-        disableButton.setText("Disable");
-
-        deleteButton.setText("Delete");
-
-        infoButton.setText("Info");
-
-        startButton.setText("Start");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(disableButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
-                        .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(infoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jXLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                        .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(disableButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(infoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-    }
-
-    // Variables declaration - do not modify                     
-    private org.jdesktop.swingx.JXButton deleteButton;
-    private org.jdesktop.swingx.JXButton disableButton;
-    private org.jdesktop.swingx.JXButton editButton;
-    private org.jdesktop.swingx.JXButton infoButton;
-    private org.jdesktop.swingx.JXLabel jXLabel1;
-    private org.jdesktop.swingx.JXButton startButton;
-    // End of variables declaration                   
-}
-
-class ClassPanel extends JXPanel {
-
-    /**
-     * Creates new form Class
-     */
-    boolean Teacher;
-    ClassInfo ClassData;
-    LinkedList<String> names;
-    String ButtonText;
-    AuthenticationData data;
-
-    public ClassPanel(ClassInfo c, AuthenticationData data) {
-        this.data = data;
-        ClassData = c;
-        getRole role = new getRole("https://api.learningstudio.com/me/courses/" + c.getID() + "/role", data);
-        String type = role.getType();
-        switch (type) {
-            case "STUD":
-                Teacher = false;
-                break;
-            case "PROF":
-                Teacher = true;
-                break;
-            default:
-                Teacher = false;
-                break;
-        }
-        if (Teacher == true) {
-            ButtonText = "View Students";
-        } else {
-            ButtonText = "View Students";
-        }
-        initComponents();
-
-        this.setBorder(BorderFactory.createLineBorder(Color.black, 2, true));
-
-    }
-
-    private void initComponents() {
-
-        jXLabel1 = new org.jdesktop.swingx.JXLabel();
-        ViewButton = new org.jdesktop.swingx.JXButton();
-        ViewButton1 = new org.jdesktop.swingx.JXButton();
-
-        jXLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jXLabel1.setText(ClassData.getName());
-        jXLabel1.setToolTipText("");
-        jXLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jXLabel1.setLineWrap(true);
-        jXLabel1.setTextAlignment(org.jdesktop.swingx.JXLabel.TextAlignment.CENTER);
-
-        ViewButton.setText(ButtonText);
-        ViewButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        ViewButton.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewButtonActionPerformed(evt);
-            }
-        });
-
-        ViewButton1.setText("View Assignments");
-        ViewButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        ViewButton1.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addComponent(ViewButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(ViewButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jXLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(ViewButton, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                                .addComponent(ViewButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                        .addContainerGap())
-        );
-    }
-
-    private void ViewButtonActionPerformed(java.awt.event.ActionEvent evt) {
-
-        LinkedList<String> names = null;
-
-        if(Teacher == true)
-        {
-            names = getNames("https://api.learningstudio.com/courses/" + ClassData.getID() + "/students", true);
-        }
-        else {
-            names = getNames("https://api.learningstudio.com/courses/" + ClassData.getID() + "/instructors", false);
-        }
-
-        JXList namesList = new JXList(names.toArray());
-        namesList.setSize(600, 300);
-        namesList.setBackground(null);
-        namesList.setFont(new Font("ariel", Font.PLAIN, 14));
-        JXDialog ViewNameDialog = new JXDialog(namesList);
-        ViewNameDialog.setBounds(100, 100, 350, 350);
-        ViewNameDialog.setVisible(true);
-
-    }
-
-    private void ViewButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        JXPanel MainPanel = SwingXUtilities.getAncestor(JXPanel.class, this.getParent());
-        JXPanel assignmentsPanel = (JXPanel) MainPanel.getComponent(5);
-        assignmentsPanel.removeAll();
-        assignmentsPanel.revalidate();
-        assignmentsPanel.repaint();
-        assignmentsPanel.add(new AssignmentPanel(true, "Another Assignment"));
-        assignmentsPanel.revalidate();
-        assignmentsPanel.repaint();
-    }
-
-    LinkedList<String> getNames(String Url, boolean teacher) {
-
-        LinkedList<String> names = new LinkedList<>();
-        try {
-            URL apiUrl = new URL(Url);
-            HttpsURLConnection httpConn = (HttpsURLConnection) apiUrl.openConnection();
-            httpConn.setRequestMethod("GET");
-
-            for (Object headerName : data.getMapHttpHeaders().keySet()) {
-                httpConn.addRequestProperty((String) headerName, (String) data.getMapHttpHeaders().get(headerName));
-            }
-
-            int responseCode = httpConn.getResponseCode();
-            if (responseCode == 200) {
-                if (teacher == false) {
-                    ObjectMapper mapper = new ObjectMapper();
-                    CourseInstructors instructors = mapper.readValue(httpConn.getInputStream(), CourseInstructors.class);
-                    for (Instructor prof : instructors.getInstructors()  ) {
-                        names.add(prof.getFirstName() + " " + prof.getLastName());
-                    }
-                } else {
-                    ObjectMapper mapper = new ObjectMapper();
-                    StudentsEnrolled students = mapper.readValue(httpConn.getInputStream(), StudentsEnrolled.class);
-                    for (Student stud : students.getStudents()) {
-                        names.add(stud.getFirstName() + " " + stud.getLastName());
-                    }
-                }
-
-                return names;
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return null;
-    }
-
-    // Variables declaration - do not modify                     
-    private org.jdesktop.swingx.JXButton ViewButton;
-    private org.jdesktop.swingx.JXButton ViewButton1;
-    private org.jdesktop.swingx.JXLabel jXLabel1;
-    // End of variables declaration                   
-}
-
-class getTeacherNames {
-
-    public getTeacherNames() {
-
-    }
-
-}
-
-class getRole {
-
-    String role;
-
-    public getRole(String Url, AuthenticationData data) {
-        try {
-            URL apiUrl = new URL(Url);
-            HttpsURLConnection httpConn = (HttpsURLConnection) apiUrl.openConnection();
-            httpConn.setRequestMethod("GET");
-
-            for (Object headerName : data.getMapHttpHeaders().keySet()) {
-                httpConn.addRequestProperty((String) headerName, (String) data.getMapHttpHeaders().get(headerName));
-            }
-
-            int responseCode = httpConn.getResponseCode();
-            if (responseCode == 200) {
-                ObjectMapper mapper = new ObjectMapper();
-                MyRole myRole = mapper.readValue(httpConn.getInputStream(), MyRole.class);
-                role = myRole.getRole().getType();
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-
-    }
-
-    public String getType() {
-        return this.role;
-    }
-}
-
-class fillClassPanel implements Runnable {
-
-    JXPanel classPanel;
-    AuthenticationData data;
-    LinkedList<ClassInfo> cInfo = new LinkedList<>();
-
-    public fillClassPanel(JXPanel p, AuthenticationData data) {
-        this.classPanel = p;
-        this.data = data;
-    }
-
-    public void run() {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            URL apiUrl = new URL("https://api.learningstudio.com/me/courses?expand=course");
-            HttpsURLConnection httpConn = (HttpsURLConnection) apiUrl.openConnection();
-            httpConn.setRequestMethod("GET");
-
-            for (Object headerName : data.getMapHttpHeaders().keySet()) {
-                httpConn.addRequestProperty((String) headerName, (String) data.getMapHttpHeaders().get(headerName));
-            }
-
-            int responseCode = httpConn.getResponseCode();
-            if (responseCode == 200) {
-
-                MyCourses myCourses = mapper.readValue(httpConn.getInputStream(), MyCourses.class);
-                for (Courses item : myCourses.getCourses()) {
-                    ClassInfo newClass = new ClassInfo(item.getLinks().get(0).getCourse().getTitle(), item.getLinks().get(0).getCourse().getId());
-                    cInfo.add(newClass);
-
-                }
-
-                for (ClassInfo item : cInfo) {
-                    classPanel.add(Box.createRigidArea(new Dimension(25, 10)));
-                    classPanel.add(new ClassPanel(item, data));
-                    classPanel.revalidate();
-                    classPanel.repaint();
-                }
-                classPanel.revalidate();
-                classPanel.repaint();
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-}
-
-class FillAssignmentPanel implements Runnable {
-    
-    boolean Teacher;
-    int CourseID;
-    JXPanel AssignmentPanel;
-    AuthenticationData data;
-    Firebase ref = new Firebase("https://glowing-inferno-9149.firebaseio.com/RealWorld");
-    
-    public FillAssignmentPanel(boolean teach, int ID, JXPanel j, AuthenticationData d)
-    {
-        this.Teacher = teach;
-        this.CourseID = ID;
-        this.AssignmentPanel = j;
-        this.data = d;
-        
-        
-    }
-    
-    public void run()
-    {
-        
-    }
 }
