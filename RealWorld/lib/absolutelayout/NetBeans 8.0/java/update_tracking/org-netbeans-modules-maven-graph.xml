@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.maven.graph/1">
+    <module_version install_time="1416341151657" last="true" origin="installer" specification_version="1.28.1">
+        <file crc="997390423" name="config/Modules/org-netbeans-modules-maven-graph.xml"/>
+        <file crc="677144766" name="modules/locale/org-netbeans-modules-maven-graph_ja.jar"/>
+        <file crc="1087897925" name="modules/locale/org-netbeans-modules-maven-graph_pt_BR.jar"/>
+        <file crc="558949" name="modules/locale/org-netbeans-modules-maven-graph_ru.jar"/>
+        <file crc="134275341" name="modules/locale/org-netbeans-modules-maven-graph_zh_CN.jar"/>
+        <file crc="2955766576" name="modules/org-netbeans-modules-maven-graph.jar"/>
+    </module_version>
+</module>

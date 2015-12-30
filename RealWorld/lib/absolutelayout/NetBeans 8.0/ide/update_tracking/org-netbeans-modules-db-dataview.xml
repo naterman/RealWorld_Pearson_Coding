@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.db.dataview">
+    <module_version install_time="1416340120138" last="true" origin="installer" specification_version="1.25.1">
+        <file crc="3221262164" name="config/Modules/org-netbeans-modules-db-dataview.xml"/>
+        <file crc="44726726" name="modules/locale/org-netbeans-modules-db-dataview_ja.jar"/>
+        <file crc="1928911612" name="modules/locale/org-netbeans-modules-db-dataview_pt_BR.jar"/>
+        <file crc="1559818991" name="modules/locale/org-netbeans-modules-db-dataview_ru.jar"/>
+        <file crc="1298411990" name="modules/locale/org-netbeans-modules-db-dataview_zh_CN.jar"/>
+        <file crc="3471681911" name="modules/org-netbeans-modules-db-dataview.jar"/>
+    </module_version>
+</module>

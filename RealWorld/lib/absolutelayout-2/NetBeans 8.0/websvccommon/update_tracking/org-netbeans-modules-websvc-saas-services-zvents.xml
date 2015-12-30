@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.websvc.saas.services.zvents">
+    <module_version install_time="1416337818257" last="true" origin="installer" specification_version="1.24.1">
+        <file crc="1312464202" name="config/Modules/org-netbeans-modules-websvc-saas-services-zvents.xml"/>
+        <file crc="600313698" name="modules/locale/org-netbeans-modules-websvc-saas-services-zvents_ja.jar"/>
+        <file crc="264248595" name="modules/locale/org-netbeans-modules-websvc-saas-services-zvents_pt_BR.jar"/>
+        <file crc="3409475530" name="modules/locale/org-netbeans-modules-websvc-saas-services-zvents_ru.jar"/>
+        <file crc="409753086" name="modules/locale/org-netbeans-modules-websvc-saas-services-zvents_zh_CN.jar"/>
+        <file crc="1457741108" name="modules/org-netbeans-modules-websvc-saas-services-zvents.jar"/>
+    </module_version>
+</module>

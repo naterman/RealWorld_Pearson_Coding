@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.team.ide">
+    <module_version install_time="1416343006569" last="true" origin="installer" specification_version="1.9.1">
+        <file crc="2935218928" name="config/Modules/org-netbeans-modules-team-ide.xml"/>
+        <file crc="1836265134" name="modules/locale/org-netbeans-modules-team-ide_ja.jar"/>
+        <file crc="435193240" name="modules/locale/org-netbeans-modules-team-ide_pt_BR.jar"/>
+        <file crc="1699699288" name="modules/locale/org-netbeans-modules-team-ide_ru.jar"/>
+        <file crc="422686120" name="modules/locale/org-netbeans-modules-team-ide_zh_CN.jar"/>
+        <file crc="2589601686" name="modules/org-netbeans-modules-team-ide.jar"/>
+    </module_version>
+</module>

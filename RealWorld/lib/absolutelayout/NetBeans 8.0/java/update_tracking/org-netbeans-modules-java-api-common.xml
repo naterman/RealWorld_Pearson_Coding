@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.java.api.common/0">
+    <module_version install_time="1416340924512" last="true" origin="installer" specification_version="1.72.1">
+        <file crc="3025720141" name="config/Modules/org-netbeans-modules-java-api-common.xml"/>
+        <file crc="3558663868" name="modules/locale/org-netbeans-modules-java-api-common_ja.jar"/>
+        <file crc="2453330001" name="modules/locale/org-netbeans-modules-java-api-common_pt_BR.jar"/>
+        <file crc="1517594374" name="modules/locale/org-netbeans-modules-java-api-common_ru.jar"/>
+        <file crc="1059394839" name="modules/locale/org-netbeans-modules-java-api-common_zh_CN.jar"/>
+        <file crc="1779050998" name="modules/org-netbeans-modules-java-api-common.jar"/>
+    </module_version>
+</module>

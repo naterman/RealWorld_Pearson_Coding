@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<module codename="org.netbeans.libs.svnClientAdapter.svnkit/1">
+    <module_version install_time="1416338091489" last="false" origin="installer" specification_version="1.21.1">
+        <file crc="1961354368" name="config/Modules/org-netbeans-libs-svnClientAdapter-svnkit.xml"/>
+        <file crc="439525718" name="modules/ext/sqljet.jar"/>
+        <file crc="2372308056" name="modules/ext/svnClientAdapter-svnkit.jar"/>
+        <file crc="1848636580" name="modules/ext/svnkit.jar"/>
+        <file crc="3885107685" name="modules/ext/trilead.ssh2.jar"/>
+        <file crc="2805719730" name="modules/locale/org-netbeans-libs-svnClientAdapter-svnkit_ja.jar"/>
+        <file crc="24223774" name="modules/locale/org-netbeans-libs-svnClientAdapter-svnkit_pt_BR.jar"/>
+        <file crc="445270854" name="modules/locale/org-netbeans-libs-svnClientAdapter-svnkit_ru.jar"/>
+        <file crc="4137842786" name="modules/locale/org-netbeans-libs-svnClientAdapter-svnkit_zh_CN.jar"/>
+        <file crc="1564954795" name="modules/org-netbeans-libs-svnClientAdapter-svnkit.jar"/>
+    </module_version>
+    <module_version install_time="1425948818853" last="true" origin="NetBeans Distribution" specification_version="1.21.2">
+        <file crc="1961354368" name="config/Modules/org-netbeans-libs-svnClientAdapter-svnkit.xml"/>
+        <file crc="439525718" name="modules/ext/sqljet.jar"/>
+        <file crc="2372308056" name="modules/ext/svnClientAdapter-svnkit.jar"/>
+        <file crc="599106794" name="modules/ext/svnkit.jar"/>
+        <file crc="3885107685" name="modules/ext/trilead.ssh2.jar"/>
+        <file crc="4232197133" name="modules/locale/org-netbeans-libs-svnClientAdapter-svnkit_ja.jar"/>
+        <file crc="1467754988" name="modules/locale/org-netbeans-libs-svnClientAdapter-svnkit_pt_BR.jar"/>
+        <file crc="178212071" name="modules/locale/org-netbeans-libs-svnClientAdapter-svnkit_ru.jar"/>
+        <file crc="2354945812" name="modules/locale/org-netbeans-libs-svnClientAdapter-svnkit_zh_CN.jar"/>
+        <file crc="4002590673" name="modules/org-netbeans-libs-svnClientAdapter-svnkit.jar"/>
+    </module_version>
+</module>

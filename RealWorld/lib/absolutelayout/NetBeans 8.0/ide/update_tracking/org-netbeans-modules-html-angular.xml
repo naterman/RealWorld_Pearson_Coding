@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.html.angular">
+    <module_version install_time="1416341435103" last="true" origin="installer" specification_version="1.7.2">
+        <file crc="2127269519" name="config/Modules/org-netbeans-modules-html-angular.xml"/>
+        <file crc="794092798" name="modules/locale/org-netbeans-modules-html-angular_ja.jar"/>
+        <file crc="2588672376" name="modules/locale/org-netbeans-modules-html-angular_pt_BR.jar"/>
+        <file crc="416332462" name="modules/locale/org-netbeans-modules-html-angular_ru.jar"/>
+        <file crc="2459261936" name="modules/locale/org-netbeans-modules-html-angular_zh_CN.jar"/>
+        <file crc="2923019223" name="modules/org-netbeans-modules-html-angular.jar"/>
+    </module_version>
+</module>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.html.custom">
+    <module_version install_time="1416341459161" last="true" origin="installer" specification_version="1.2.1">
+        <file crc="1621603481" name="config/Modules/org-netbeans-modules-html-custom.xml"/>
+        <file crc="3263393335" name="modules/locale/org-netbeans-modules-html-custom_ja.jar"/>
+        <file crc="3451436339" name="modules/locale/org-netbeans-modules-html-custom_pt_BR.jar"/>
+        <file crc="1527927917" name="modules/locale/org-netbeans-modules-html-custom_ru.jar"/>
+        <file crc="1345192413" name="modules/locale/org-netbeans-modules-html-custom_zh_CN.jar"/>
+        <file crc="949080404" name="modules/org-netbeans-modules-html-custom.jar"/>
+    </module_version>
+</module>

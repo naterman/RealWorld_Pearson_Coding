@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.editor.tools.storage">
+    <module_version install_time="1416339574643" last="true" origin="installer" specification_version="1.4.1">
+        <file crc="864286405" name="config/Modules/org-netbeans-modules-editor-tools-storage.xml"/>
+        <file crc="4182911790" name="modules/locale/org-netbeans-modules-editor-tools-storage_ja.jar"/>
+        <file crc="306628889" name="modules/locale/org-netbeans-modules-editor-tools-storage_pt_BR.jar"/>
+        <file crc="1271476572" name="modules/locale/org-netbeans-modules-editor-tools-storage_ru.jar"/>
+        <file crc="3131000460" name="modules/locale/org-netbeans-modules-editor-tools-storage_zh_CN.jar"/>
+        <file crc="748617010" name="modules/org-netbeans-modules-editor-tools-storage.jar"/>
+    </module_version>
+</module>

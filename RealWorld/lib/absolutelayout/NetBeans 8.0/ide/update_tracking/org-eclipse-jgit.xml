@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<module codename="org.eclipse.jgit">
+    <module_version install_time="1416336853598" last="false" origin="installer" specification_version="3.4.1.201406201815-r">
+        <file crc="2014703679" name="config/Modules/org-eclipse-jgit.xml"/>
+        <file crc="2255117924" name="modules/org-eclipse-jgit.jar"/>
+    </module_version>
+    <module_version install_time="1425948822856" last="true" origin="NetBeans Distribution" specification_version="3.6.2">
+        <file crc="1500692564" name="modules/org-eclipse-jgit.jar"/>
+        <file crc="2014703679" name="config/Modules/org-eclipse-jgit.xml"/>
+    </module_version>
+</module>

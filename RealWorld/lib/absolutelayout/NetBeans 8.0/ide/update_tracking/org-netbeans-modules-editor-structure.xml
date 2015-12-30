@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.editor.structure/1">
+    <module_version install_time="1416339691647" last="true" origin="installer" specification_version="1.43.1.1">
+        <file crc="215816205" name="config/Modules/org-netbeans-modules-editor-structure.xml"/>
+        <file crc="111561543" name="modules/locale/org-netbeans-modules-editor-structure_ja.jar"/>
+        <file crc="1408155022" name="modules/locale/org-netbeans-modules-editor-structure_pt_BR.jar"/>
+        <file crc="2839859476" name="modules/locale/org-netbeans-modules-editor-structure_ru.jar"/>
+        <file crc="2456219972" name="modules/locale/org-netbeans-modules-editor-structure_zh_CN.jar"/>
+        <file crc="389207088" name="modules/org-netbeans-modules-editor-structure.jar"/>
+    </module_version>
+</module>

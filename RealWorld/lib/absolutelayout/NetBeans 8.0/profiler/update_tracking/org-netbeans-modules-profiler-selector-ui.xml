@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.profiler.selector.ui/1">
+    <module_version install_time="1416338382167" last="true" origin="installer" specification_version="1.26.1">
+        <file crc="205404644" name="config/Modules/org-netbeans-modules-profiler-selector-ui.xml"/>
+        <file crc="2655129242" name="modules/locale/org-netbeans-modules-profiler-selector-ui_ja.jar"/>
+        <file crc="2665226784" name="modules/locale/org-netbeans-modules-profiler-selector-ui_pt_BR.jar"/>
+        <file crc="2183802208" name="modules/locale/org-netbeans-modules-profiler-selector-ui_ru.jar"/>
+        <file crc="3952253646" name="modules/locale/org-netbeans-modules-profiler-selector-ui_zh_CN.jar"/>
+        <file crc="1020675862" name="modules/org-netbeans-modules-profiler-selector-ui.jar"/>
+    </module_version>
+</module>

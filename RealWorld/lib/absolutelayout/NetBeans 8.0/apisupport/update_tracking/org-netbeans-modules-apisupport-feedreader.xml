@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.apisupport.feedreader/1">
+    <module_version install_time="1416341934721" last="true" origin="installer" specification_version="1.30.1">
+        <file crc="2909447840" name="config/Modules/org-netbeans-modules-apisupport-feedreader.xml"/>
+        <file crc="455176090" name="modules/locale/org-netbeans-modules-apisupport-feedreader_ja.jar"/>
+        <file crc="3516538131" name="modules/locale/org-netbeans-modules-apisupport-feedreader_pt_BR.jar"/>
+        <file crc="1844700571" name="modules/locale/org-netbeans-modules-apisupport-feedreader_ru.jar"/>
+        <file crc="846181946" name="modules/locale/org-netbeans-modules-apisupport-feedreader_zh_CN.jar"/>
+        <file crc="3799797709" name="modules/org-netbeans-modules-apisupport-feedreader.jar"/>
+    </module_version>
+</module>

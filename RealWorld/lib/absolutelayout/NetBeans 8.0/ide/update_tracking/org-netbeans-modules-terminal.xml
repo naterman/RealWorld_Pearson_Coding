@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<module codename="org.netbeans.modules.terminal">
+    <module_version install_time="1416339279425" last="false" origin="installer" specification_version="1.19.1">
+        <file crc="4156507734" name="config/Modules/org-netbeans-modules-terminal.xml"/>
+        <file crc="1529412251" name="modules/locale/org-netbeans-modules-terminal_ja.jar"/>
+        <file crc="632167809" name="modules/locale/org-netbeans-modules-terminal_pt_BR.jar"/>
+        <file crc="3441368131" name="modules/locale/org-netbeans-modules-terminal_ru.jar"/>
+        <file crc="2190263572" name="modules/locale/org-netbeans-modules-terminal_zh_CN.jar"/>
+        <file crc="3453525432" name="modules/org-netbeans-modules-terminal.jar"/>
+    </module_version>
+    <module_version install_time="1425948814173" last="true" origin="NetBeans Distribution" specification_version="1.19.2">
+        <file crc="4156507734" name="config/Modules/org-netbeans-modules-terminal.xml"/>
+        <file crc="1218946692" name="modules/locale/org-netbeans-modules-terminal_ja.jar"/>
+        <file crc="2599407731" name="modules/locale/org-netbeans-modules-terminal_pt_BR.jar"/>
+        <file crc="2528967124" name="modules/locale/org-netbeans-modules-terminal_ru.jar"/>
+        <file crc="3366222770" name="modules/locale/org-netbeans-modules-terminal_zh_CN.jar"/>
+        <file crc="2913153006" name="modules/org-netbeans-modules-terminal.jar"/>
+    </module_version>
+</module>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.libs.git/1">
+    <module_version install_time="1416338078273" last="true" origin="installer" specification_version="1.27.2">
+        <file crc="4214212944" name="config/Modules/org-netbeans-libs-git.xml"/>
+        <file crc="1977611648" name="modules/locale/org-netbeans-libs-git_ja.jar"/>
+        <file crc="2379131924" name="modules/locale/org-netbeans-libs-git_pt_BR.jar"/>
+        <file crc="613509660" name="modules/locale/org-netbeans-libs-git_ru.jar"/>
+        <file crc="3308212238" name="modules/locale/org-netbeans-libs-git_zh_CN.jar"/>
+        <file crc="1437732917" name="modules/org-netbeans-libs-git.jar"/>
+    </module_version>
+</module>

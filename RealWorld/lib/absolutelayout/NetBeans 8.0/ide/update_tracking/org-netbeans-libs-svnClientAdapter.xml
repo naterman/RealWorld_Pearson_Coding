@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.libs.svnClientAdapter/1">
+    <module_version install_time="1416338084688" last="true" origin="installer" specification_version="1.36.1">
+        <file crc="3185122914" name="config/Modules/org-netbeans-libs-svnClientAdapter.xml"/>
+        <file crc="3940058675" name="modules/ext/svnClientAdapter-main.jar"/>
+        <file crc="2599938897" name="modules/locale/org-netbeans-libs-svnClientAdapter_ja.jar"/>
+        <file crc="4063152687" name="modules/locale/org-netbeans-libs-svnClientAdapter_pt_BR.jar"/>
+        <file crc="2476377439" name="modules/locale/org-netbeans-libs-svnClientAdapter_ru.jar"/>
+        <file crc="216773791" name="modules/locale/org-netbeans-libs-svnClientAdapter_zh_CN.jar"/>
+        <file crc="21313993" name="modules/org-netbeans-libs-svnClientAdapter.jar"/>
+    </module_version>
+</module>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.extexecution.impl">
+    <module_version install_time="1416339271147" last="true" origin="installer" specification_version="1.21.1">
+        <file crc="985526827" name="config/Modules/org-netbeans-modules-extexecution-impl.xml"/>
+        <file crc="1530983162" name="modules/ext/libpam4j-1.1.jar"/>
+        <file crc="2239138212" name="modules/ext/processtreekiller-1.0.2.jar"/>
+        <file crc="1352008848" name="modules/ext/winp-1.14-patched.jar"/>
+        <file crc="4183800125" name="modules/locale/org-netbeans-modules-extexecution-impl_ja.jar"/>
+        <file crc="4071618265" name="modules/locale/org-netbeans-modules-extexecution-impl_pt_BR.jar"/>
+        <file crc="823480653" name="modules/locale/org-netbeans-modules-extexecution-impl_ru.jar"/>
+        <file crc="1668094842" name="modules/locale/org-netbeans-modules-extexecution-impl_zh_CN.jar"/>
+        <file crc="4038614714" name="modules/org-netbeans-modules-extexecution-impl.jar"/>
+    </module_version>
+</module>

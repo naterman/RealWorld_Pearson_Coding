@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<module codename="org.netbeans.modules.java.editor/1">
+    <module_version install_time="1416341962427" last="false" origin="installer" specification_version="2.60.1.10.1.1">
+        <file crc="1233444570" name="config/Modules/org-netbeans-modules-java-editor.xml"/>
+        <file crc="2301427244" name="modules/locale/org-netbeans-modules-java-editor_ja.jar"/>
+        <file crc="1839757493" name="modules/locale/org-netbeans-modules-java-editor_pt_BR.jar"/>
+        <file crc="472937561" name="modules/locale/org-netbeans-modules-java-editor_ru.jar"/>
+        <file crc="1692170972" name="modules/locale/org-netbeans-modules-java-editor_zh_CN.jar"/>
+        <file crc="193432563" name="modules/org-netbeans-modules-java-editor.jar"/>
+    </module_version>
+    <module_version install_time="1425948825609" last="true" origin="NetBeans Distribution" specification_version="2.60.2.10.1.1">
+        <file crc="1233444570" name="config/Modules/org-netbeans-modules-java-editor.xml"/>
+        <file crc="1214181739" name="modules/locale/org-netbeans-modules-java-editor_ja.jar"/>
+        <file crc="2313521390" name="modules/locale/org-netbeans-modules-java-editor_pt_BR.jar"/>
+        <file crc="3503056687" name="modules/locale/org-netbeans-modules-java-editor_ru.jar"/>
+        <file crc="1513252524" name="modules/locale/org-netbeans-modules-java-editor_zh_CN.jar"/>
+        <file crc="3915616788" name="modules/org-netbeans-modules-java-editor.jar"/>
+    </module_version>
+</module>

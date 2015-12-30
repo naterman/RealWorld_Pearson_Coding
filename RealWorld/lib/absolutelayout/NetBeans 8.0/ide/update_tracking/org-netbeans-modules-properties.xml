@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.properties/1">
+    <module_version install_time="1416340322954" last="true" origin="installer" specification_version="1.50.1">
+        <file crc="2183385895" name="config/Modules/org-netbeans-modules-properties.xml"/>
+        <file crc="3304706384" name="modules/locale/org-netbeans-modules-properties_ja.jar"/>
+        <file crc="586516489" name="modules/locale/org-netbeans-modules-properties_pt_BR.jar"/>
+        <file crc="3026289557" name="modules/locale/org-netbeans-modules-properties_ru.jar"/>
+        <file crc="2060801303" name="modules/locale/org-netbeans-modules-properties_zh_CN.jar"/>
+        <file crc="390267420" name="modules/org-netbeans-modules-properties.jar"/>
+    </module_version>
+</module>

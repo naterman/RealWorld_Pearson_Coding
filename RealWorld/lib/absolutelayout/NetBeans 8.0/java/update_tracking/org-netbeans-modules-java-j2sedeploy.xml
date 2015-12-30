@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.java.j2sedeploy">
+    <module_version install_time="1416341521452" last="true" origin="installer" specification_version="1.8.1">
+        <file crc="1708212141" name="config/Modules/org-netbeans-modules-java-j2sedeploy.xml"/>
+        <file crc="3540798608" name="modules/locale/org-netbeans-modules-java-j2sedeploy_ja.jar"/>
+        <file crc="1525765387" name="modules/locale/org-netbeans-modules-java-j2sedeploy_pt_BR.jar"/>
+        <file crc="2624466783" name="modules/locale/org-netbeans-modules-java-j2sedeploy_ru.jar"/>
+        <file crc="413830270" name="modules/locale/org-netbeans-modules-java-j2sedeploy_zh_CN.jar"/>
+        <file crc="1638273186" name="modules/org-netbeans-modules-java-j2sedeploy.jar"/>
+    </module_version>
+</module>

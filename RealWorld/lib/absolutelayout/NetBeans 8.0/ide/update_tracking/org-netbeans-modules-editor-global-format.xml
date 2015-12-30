@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.editor.global.format/1">
+    <module_version install_time="1416340365102" last="true" origin="installer" specification_version="1.11.1.1">
+        <file crc="1116088175" name="config/Modules/org-netbeans-modules-editor-global-format.xml"/>
+        <file crc="3940151677" name="modules/locale/org-netbeans-modules-editor-global-format_ja.jar"/>
+        <file crc="148626023" name="modules/locale/org-netbeans-modules-editor-global-format_pt_BR.jar"/>
+        <file crc="2581439300" name="modules/locale/org-netbeans-modules-editor-global-format_ru.jar"/>
+        <file crc="1031651580" name="modules/locale/org-netbeans-modules-editor-global-format_zh_CN.jar"/>
+        <file crc="2837057685" name="modules/org-netbeans-modules-editor-global-format.jar"/>
+    </module_version>
+</module>

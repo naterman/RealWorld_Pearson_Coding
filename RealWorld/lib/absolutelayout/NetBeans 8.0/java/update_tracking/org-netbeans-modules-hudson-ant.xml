@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.hudson.ant">
+    <module_version install_time="1416341889565" last="true" origin="installer" specification_version="1.23.1">
+        <file crc="698110016" name="config/Modules/org-netbeans-modules-hudson-ant.xml"/>
+        <file crc="1567093432" name="modules/locale/org-netbeans-modules-hudson-ant_ja.jar"/>
+        <file crc="24079703" name="modules/locale/org-netbeans-modules-hudson-ant_pt_BR.jar"/>
+        <file crc="3340980181" name="modules/locale/org-netbeans-modules-hudson-ant_ru.jar"/>
+        <file crc="3661118187" name="modules/locale/org-netbeans-modules-hudson-ant_zh_CN.jar"/>
+        <file crc="1740306769" name="modules/org-netbeans-modules-hudson-ant.jar"/>
+    </module_version>
+</module>

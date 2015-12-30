@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.javascript2.prototypejs">
+    <module_version install_time="1416341441038" last="true" origin="installer" specification_version="0.1.1">
+        <file crc="880552857" name="config/Modules/org-netbeans-modules-javascript2-prototypejs.xml"/>
+        <file crc="1616162925" name="modules/locale/org-netbeans-modules-javascript2-prototypejs_ja.jar"/>
+        <file crc="3120235918" name="modules/locale/org-netbeans-modules-javascript2-prototypejs_pt_BR.jar"/>
+        <file crc="295187471" name="modules/locale/org-netbeans-modules-javascript2-prototypejs_ru.jar"/>
+        <file crc="221443752" name="modules/locale/org-netbeans-modules-javascript2-prototypejs_zh_CN.jar"/>
+        <file crc="3222352356" name="modules/org-netbeans-modules-javascript2-prototypejs.jar"/>
+    </module_version>
+</module>

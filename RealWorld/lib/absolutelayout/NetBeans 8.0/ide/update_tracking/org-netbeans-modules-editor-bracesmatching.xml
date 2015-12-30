@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.editor.bracesmatching/0">
+    <module_version install_time="1416339704493" last="true" origin="installer" specification_version="1.34.1.43">
+        <file crc="3381231321" name="config/Modules/org-netbeans-modules-editor-bracesmatching.xml"/>
+        <file crc="411268528" name="modules/locale/org-netbeans-modules-editor-bracesmatching_ja.jar"/>
+        <file crc="1429272607" name="modules/locale/org-netbeans-modules-editor-bracesmatching_pt_BR.jar"/>
+        <file crc="3158635060" name="modules/locale/org-netbeans-modules-editor-bracesmatching_ru.jar"/>
+        <file crc="2571703934" name="modules/locale/org-netbeans-modules-editor-bracesmatching_zh_CN.jar"/>
+        <file crc="728464711" name="modules/org-netbeans-modules-editor-bracesmatching.jar"/>
+    </module_version>
+</module>

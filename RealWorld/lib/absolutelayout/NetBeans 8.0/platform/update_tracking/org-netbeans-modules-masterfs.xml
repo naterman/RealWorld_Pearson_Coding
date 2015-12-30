@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<module codename="org.netbeans.modules.masterfs/2">
+    <module_version install_time="1416338252420" last="false" origin="installer" specification_version="2.48.2">
+        <file crc="1644917168" name="config/Modules/org-netbeans-modules-masterfs.xml"/>
+        <file crc="2765319536" name="modules/locale/org-netbeans-modules-masterfs_ja.jar"/>
+        <file crc="2262113516" name="modules/locale/org-netbeans-modules-masterfs_pt_BR.jar"/>
+        <file crc="4107478641" name="modules/locale/org-netbeans-modules-masterfs_ru.jar"/>
+        <file crc="3672762937" name="modules/locale/org-netbeans-modules-masterfs_zh_CN.jar"/>
+        <file crc="1116755693" name="modules/org-netbeans-modules-masterfs.jar"/>
+    </module_version>
+    <module_version install_time="1425948807558" last="true" origin="NetBeans Distribution" specification_version="2.48.3">
+        <file crc="1644917168" name="config/Modules/org-netbeans-modules-masterfs.xml"/>
+        <file crc="96588611" name="modules/locale/org-netbeans-modules-masterfs_ja.jar"/>
+        <file crc="2995816773" name="modules/locale/org-netbeans-modules-masterfs_pt_BR.jar"/>
+        <file crc="3116417071" name="modules/locale/org-netbeans-modules-masterfs_ru.jar"/>
+        <file crc="1672261829" name="modules/locale/org-netbeans-modules-masterfs_zh_CN.jar"/>
+        <file crc="880706854" name="modules/org-netbeans-modules-masterfs.jar"/>
+    </module_version>
+</module>

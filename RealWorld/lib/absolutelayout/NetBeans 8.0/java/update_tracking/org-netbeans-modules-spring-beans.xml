@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.spring.beans/0">
+    <module_version install_time="1416342379473" last="true" origin="installer" specification_version="1.35.1.1">
+        <file crc="2003250738" name="config/Modules/org-netbeans-modules-spring-beans.xml"/>
+        <file crc="1270103468" name="modules/locale/org-netbeans-modules-spring-beans_ja.jar"/>
+        <file crc="1457211090" name="modules/locale/org-netbeans-modules-spring-beans_pt_BR.jar"/>
+        <file crc="2971419800" name="modules/locale/org-netbeans-modules-spring-beans_ru.jar"/>
+        <file crc="2448479484" name="modules/locale/org-netbeans-modules-spring-beans_zh_CN.jar"/>
+        <file crc="2731216660" name="modules/org-netbeans-modules-spring-beans.jar"/>
+    </module_version>
+</module>

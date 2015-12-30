@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.java.hints.legacy.spi/1">
+    <module_version install_time="1416341693971" last="true" origin="installer" specification_version="1.11.1.1.13">
+        <file crc="4291474663" name="config/Modules/org-netbeans-modules-java-hints-legacy-spi.xml"/>
+        <file crc="3964195599" name="modules/locale/org-netbeans-modules-java-hints-legacy-spi_ja.jar"/>
+        <file crc="3061895472" name="modules/locale/org-netbeans-modules-java-hints-legacy-spi_pt_BR.jar"/>
+        <file crc="4266669622" name="modules/locale/org-netbeans-modules-java-hints-legacy-spi_ru.jar"/>
+        <file crc="3246679844" name="modules/locale/org-netbeans-modules-java-hints-legacy-spi_zh_CN.jar"/>
+        <file crc="3470485259" name="modules/org-netbeans-modules-java-hints-legacy-spi.jar"/>
+    </module_version>
+</module>
