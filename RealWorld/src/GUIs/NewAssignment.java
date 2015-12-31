@@ -30,63 +30,63 @@ public class NewAssignment extends JXPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        ScenarioTextBox = new org.jdesktop.swingx.JXTextArea();
+        scenarioTextBox = new org.jdesktop.swingx.JXTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        QuestionTextBox = new org.jdesktop.swingx.JXTextArea();
-        AnswerTextBox = new org.jdesktop.swingx.JXTextField();
-        TriggerCheckBox = new javax.swing.JCheckBox();
-        EnableCheckBox = new javax.swing.JCheckBox();
-        SaveButton = new org.jdesktop.swingx.JXButton();
-        DeleteButton = new org.jdesktop.swingx.JXButton();
-        Save_NewButton = new org.jdesktop.swingx.JXButton();
-        CancelButton = new org.jdesktop.swingx.JXButton();
+        questionTextBox = new org.jdesktop.swingx.JXTextArea();
+        answerTextBox = new org.jdesktop.swingx.JXTextField();
+        triggerCheckBox = new javax.swing.JCheckBox();
+        enableCheckBox = new javax.swing.JCheckBox();
+        saveButton = new org.jdesktop.swingx.JXButton();
+        deleteButton = new org.jdesktop.swingx.JXButton();
+        save_newButton = new org.jdesktop.swingx.JXButton();
+        cancelButton = new org.jdesktop.swingx.JXButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        QuestionPanel = new org.jdesktop.swingx.JXPanel();
+        questionPanel = new org.jdesktop.swingx.JXPanel();
 
-        ScenarioTextBox.setColumns(20);
-        ScenarioTextBox.setRows(5);
-        ScenarioTextBox.setText("Add New Scenario");
-        jScrollPane1.setViewportView(ScenarioTextBox);
+        scenarioTextBox.setColumns(20);
+        scenarioTextBox.setRows(5);
+        scenarioTextBox.setText("Add New Scenario");
+        jScrollPane1.setViewportView(scenarioTextBox);
 
-        QuestionTextBox.setColumns(20);
-        QuestionTextBox.setRows(5);
-        QuestionTextBox.setText("Add New Question");
-        jScrollPane2.setViewportView(QuestionTextBox);
+        questionTextBox.setColumns(20);
+        questionTextBox.setRows(5);
+        questionTextBox.setText("Add New Question");
+        jScrollPane2.setViewportView(questionTextBox);
 
-        AnswerTextBox.setText("Answer");
+        answerTextBox.setText("Answer");
 
-        TriggerCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        TriggerCheckBox.setText("Trigger?");
+        triggerCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        triggerCheckBox.setText("Trigger?");
 
-        EnableCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        EnableCheckBox.setText("Enable?");
+        enableCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        enableCheckBox.setText("Enable?");
 
-        SaveButton.setText("Save");
-        SaveButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        saveButton.setText("Save");
+        saveButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        DeleteButton.setText("Delete");
-        DeleteButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        deleteButton.setText("Delete");
+        deleteButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        Save_NewButton.setText("Save/New");
-        Save_NewButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        save_newButton.setText("Save/New");
+        save_newButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        CancelButton.setText("Cancel");
-        CancelButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        cancelButton.setText("Cancel");
+        cancelButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        QuestionPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        questionPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        javax.swing.GroupLayout QuestionPanelLayout = new javax.swing.GroupLayout(QuestionPanel);
-        QuestionPanel.setLayout(QuestionPanelLayout);
-        QuestionPanelLayout.setHorizontalGroup(
-            QuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
+        questionPanel.setLayout(questionPanelLayout);
+        questionPanelLayout.setHorizontalGroup(
+            questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 261, Short.MAX_VALUE)
         );
-        QuestionPanelLayout.setVerticalGroup(
-            QuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        questionPanelLayout.setVerticalGroup(
+            questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 249, Short.MAX_VALUE)
         );
 
-        jScrollPane3.setViewportView(QuestionPanel);
+        jScrollPane3.setViewportView(questionPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,24 +99,24 @@ public class NewAssignment extends JXPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(AnswerTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(answerTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(162, 162, 162))
-                            .addComponent(Save_NewButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(save_newButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(TriggerCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(triggerCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(60, 60, 60)
-                                        .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(69, 69, 69)
-                                        .addComponent(EnableCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(enableCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -133,21 +133,21 @@ public class NewAssignment extends JXPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(AnswerTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(answerTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
-                                .addComponent(EnableCheckBox)
+                                .addComponent(enableCheckBox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
-                                .addComponent(TriggerCheckBox)))
+                                .addComponent(triggerCheckBox)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Save_NewButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(save_newButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -155,18 +155,18 @@ public class NewAssignment extends JXPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.jdesktop.swingx.JXTextField AnswerTextBox;
-    private org.jdesktop.swingx.JXButton CancelButton;
-    private org.jdesktop.swingx.JXButton DeleteButton;
-    private javax.swing.JCheckBox EnableCheckBox;
-    private org.jdesktop.swingx.JXPanel QuestionPanel;
-    private org.jdesktop.swingx.JXTextArea QuestionTextBox;
-    private org.jdesktop.swingx.JXButton SaveButton;
-    private org.jdesktop.swingx.JXButton Save_NewButton;
-    private org.jdesktop.swingx.JXTextArea ScenarioTextBox;
-    private javax.swing.JCheckBox TriggerCheckBox;
+    private org.jdesktop.swingx.JXTextField answerTextBox;
+    private org.jdesktop.swingx.JXButton cancelButton;
+    private org.jdesktop.swingx.JXButton deleteButton;
+    private javax.swing.JCheckBox enableCheckBox;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private org.jdesktop.swingx.JXPanel questionPanel;
+    private org.jdesktop.swingx.JXTextArea questionTextBox;
+    private org.jdesktop.swingx.JXButton saveButton;
+    private org.jdesktop.swingx.JXButton save_newButton;
+    private org.jdesktop.swingx.JXTextArea scenarioTextBox;
+    private javax.swing.JCheckBox triggerCheckBox;
     // End of variables declaration//GEN-END:variables
 }

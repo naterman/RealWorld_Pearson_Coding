@@ -1,11 +1,17 @@
 
 package firebase;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.io.Serializable;
 
+/**
+ *
+ * @author Nathan Smith
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
@@ -15,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "name",
     "scenario"
 })
-public class Assignment {
+public class Assignment implements Serializable {
 
     @JsonProperty("duedate")
     private String duedate;
@@ -27,6 +33,8 @@ public class Assignment {
     private String name;
     @JsonProperty("scenario")
     private String scenario;
+    @JsonIgnore
+    private static final long serialVersionUID = 1;
 
     /**
      * No args constructor for use in serialization

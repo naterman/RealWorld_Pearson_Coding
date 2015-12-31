@@ -1,22 +1,22 @@
 
 package pearson.usercourses;
 
-import java.util.HashMap;
-import java.util.Map;
 import javax.annotation.Generated;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+/**
+ *
+ * @author Nathan Smith
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
     "course",
     "href",
-    "rel"
+    "rel",
+    "title"
 })
 public class Link {
 
@@ -26,11 +26,11 @@ public class Link {
     private String href;
     @JsonProperty("rel")
     private String rel;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
+    @JsonProperty("title")
+    private String title;
+    
     /**
-     * No args constructor for use in serialization
+     * No arguments constructor for use in serialization
      * 
      */
     public Link() {
@@ -108,14 +108,20 @@ public class Link {
         this.rel = rel;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    /**
+     * @return the title
+     */
+    @JsonProperty("title")
+    public String getTitle() {
+        return title;
     }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    /**
+     * @param title the title to set
+     */
+    @JsonProperty("title")
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }

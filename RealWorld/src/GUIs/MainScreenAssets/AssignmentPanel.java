@@ -10,9 +10,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import org.jdesktop.swingx.JXButton;
 import org.jdesktop.swingx.JXPanel;
-import org.jdesktop.swingx.SwingXUtilities;
 
 /**
  *
@@ -27,6 +25,12 @@ public class AssignmentPanel extends JXPanel {
     Assignment assignment;
     String courseID;
 
+    /**
+     *
+     * @param teach
+     * @param a
+     * @param courseID
+     */
     public AssignmentPanel(boolean teach, Assignment a, String courseID ) {
         this.teacher = teach;
         this.assignment = a;
@@ -74,7 +78,7 @@ public class AssignmentPanel extends JXPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                 EditButtonAction(e);
+                 editButtonAction(e);
             }
         });
         
@@ -82,7 +86,7 @@ public class AssignmentPanel extends JXPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                DisableButtonAction(e);
+                disableButtonAction(e);
             }
         });
         
@@ -90,7 +94,7 @@ public class AssignmentPanel extends JXPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                DeleteButtonAction(e);
+                deleteButtonAction(e);
             }
         });
         
@@ -98,7 +102,7 @@ public class AssignmentPanel extends JXPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                InfoButtonAction(e);
+                infoButtonAction(e);
             }
         });
         
@@ -106,7 +110,7 @@ public class AssignmentPanel extends JXPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                StartButtonAction(e);
+                startButtonAction(e);
             }
         });
 
@@ -143,27 +147,27 @@ public class AssignmentPanel extends JXPanel {
     
     
     
-    private void EditButtonAction(ActionEvent evt) {
+    private void editButtonAction(ActionEvent evt) {
         
         
     }
     
-    private void DisableButtonAction(ActionEvent evt) {
+    private void disableButtonAction(ActionEvent evt) {
         
         
     }
     
-    private void DeleteButtonAction(ActionEvent evt) {
+    private void deleteButtonAction(ActionEvent evt) {
         
         
     }
     
-    private void StartButtonAction(ActionEvent evt) {
+    private void startButtonAction(ActionEvent evt) {
         
         
     }
     
-    private void InfoButtonAction(ActionEvent evt) {
+    private void infoButtonAction(ActionEvent evt) {
         
         
     }

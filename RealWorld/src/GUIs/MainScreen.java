@@ -5,7 +5,6 @@
  */
 package GUIs;
 
-import GUIs.MainScreenAssets.FillAssignmentPanel;
 import GUIs.MainScreenAssets.FillClassesPanel;
 import org.jdesktop.swingx.*;
 import pearson.AuthenticationData;
@@ -21,6 +20,10 @@ public class MainScreen extends JXPanel {
      */
     public AuthenticationData data;
 
+    /**
+     *
+     * @param data
+     */
     public MainScreen(AuthenticationData data) {
         this.data = data;
         initComponents();
@@ -30,7 +33,8 @@ public class MainScreen extends JXPanel {
         Classes_Panel.setSize(301, 500);
         Classes_Panel.repaint();
         Classes_Panel.revalidate();
-        new Thread(new FillClassesPanel(Classes_Panel, data)).start();
+        FillClassesPanel FillCPanel = new FillClassesPanel(Classes_Panel, data);
+        FillCPanel.fill();
 
     }
 

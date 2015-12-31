@@ -5,9 +5,12 @@
  */
 package GUIs.MainScreenAssets;
 
+import GUIs.CreateAssignment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.LinkedList;
 import javax.net.ssl.HttpsURLConnection;
@@ -34,32 +37,37 @@ public class ClassPanel extends JXPanel {
     /**
      * Creates new form Class
      */
-    boolean Teacher;
-    ClassInfo ClassData;
+    boolean teacher;
+    ClassInfo classData;
     LinkedList<String> names;
-    String ButtonText;
+    String buttonText;
     AuthenticationData data;
 
+    /**
+     *
+     * @param c
+     * @param data
+     */
     public ClassPanel(ClassInfo c, AuthenticationData data) {
         this.data = data;
-        ClassData = c;
-        getRole role = new getRole("https://api.learningstudio.com/me/courses/" + c.getID() + "/role", data);
+        classData = c;
+        GetRole role = new GetRole("https://api.learningstudio.com/me/courses/" + c.getID() + "/role", data);
         String type = role.getType();
         switch (type) {
             case "STUD":
-                Teacher = false;
+                teacher = false;
                 break;
             case "PROF":
-                Teacher = true;
+                teacher = true;
                 break;
             default:
-                Teacher = false;
+                teacher = false;
                 break;
         }
-        if (Teacher == true) {
-            ButtonText = "View Students";
+        if (teacher == true) {
+            buttonText = "View Students";
         } else {
-            ButtonText = "View Students";
+            buttonText = "View Teachers";
         }
         initComponents();
 
@@ -70,31 +78,31 @@ public class ClassPanel extends JXPanel {
     private void initComponents() {
 
         jXLabel1 = new org.jdesktop.swingx.JXLabel();
-        ViewButton = new org.jdesktop.swingx.JXButton();
-        ViewButton1 = new org.jdesktop.swingx.JXButton();
+        viewButton = new org.jdesktop.swingx.JXButton();
+        viewButton1 = new org.jdesktop.swingx.JXButton();
 
         jXLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jXLabel1.setText(ClassData.getName());
+        jXLabel1.setText(classData.getName());
         jXLabel1.setToolTipText("");
         jXLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jXLabel1.setLineWrap(true);
         jXLabel1.setTextAlignment(org.jdesktop.swingx.JXLabel.TextAlignment.CENTER);
 
-        ViewButton.setText(ButtonText);
-        ViewButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        ViewButton.addActionListener(new java.awt.event.ActionListener() {
+        viewButton.setText(buttonText);
+        viewButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewButtonActionPerformed(evt);
+                viewButtonActionPerformed(evt);
             }
         });
 
-        ViewButton1.setText("View Assignments");
-        ViewButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        ViewButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewButton1.setText("View Assignments");
+        viewButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        viewButton1.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewButton1ActionPerformed(evt);
+                viewButton1ActionPerformed(evt);
             }
         });
 
@@ -106,9 +114,9 @@ public class ClassPanel extends JXPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                        .addComponent(ViewButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(viewButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(30, 30, 30)
-                                        .addComponent(ViewButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(viewButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addComponent(jXLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
         );
@@ -119,22 +127,20 @@ public class ClassPanel extends JXPanel {
                         .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(ViewButton, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                                .addComponent(ViewButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                                .addComponent(viewButton, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                                .addComponent(viewButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                         .addContainerGap())
         );
     }
 
-    private void ViewButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
         LinkedList<String> names = null;
 
-        if(Teacher == true)
-        {
-            names = getNames("https://api.learningstudio.com/courses/" + ClassData.getID() + "/students", true);
-        }
-        else {
-            names = getNames("https://api.learningstudio.com/courses/" + ClassData.getID() + "/instructors", false);
+        if (teacher == true) {
+            names = getNames("https://api.learningstudio.com/courses/" + classData.getID() + "/students", true);
+        } else {
+            names = getNames("https://api.learningstudio.com/courses/" + classData.getID() + "/instructors", false);
         }
 
         JXList namesList = new JXList(names.toArray());
@@ -147,17 +153,37 @@ public class ClassPanel extends JXPanel {
 
     }
 
-    private void ViewButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void viewButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         JXPanel MainPanel = SwingXUtilities.getAncestor(JXPanel.class, this.getParent());
         JXPanel assignmentsPanel = (JXPanel) MainPanel.getComponent(5);
         JXButton newAssignmentButton = (JXButton) MainPanel.getComponent(7);
-        String buttonName = newAssignmentButton.getText();
-        newAssignmentButton.setVisible(Teacher);
+        newAssignmentButton.setVisible(teacher);
+
+        if (newAssignmentButton.getActionListeners().length == 0) {
+            newAssignmentButton.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    newAssignmentButtonAction(e);
+                }
+            });
+        }
+
         MainPanel.revalidate();
         MainPanel.repaint();
         assignmentsPanel.removeAll();
-        new Thread(new FillAssignmentPanel(Teacher, ClassData.getID(), assignmentsPanel, data)).start();
-        
+        FillAssignmentPanel FillAPanel = new FillAssignmentPanel(teacher, classData.getID(), assignmentsPanel, data);
+        FillAPanel.fill();
+    }
+
+    private void newAssignmentButtonAction(ActionEvent evt) {
+        JXDialog naFrame = new JXDialog(new CreateAssignment());
+        naFrame.setLocationRelativeTo(this);
+
+        naFrame.setSize(425, 400);
+        naFrame.setVisible(true);
+        System.out.println("Count of listeners: " + ((JXButton) evt.getSource()).getActionListeners().length);
+
     }
 
     LinkedList<String> getNames(String Url, boolean teacher) {
@@ -177,7 +203,7 @@ public class ClassPanel extends JXPanel {
                 if (teacher == false) {
                     ObjectMapper mapper = new ObjectMapper();
                     CourseInstructors instructors = mapper.readValue(httpConn.getInputStream(), CourseInstructors.class);
-                    for (Instructor prof : instructors.getInstructors()  ) {
+                    for (Instructor prof : instructors.getInstructors()) {
                         names.add(prof.getFirstName() + " " + prof.getLastName());
                     }
                 } else {
@@ -190,7 +216,12 @@ public class ClassPanel extends JXPanel {
 
                 return names;
             }
-        } catch (Exception ex) {
+        }
+        catch (RuntimeException rex)
+        {
+            throw rex;
+        }
+        catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -198,17 +229,17 @@ public class ClassPanel extends JXPanel {
     }
 
     // Variables declaration - do not modify                     
-    private org.jdesktop.swingx.JXButton ViewButton;
-    private org.jdesktop.swingx.JXButton ViewButton1;
+    private org.jdesktop.swingx.JXButton viewButton;
+    private org.jdesktop.swingx.JXButton viewButton1;
     private org.jdesktop.swingx.JXLabel jXLabel1;
     // End of variables declaration                   
 }
 
-class getRole {
+class GetRole {
 
     String role;
 
-    public getRole(String Url, AuthenticationData data) {
+    public GetRole(String Url, AuthenticationData data) {
         try {
             URL apiUrl = new URL(Url);
             HttpsURLConnection httpConn = (HttpsURLConnection) apiUrl.openConnection();
@@ -224,7 +255,12 @@ class getRole {
                 MyRole myRole = mapper.readValue(httpConn.getInputStream(), MyRole.class);
                 role = myRole.getRole().getType();
             }
-        } catch (Exception ex) {
+        } 
+        catch (RuntimeException rex)
+        {
+            throw rex;
+        }
+        catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 

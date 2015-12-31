@@ -5,7 +5,6 @@
  */
 package realworld;
 
-import Design.Colors;
 import GUIs.MainScreen;
 import com.firebase.client.Firebase;
 import com.pearson.pdn.learningstudio.oauth.OAuth2PasswordService;
@@ -17,10 +16,7 @@ import org.jdesktop.swingx.JXButton;
 import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXLoginPane;
 import org.jdesktop.swingx.JXPanel;
-import org.jdesktop.swingx.painter.MattePainter;
-import org.jdesktop.swingx.painter.PinstripePainter;
 import org.jdesktop.swingx.*;
-import org.jdesktop.swingx.painter.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -36,27 +32,27 @@ import pearson.AuthenticationData;
  */
 public class RealWorld {
 
-    static JXFrame MainFrame;
+    static JXFrame mainFrame;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
 
-        MainFrame = new JXFrame();
-        MainFrame.setExtendedState(JXFrame.MAXIMIZED_BOTH);
-        MainFrame.setDefaultCloseOperation(JXFrame.EXIT_ON_CLOSE);
-        MainFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
-        MainFrame.add(new LoginPanel());
+        mainFrame = new JXFrame();
+        mainFrame.setExtendedState(JXFrame.MAXIMIZED_BOTH);
+        mainFrame.setDefaultCloseOperation(JXFrame.EXIT_ON_CLOSE);
+        mainFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
+        mainFrame.add(new LoginPanel());
 
-        MainFrame.setVisible(true);
+        mainFrame.setVisible(true);
 
     }
 
-    void LoadNewPanel(Component com) {
-        MainFrame.removeAll();
-        MainFrame.add(com);
-        MainFrame.revalidate();
+    void loadNewPanel(Component com) {
+        mainFrame.removeAll();
+        mainFrame.add(com);
+        mainFrame.revalidate();
     }
 
 }
@@ -70,7 +66,8 @@ class LoginPanel extends JXPanel implements ActionListener {
         initComponents();
     }
 
-    void initComponents() {
+    
+    private void initComponents() {
         newPane = new JXLoginPane();
         newPane.setBannerText("RealWorld");
         newPane.setErrorMessage("Error");
@@ -79,10 +76,10 @@ class LoginPanel extends JXPanel implements ActionListener {
         JXButton newButton = new JXButton("Login");
         newButton.addActionListener(this);
 
-        MattePainter mp = new MattePainter(Colors.LightBlue.alpha(0.5f));
+       /* MattePainter mp = new MattePainter(Colors.LightBlue.alpha(0.5f));
         GlossPainter gp = new GlossPainter(Colors.White.alpha(0.3f), GlossPainter.GlossPosition.TOP);
-        PinstripePainter pp = new PinstripePainter(Colors.Gray.alpha(0.2f), 45d);
-        //this.setBackgroundPainter(new CompoundPainter(mp, pp, gp) );
+       PinstripePainter pp = new PinstripePainter(Colors.Gray.alpha(0.2f), 45d);
+        this.setBackgroundPainter(new CompoundPainter(mp, pp, gp) );*/
 
         this.setLayout(new GridBagLayout());
 
@@ -142,7 +139,12 @@ class LoginPanel extends JXPanel implements ActionListener {
                 frame.revalidate();
                 frame.repaint();
             }
-        } catch (Exception ex) {
+        }
+        catch (RuntimeException rex)
+        {
+            throw rex;
+        }
+        catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }

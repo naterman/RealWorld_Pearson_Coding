@@ -13,7 +13,6 @@ import com.firebase.client.FirebaseError;
 import com.firebase.security.token.TokenGenerator;
 import firebase.Assignment;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.UUID;
 import org.jdesktop.swingx.JXPanel;
 import pearson.AuthenticationData;
@@ -22,26 +21,33 @@ import pearson.AuthenticationData;
  *
  * @author Nathan Smith
  */
-public class FillAssignmentPanel implements Runnable {
+public class FillAssignmentPanel  {
     
-    boolean Teacher;
-    int CourseID;
-    JXPanel AssignmentPanel;
-    AuthenticationData data;
+    boolean teacher;
+    int courseID;
+    JXPanel assignmentPanel;
     Firebase ref = new Firebase("https://glowing-inferno-9149.firebaseio.com/RealWorld");
-    LinkedList<Assignment> assignments = new LinkedList<>();
     
+    /**
+     *
+     * @param teach
+     * @param ID
+     * @param j
+     * @param d
+     */
     public FillAssignmentPanel(boolean teach, int ID, JXPanel j, AuthenticationData d)
     {
-        this.Teacher = teach;
-        this.CourseID = ID;
-        this.AssignmentPanel = j;
-        this.data = d;
+        this.teacher = teach;
+        this.courseID = ID;
+        this.assignmentPanel = j;
         
         
     }
     
-    public void run()
+    /**
+     * Fills the Assignment Panel with current Assignments
+     */
+    public void fill()
     {
         UUID id = UUID.randomUUID();
         HashMap<String, Object> payload = new HashMap<>();
@@ -56,15 +62,15 @@ public class FillAssignmentPanel implements Runnable {
             }
             @Override
             public void onAuthenticated(AuthData authData) {
-                Firebase assignmentsRef = ref.child(String.valueOf(CourseID)).child("Assignments");
+                Firebase assignmentsRef = ref.child(String.valueOf(courseID)).child("Assignments");
                 assignmentsRef.addChildEventListener(new ChildEventListener() {
 
                     @Override
                     public void onChildAdded(DataSnapshot snapshot, String previousChildName) {
                            Assignment newAssignment = snapshot.getValue(Assignment.class);
-                           AssignmentPanel.add(new AssignmentPanel(Teacher, newAssignment, "12403107"));
-                           AssignmentPanel.revalidate();
-                           AssignmentPanel.repaint();
+                           assignmentPanel.add(new AssignmentPanel(teacher, newAssignment, "12403107"));
+                           assignmentPanel.revalidate();
+                           assignmentPanel.repaint();
                            
                     }
 
@@ -90,7 +96,5 @@ public class FillAssignmentPanel implements Runnable {
                 });
             }
         });
-        
-        System.out.print("Gotten to End");
     }
 }

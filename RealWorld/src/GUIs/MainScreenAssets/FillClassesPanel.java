@@ -21,18 +21,26 @@ import pearson.usercourses.MyCourses;
  *
  * @author Nathan Smith
  */
-public class FillClassesPanel implements Runnable {
+public class FillClassesPanel {
 
     JXPanel classPanel;
     AuthenticationData data;
     LinkedList<ClassInfo> cInfo = new LinkedList<>();
 
+    /**
+     *
+     * @param p
+     * @param data
+     */
     public FillClassesPanel(JXPanel p, AuthenticationData data) {
         this.classPanel = p;
         this.data = data;
     }
 
-    public void run() {
+    /**
+     * Fills the Current Class panel with classes the user is currently in
+     */
+    public void fill() {
         ObjectMapper mapper = new ObjectMapper();
         try {
             URL apiUrl = new URL("https://api.learningstudio.com/me/courses?expand=course");
@@ -45,7 +53,7 @@ public class FillClassesPanel implements Runnable {
 
             int responseCode = httpConn.getResponseCode();
             if (responseCode == 200) {
-
+                
                 MyCourses myCourses = mapper.readValue(httpConn.getInputStream(), MyCourses.class);
                 for (Courses item : myCourses.getCourses()) {
                     ClassInfo newClass = new ClassInfo(item.getLinks().get(0).getCourse().getTitle(), item.getLinks().get(0).getCourse().getId());
@@ -62,7 +70,12 @@ public class FillClassesPanel implements Runnable {
                 classPanel.revalidate();
                 classPanel.repaint();
             }
-        } catch (Exception ex) {
+        } 
+        catch (RuntimeException rex)
+        {
+            throw rex;
+        }
+        catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
