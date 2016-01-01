@@ -74,6 +74,7 @@ The "Credit" section intends to highlight your team. Tell who contributed to wha
 Developer - [Nathan Smith](https://github.com/naterman)
 
 Graphic Design - [Kyle Rossi](https://www.facebook.com/Kyle-Rossi-Designs-139509922916790)
+![Kyle Rossi Design](https://github.com/naterman/RealWorld_Pearson_Coding/blob/master/resources/kylerossidesign.png)
 
 
 ### Other
