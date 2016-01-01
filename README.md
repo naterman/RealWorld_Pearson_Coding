@@ -1,10 +1,8 @@
-*This is an example template for documenting a Pearson Student Coding Contest submission. The idea, app, and technologies are just for demonstration purposes. Substitute the details of your app below. This format is just a guideline. Make improvements as you see fit. This file uses [Markdown](https://help.github.com/articles/github-flavored-markdown/) formatting. There are also comments in the raw file that describe the purpose of each section. __Please [fork this project](https://help.github.com/articles/fork-a-repo/) as a starter for your own work.__ This will allow us to keep track of everyone's efforts. You will be able to modify the project name and contents afterwards. Sharing and licensing the code is completely up to you.*
-
 <!--
 This README intends to be a starter template for the Pearson Student Coding Contest. Feel free to add or omit content as needed for your app. The formatting is done using Markdown. These comment sections are simply guides that you can delete.
 -->
 
-# "My Contest App"
+# "RealWorld"
 
 
 <!--
