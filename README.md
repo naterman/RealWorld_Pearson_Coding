@@ -73,6 +73,8 @@ The "Credit" section intends to highlight your team. Tell who contributed to wha
 
 Developer - [Nathan Smith](https://github.com/naterman)
 
+![Nathan Smith](https://github.com/naterman/RealWorld_Pearson_Coding/blob/master/resources/nathans%20logo.png)
+
 Graphic Design - [Kyle Rossi](https://www.facebook.com/Kyle-Rossi-Designs-139509922916790)
 
 
