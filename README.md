@@ -72,8 +72,9 @@ The "Credit" section intends to highlight your team. Tell who contributed to wha
 ## Credit
 
 Developer - [Nathan Smith](https://github.com/naterman)
+
 Graphic Design - [Kyle Rossi](https://www.facebook.com/Kyle-Rossi-Designs-139509922916790)
-![Kyle Rossi Design](https://drive.google.com/file/d/0B78luWaIwXBtV0s4MmRBcV9UcFE/view?usp=sharing)
+
 
 ### Other
 
