@@ -177,13 +177,11 @@ public class ClassPanel extends JXPanel {
     }
 
     private void newAssignmentButtonAction(ActionEvent evt) {
-        JXDialog naFrame = new JXDialog(new CreateAssignment());
+        JXDialog naFrame = new JXDialog(new CreateAssignment(String.valueOf(classData.getID())));
         naFrame.setLocationRelativeTo(this);
 
         naFrame.setSize(425, 400);
         naFrame.setVisible(true);
-        System.out.println("Count of listeners: " + ((JXButton) evt.getSource()).getActionListeners().length);
-
     }
 
     LinkedList<String> getNames(String Url, boolean teacher) {

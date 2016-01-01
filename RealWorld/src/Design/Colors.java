@@ -65,11 +65,20 @@ public enum Colors {
     /**
      *
      */
-    Gray(Color.gray.getRed(), Color.gray.getGreen(), Color.gray.getBlue());
+    Gray(Color.gray.getRed(), Color.gray.getGreen(), Color.gray.getBlue()),
+    
+    /**
+     * 
+     */
+    BackgroundGray(233,236,241);
 
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     // constructors
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    /**
+     * 
+     * @param c 
+     */
     Colors(Color c) {
         _myColor = c;
     }

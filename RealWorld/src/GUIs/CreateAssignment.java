@@ -5,7 +5,17 @@
  */
 package GUIs;
 
+import Design.Colors;
+import firebase.Assignment;
+import firebase.FullAssignmentData;
+import java.awt.FlowLayout;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+import org.jdesktop.swingx.JXDialog;
+import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXPanel;
+import org.jdesktop.swingx.SwingXUtilities;
 
 /**
  *
@@ -16,8 +26,20 @@ public class CreateAssignment extends JXPanel {
     /**
      * Creates new form CreateAssignment
      */
-    public CreateAssignment() {
+    
+    String courseID;
+    
+    /**
+     *
+     * @param courseID
+     */
+    public CreateAssignment(String courseID) {
+        this.courseID = courseID;
         initComponents();
+        SimpleDateFormat newSimple = new SimpleDateFormat("MM/dd/yyyy");
+        dueDatePicker.setFormats(newSimple);
+        dueDatePicker.setDate(new Date());
+        dueDatePicker.revalidate();
     }
 
     /**
@@ -48,6 +70,7 @@ public class CreateAssignment extends JXPanel {
         assignmentNameTextBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         dueDatePicker.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dueDatePicker.setFormats("MM/DD/YYYY");
 
         jXLabel1.setText("Assignment Name");
         jXLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -63,6 +86,11 @@ public class CreateAssignment extends JXPanel {
 
         createButton.setText("Create");
         createButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        createButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,6 +130,27 @@ public class CreateAssignment extends JXPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+       
+        SimpleDateFormat pickerFormat = new SimpleDateFormat("MM/dd/yyyy");
+        String date = pickerFormat.format(dueDatePicker.getDate());
+        Assignment newAssignment = new Assignment(date, UUID.randomUUID().toString(), assignmentInfoTextBox.getText(), assignmentNameTextBox.getText(), false);
+        FullAssignmentData fullAssignment = new FullAssignmentData(newAssignment);
+        fullAssignment.setCourseID(courseID);
+        JXFrame editingPane = new JXFrame();
+        editingPane.setExtendedState(JXFrame.MAXIMIZED_BOTH);
+        editingPane.setLayout(new FlowLayout(FlowLayout.CENTER));
+        editingPane.setDefaultCloseOperation(JXFrame.DISPOSE_ON_CLOSE);
+        NewAssignment newAssignmentPanel = new NewAssignment(fullAssignment, true);
+        editingPane.add(newAssignmentPanel);
+        editingPane.getContentPane().setBackground(Colors.BackgroundGray.color());
+        editingPane.setVisible(true);
+        JXDialog currentDialog = SwingXUtilities.getAncestor(JXDialog.class, this);
+        currentDialog.dispose();
+        
+        
+    }//GEN-LAST:event_createButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

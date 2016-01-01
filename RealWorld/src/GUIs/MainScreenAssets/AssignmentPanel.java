@@ -5,11 +5,23 @@
  */
 package GUIs.MainScreenAssets;
 
+import Design.Colors;
+import GUIs.NewAssignment;
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
 import firebase.Assignment;
+import firebase.FullAssignmentData;
+import firebase.Question;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXPanel;
 
 /**
@@ -31,13 +43,13 @@ public class AssignmentPanel extends JXPanel {
      * @param a
      * @param courseID
      */
-    public AssignmentPanel(boolean teach, Assignment a, String courseID ) {
+    public AssignmentPanel(boolean teach, Assignment a, String courseID) {
         this.teacher = teach;
         this.assignment = a;
         this.courseID = courseID;
-        
-        
+
         initComponents();
+        
         this.setBorder(BorderFactory.createLineBorder(Color.black, 2, true));
         if (teach == true) {
             startButton.setVisible(false);
@@ -47,9 +59,14 @@ public class AssignmentPanel extends JXPanel {
             editButton.setVisible(false);
             disableButton.setVisible(false);
             deleteButton.setVisible(false);
+            if(!assignment.isEnable())
+            {
+                disableButton.setText("Enable");
+                disableButton.repaint();
+            }
             this.revalidate();
         }
-        
+
     }
 
     private void initComponents() {
@@ -72,16 +89,15 @@ public class AssignmentPanel extends JXPanel {
         infoButton.setText("Info");
 
         startButton.setText("Start");
-        
-        
+
         editButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                 editButtonAction(e);
+                editButtonAction(e);
             }
         });
-        
+
         disableButton.addActionListener(new ActionListener() {
 
             @Override
@@ -89,7 +105,7 @@ public class AssignmentPanel extends JXPanel {
                 disableButtonAction(e);
             }
         });
-        
+
         deleteButton.addActionListener(new ActionListener() {
 
             @Override
@@ -97,7 +113,7 @@ public class AssignmentPanel extends JXPanel {
                 deleteButtonAction(e);
             }
         });
-        
+
         infoButton.addActionListener(new ActionListener() {
 
             @Override
@@ -105,7 +121,7 @@ public class AssignmentPanel extends JXPanel {
                 infoButtonAction(e);
             }
         });
-        
+
         startButton.addActionListener(new ActionListener() {
 
             @Override
@@ -144,40 +160,88 @@ public class AssignmentPanel extends JXPanel {
                         .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }
-    
-    
-    
+
     private void editButtonAction(ActionEvent evt) {
-        
-        
+        FullAssignmentData fullAssignment = new FullAssignmentData(assignment);
+        fullAssignment.setCourseID(courseID);
+
+        JXFrame editingPane = new JXFrame();
+        editingPane.setExtendedState(JXFrame.MAXIMIZED_BOTH);
+        editingPane.setLayout(new FlowLayout(FlowLayout.CENTER));
+        editingPane.setDefaultCloseOperation(JXFrame.DISPOSE_ON_CLOSE);
+        NewAssignment newAssignmentPanel = new NewAssignment(fullAssignment, false);
+        editingPane.add(newAssignmentPanel);
+        editingPane.getContentPane().setBackground(Colors.BackgroundGray.color());
+        editingPane.setVisible(true);
+
     }
-    
+
     private void disableButtonAction(ActionEvent evt) {
+        final Firebase ref = new Firebase("https://glowing-inferno-9149.firebaseio.com/RealWorld/" + courseID + "/Assignments/" + assignment.getId());
+        if(assignment.isEnable())
+        {
+            assignment.setEnable(false);
+            disableButton.setText("Enable");
+        }
+        else
+        {
+            assignment.setEnable(true);
+            disableButton.setText("Disable");
+        }
         
-        
+        disableButton.repaint();
+        ref.setValue(assignment);   
     }
-    
+
     private void deleteButtonAction(ActionEvent evt) {
-        
+
+        int response = JOptionPane.showConfirmDialog(this, "Are you sure you want to Delete?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        if (response == JOptionPane.YES_OPTION) {
+            final Firebase ref = new Firebase("https://glowing-inferno-9149.firebaseio.com/RealWorld/" + courseID);
+            ref.child("Assignments").child(assignment.getId()).removeValue();
+            Query qRef = ref.child("Data").child("Questions");
+            qRef.addChildEventListener(new ChildEventListener() {
+
+                @Override
+                public void onChildAdded(DataSnapshot snapshot, String previousChildName) {
+                    Question newQuestion = snapshot.getValue(Question.class);
+                        if(newQuestion.getLinktoid().equals(assignment.getId()))
+                        {
+                            ref.child("Data").child("Questions").child(newQuestion.getId()).removeValue();
+                        }
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot snapshot) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+
+                @Override
+                public void onCancelled(FirebaseError error) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            });            
+        }
         
     }
-    
+
     private void startButtonAction(ActionEvent evt) {
-        
-        
+
     }
-    
+
     private void infoButtonAction(ActionEvent evt) {
-        
-        
+
     }
-    
-    
-    
-    
-    
-    
-    
 
     // Variables declaration - do not modify                     
     private org.jdesktop.swingx.JXButton deleteButton;
@@ -188,23 +252,3 @@ public class AssignmentPanel extends JXPanel {
     private org.jdesktop.swingx.JXButton startButton;
     // End of variables declaration                   
 }
-
-//ViewButton1.addActionListener(new java.awt.event.ActionListener() {
-//            @Override
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                ViewButton1ActionPerformed(evt);
-//            }
-//        });
-
-//private void ViewButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-//        JXPanel MainPanel = SwingXUtilities.getAncestor(JXPanel.class, this.getParent());
-//        JXPanel assignmentsPanel = (JXPanel) MainPanel.getComponent(5);
-//        JXButton newAssignmentButton = (JXButton) MainPanel.getComponent(7);
-//        String buttonName = newAssignmentButton.getText();
-//        newAssignmentButton.setVisible(Teacher);
-//        MainPanel.revalidate();
-//        MainPanel.repaint();
-//        assignmentsPanel.removeAll();
-//        new Thread(new FillAssignmentPanel(Teacher, ClassData.getID(), assignmentsPanel, data)).start();
-//        
-//    }

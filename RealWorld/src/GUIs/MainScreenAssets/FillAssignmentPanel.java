@@ -5,13 +5,13 @@
  */
 package GUIs.MainScreenAssets;
 
+import firebase.Assignment;
 import com.firebase.client.AuthData;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.security.token.TokenGenerator;
-import firebase.Assignment;
 import java.util.HashMap;
 import java.util.UUID;
 import org.jdesktop.swingx.JXPanel;
@@ -27,6 +27,7 @@ public class FillAssignmentPanel  {
     int courseID;
     JXPanel assignmentPanel;
     Firebase ref = new Firebase("https://glowing-inferno-9149.firebaseio.com/RealWorld");
+    HashMap<String, Assignment> assignments = new HashMap<>();
     
     /**
      *
@@ -51,7 +52,8 @@ public class FillAssignmentPanel  {
     {
         UUID id = UUID.randomUUID();
         HashMap<String, Object> payload = new HashMap<>();
-        payload.put("uid", id.toString());        
+        payload.put("uid", id.toString());
+        
         
         TokenGenerator tokenGenerator = new TokenGenerator("5o0SAwAWTiOLYdfoLXKgqRATnYWQzIqmV9fuqDNq");
         String token = tokenGenerator.createToken(payload);
@@ -68,7 +70,8 @@ public class FillAssignmentPanel  {
                     @Override
                     public void onChildAdded(DataSnapshot snapshot, String previousChildName) {
                            Assignment newAssignment = snapshot.getValue(Assignment.class);
-                           assignmentPanel.add(new AssignmentPanel(teacher, newAssignment, "12403107"));
+                           assignments.put(newAssignment.getId(), newAssignment);
+                           assignmentPanel.add(new AssignmentPanel(teacher, newAssignment, String.valueOf(courseID)));
                            assignmentPanel.revalidate();
                            assignmentPanel.repaint();
                            
@@ -81,7 +84,17 @@ public class FillAssignmentPanel  {
 
                     @Override
                     public void onChildRemoved(DataSnapshot snapshot) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        
+                        Assignment oldAssignment = snapshot.getValue(Assignment.class);
+                        assignments.remove(oldAssignment.getId());
+                        assignmentPanel.removeAll();
+                        for(Assignment item : assignments.values())
+                        {
+                           assignmentPanel.add(new AssignmentPanel(teacher, item, String.valueOf(courseID)));
+                           assignmentPanel.revalidate();
+                           assignmentPanel.repaint();
+                        }
+
                     }
 
                     @Override
@@ -97,4 +110,6 @@ public class FillAssignmentPanel  {
             }
         });
     }
+    
+    
 }
