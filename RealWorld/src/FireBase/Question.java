@@ -16,7 +16,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "answer",
     "id",
     "linktoid",
-    "question"
+    "question",
+    "questionnumber",
+    "scenario"
 })
 public class Question {
 
@@ -28,7 +30,13 @@ public class Question {
     private String linktoid;
     @JsonProperty("question")
     private String question;
+    @JsonProperty("scenario")
+    private String scenario;
+    @JsonProperty("questionnumber")
+    int questionnumber;
 
+    
+    
     /**
      * No args constructor for use in serialization
      * 
@@ -42,12 +50,16 @@ public class Question {
      * @param linktoid
      * @param answer
      * @param question
+     * @param scenario
+     * @param number
      */
-    public Question(String answer, String id, String linktoid, String question) {
+    public Question(String answer, String id, String linktoid, String question, String scenario, int number) {
         this.answer = answer;
         this.id = id;
         this.linktoid = linktoid;
         this.question = question;
+        this.scenario = scenario;
+        this.questionnumber = number;
     }
 
     /**
@@ -128,6 +140,46 @@ public class Question {
     @JsonProperty("question")
     public void setQuestion(String question) {
         this.question = question;
+    }
+    
+    /**
+     * 
+     * @return
+     *     The scenario
+     */
+    @JsonProperty("scenario")
+    public String getScenario() {
+        return scenario;
+    }
+
+    /**
+     * 
+     * @param scenario
+     *     The scenario
+     */
+    @JsonProperty("scenario")
+    public void setScenario(String scenario) {
+        this.scenario = scenario;
+    }
+    
+    /**
+     * 
+     * @return
+     * 
+     */
+    @JsonProperty("questionnumber")
+    public int getNumber() {
+        return questionnumber;
+    }
+
+    /**
+     * 
+     * @param number
+     * 
+     */
+    @JsonProperty("questionnumber")
+    public void setNumber(int number) {
+        this.questionnumber = number;
     }
 
 }

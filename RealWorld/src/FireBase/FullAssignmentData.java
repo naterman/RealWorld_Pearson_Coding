@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FireBase;
+package firebase;
 
 import java.util.LinkedList;
 
@@ -15,7 +15,7 @@ public class FullAssignmentData {
     
     Assignment assignment;
     LinkedList<Question> questions = new LinkedList<>();
-    LinkedList<Trigger> triggers = new LinkedList<>();
+    private String courseID;
     
     /**
      *
@@ -48,7 +48,7 @@ public class FullAssignmentData {
      *
      * @return
      */
-    public LinkedList<Question> geQuestions()
+    public LinkedList<Question> getQuestions()
     {
         return this.questions;
     }
@@ -78,44 +78,33 @@ public class FullAssignmentData {
      */
     public void addOneQuestion(Question item)
     {
-        this.questions.add(item);
+        if(item.getLinktoid().equals(assignment.getId()))
+        {
+            this.questions.add(item);
+        }
+        
     }
     
     /**
      *
      * @return
      */
-    public LinkedList<Trigger> getAllTriggers()
+    public long questionCount()
     {
-        return this.triggers;
+        return this.questions.size();
     }
-    
+
     /**
-     *
-     * @param i
-     * @return
+     * @return the courseID
      */
-    public Trigger getOneTrigger(int i)
-    {
-        return this.triggers.get(i);
+    public String getCourseID() {
+        return courseID;
     }
-    
+
     /**
-     *
-     * @param newTriggers
+     * @param courseID the courseID to set
      */
-    public void setAllTriggers(LinkedList<Trigger> newTriggers)
-    {
-        this.triggers = newTriggers;
-    }
-    
-    /**
-     *
-     * @param newTrigger
-     */
-    public void addOneTrigger(Trigger newTrigger)
-    {
-        this.triggers.add(newTrigger);
-                
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
     }
 }

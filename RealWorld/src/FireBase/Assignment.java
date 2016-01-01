@@ -1,12 +1,10 @@
 
 package firebase;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import java.io.Serializable;
 
 /**
  *
@@ -16,12 +14,12 @@ import java.io.Serializable;
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
     "duedate",
+    "enable",
     "id",
     "info",
     "name",
-    "scenario"
 })
-public class Assignment implements Serializable {
+public class Assignment {
 
     @JsonProperty("duedate")
     private String duedate;
@@ -31,10 +29,9 @@ public class Assignment implements Serializable {
     private String info;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("scenario")
-    private String scenario;
-    @JsonIgnore
-    private static final long serialVersionUID = 1;
+    @JsonProperty("enable")
+    private boolean enable;
+
 
     /**
      * No args constructor for use in serialization
@@ -46,17 +43,17 @@ public class Assignment implements Serializable {
     /**
      * 
      * @param id
-     * @param scenario
      * @param name
      * @param duedate
      * @param info
+     * @param enable
      */
-    public Assignment(String duedate, String id, String info, String name, String scenario) {
+    public Assignment(String duedate, String id, String info, String name, boolean enable) {
         this.duedate = duedate;
         this.id = id;
         this.info = info;
         this.name = name;
-        this.scenario = scenario;
+        this.enable = enable;
     }
 
     /**
@@ -140,23 +137,16 @@ public class Assignment implements Serializable {
     }
 
     /**
-     * 
-     * @return
-     *     The scenario
+     * @return the enable
      */
-    @JsonProperty("scenario")
-    public String getScenario() {
-        return scenario;
+    public boolean isEnable() {
+        return enable;
     }
 
     /**
-     * 
-     * @param scenario
-     *     The scenario
+     * @param enable the enable to set
      */
-    @JsonProperty("scenario")
-    public void setScenario(String scenario) {
-        this.scenario = scenario;
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
-
 }
