@@ -5,6 +5,7 @@
  */
 package firebase;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -12,26 +13,25 @@ import java.util.LinkedList;
  * @author Nathan Smith
  */
 public class FullAssignmentData {
-    
+
     Assignment assignment;
     LinkedList<Question> questions = new LinkedList<>();
     private String courseID;
-    
+    private HashMap<String, StudentAnswers> studentsAnswers = new HashMap<>();
+
     /**
      *
      * @param a
      */
-    public FullAssignmentData(Assignment a)
-    {
+    public FullAssignmentData(Assignment a) {
         this.assignment = a;
     }
-    
+
     /**
      *
      * @return
      */
-    public Assignment getAssignment()
-    {
+    public Assignment getAssignment() {
         return assignment;
     }
 
@@ -39,58 +39,51 @@ public class FullAssignmentData {
      *
      * @param a
      */
-    public void setAssignment(Assignment a)
-    {
+    public void setAssignment(Assignment a) {
         this.assignment = a;
     }
-    
+
     /**
      *
      * @return
      */
-    public LinkedList<Question> getQuestions()
-    {
+    public LinkedList<Question> getQuestions() {
         return this.questions;
     }
-    
+
     /**
      *
      * @param i
      * @return
      */
-    public Question getOneQuestions(int i)
-    {
+    public Question getOneQuestions(int i) {
         return this.questions.get(i);
     }
-    
+
     /**
      *
      * @param newQuestions
      */
-    public void addAllQuestions(LinkedList<Question> newQuestions)
-    {
+    public void addAllQuestions(LinkedList<Question> newQuestions) {
         this.questions = newQuestions;
     }
-    
+
     /**
      *
      * @param item
      */
-    public void addOneQuestion(Question item)
-    {
-        if(item.getLinktoid().equals(assignment.getId()))
-        {
+    public void addOneQuestion(Question item) {
+        if (item.getLinktoid().equals(assignment.getId())) {
             this.questions.add(item);
         }
-        
+
     }
-    
+
     /**
      *
      * @return
      */
-    public long questionCount()
-    {
+    public long questionCount() {
         return this.questions.size();
     }
 
@@ -106,5 +99,37 @@ public class FullAssignmentData {
      */
     public void setCourseID(String courseID) {
         this.courseID = courseID;
+    }
+
+    /**
+     * @return the studentsAnswers
+     */
+    public HashMap<String, StudentAnswers> getStudentsAnswers() {
+        return studentsAnswers;
+    }
+
+    /**
+     * @param studentsAnswers the studentsAnswers to set
+     */
+    public void setStudentsAnswers(HashMap<String, StudentAnswers> studentsAnswers) {
+        this.studentsAnswers = studentsAnswers;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public double calculateResults() {
+        double correct = 0;
+        double totalQuestions = studentsAnswers.size();
+
+        for (String CorrectAnswer : studentsAnswers.keySet()) {
+            if (CorrectAnswer.equals(studentsAnswers.get(CorrectAnswer))) {
+                correct++;
+            }
+        }
+
+        double score = (correct / totalQuestions) * 100;
+        return score;
     }
 }

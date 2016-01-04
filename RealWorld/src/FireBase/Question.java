@@ -1,10 +1,9 @@
-
 package firebase;
 
-import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import javax.annotation.Generated;
 
 /**
  *
@@ -35,17 +34,15 @@ public class Question {
     @JsonProperty("questionnumber")
     int questionnumber;
 
-    
-    
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Question() {
     }
 
     /**
-     * 
+     *
      * @param id
      * @param linktoid
      * @param answer
@@ -63,9 +60,8 @@ public class Question {
     }
 
     /**
-     * 
-     * @return
-     *     The answer
+     *
+     * @return The answer
      */
     @JsonProperty("answer")
     public String getAnswer() {
@@ -73,9 +69,8 @@ public class Question {
     }
 
     /**
-     * 
-     * @param answer
-     *     The answer
+     *
+     * @param answer The answer
      */
     @JsonProperty("answer")
     public void setAnswer(String answer) {
@@ -83,9 +78,8 @@ public class Question {
     }
 
     /**
-     * 
-     * @return
-     *     The id
+     *
+     * @return The id
      */
     @JsonProperty("id")
     public String getId() {
@@ -93,9 +87,8 @@ public class Question {
     }
 
     /**
-     * 
-     * @param id
-     *     The id
+     *
+     * @param id The id
      */
     @JsonProperty("id")
     public void setId(String id) {
@@ -103,9 +96,8 @@ public class Question {
     }
 
     /**
-     * 
-     * @return
-     *     The linktoid
+     *
+     * @return The linktoid
      */
     @JsonProperty("linktoid")
     public String getLinktoid() {
@@ -113,9 +105,8 @@ public class Question {
     }
 
     /**
-     * 
-     * @param linktoid
-     *     The linktoid
+     *
+     * @param linktoid The linktoid
      */
     @JsonProperty("linktoid")
     public void setLinktoid(String linktoid) {
@@ -123,9 +114,8 @@ public class Question {
     }
 
     /**
-     * 
-     * @return
-     *     The question
+     *
+     * @return The question
      */
     @JsonProperty("question")
     public String getQuestion() {
@@ -133,19 +123,17 @@ public class Question {
     }
 
     /**
-     * 
-     * @param question
-     *     The question
+     *
+     * @param question The question
      */
     @JsonProperty("question")
     public void setQuestion(String question) {
         this.question = question;
     }
-    
+
     /**
-     * 
-     * @return
-     *     The scenario
+     *
+     * @return The scenario
      */
     @JsonProperty("scenario")
     public String getScenario() {
@@ -153,19 +141,18 @@ public class Question {
     }
 
     /**
-     * 
-     * @param scenario
-     *     The scenario
+     *
+     * @param scenario The scenario
      */
     @JsonProperty("scenario")
     public void setScenario(String scenario) {
         this.scenario = scenario;
     }
-    
+
     /**
-     * 
+     *
      * @return
-     * 
+     *
      */
     @JsonProperty("questionnumber")
     public int getNumber() {
@@ -173,9 +160,9 @@ public class Question {
     }
 
     /**
-     * 
+     *
      * @param number
-     * 
+     *
      */
     @JsonProperty("questionnumber")
     public void setNumber(int number) {

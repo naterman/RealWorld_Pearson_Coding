@@ -1,10 +1,9 @@
-
 package firebase;
 
-import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import javax.annotation.Generated;
 
 /**
  *
@@ -17,8 +16,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "enable",
     "id",
     "info",
-    "name",
-})
+    "name",})
 public class Assignment {
 
     @JsonProperty("duedate")
@@ -32,16 +30,15 @@ public class Assignment {
     @JsonProperty("enable")
     private boolean enable;
 
-
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Assignment() {
     }
 
     /**
-     * 
+     *
      * @param id
      * @param name
      * @param duedate
@@ -57,9 +54,8 @@ public class Assignment {
     }
 
     /**
-     * 
-     * @return
-     *     The duedate
+     *
+     * @return The duedate
      */
     @JsonProperty("duedate")
     public String getDuedate() {
@@ -67,9 +63,8 @@ public class Assignment {
     }
 
     /**
-     * 
-     * @param duedate
-     *     The duedate
+     *
+     * @param duedate The duedate
      */
     @JsonProperty("duedate")
     public void setDuedate(String duedate) {
@@ -77,9 +72,8 @@ public class Assignment {
     }
 
     /**
-     * 
-     * @return
-     *     The id
+     *
+     * @return The id
      */
     @JsonProperty("id")
     public String getId() {
@@ -87,9 +81,8 @@ public class Assignment {
     }
 
     /**
-     * 
-     * @param id
-     *     The id
+     *
+     * @param id The id
      */
     @JsonProperty("id")
     public void setId(String id) {
@@ -97,9 +90,8 @@ public class Assignment {
     }
 
     /**
-     * 
-     * @return
-     *     The info
+     *
+     * @return The info
      */
     @JsonProperty("info")
     public String getInfo() {
@@ -107,9 +99,8 @@ public class Assignment {
     }
 
     /**
-     * 
-     * @param info
-     *     The info
+     *
+     * @param info The info
      */
     @JsonProperty("info")
     public void setInfo(String info) {
@@ -117,9 +108,8 @@ public class Assignment {
     }
 
     /**
-     * 
-     * @return
-     *     The name
+     *
+     * @return The name
      */
     @JsonProperty("name")
     public String getName() {
@@ -127,9 +117,8 @@ public class Assignment {
     }
 
     /**
-     * 
-     * @param name
-     *     The name
+     *
+     * @param name The name
      */
     @JsonProperty("name")
     public void setName(String name) {
