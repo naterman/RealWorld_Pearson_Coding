@@ -1,7 +1,3 @@
-<!--
-This README intends to be a starter template for the Pearson Student Coding Contest. Feel free to add or omit content as needed for your app. The formatting is done using Markdown. These comment sections are simply guides that you can delete.
--->
-
 # RealWorld
 
 
