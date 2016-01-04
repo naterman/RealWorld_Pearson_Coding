@@ -15,10 +15,8 @@ import com.firebase.client.Query;
 import firebase.FullAssignmentData;
 import firebase.Question;
 import firebase.StudentAnswers;
-import java.awt.FlowLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.HashMap;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXPanel;
@@ -35,11 +33,10 @@ public class StudentAssignmentPanel extends JXPanel {
      * Creates new form NewAssignment
      */
     FullAssignmentData fullAssignment;
-    HashMap<String, Question> questions = new HashMap<>();
-    HashMap<String, QuestionBar> bars = new HashMap<>();
+    LinkedList<Question> questions = new LinkedList<>();
     HashMap<String, StudentAnswers> studentAnswers = new HashMap<>();
-    String currentQuestionID = null;
     int currentQuestionNumber = 0;
+    int totalQuestions = 0;
 
     /**
      *
@@ -50,7 +47,6 @@ public class StudentAssignmentPanel extends JXPanel {
         fullAssignment.setStudentsAnswers(studentAnswers);
         initComponents();
 
-        questionPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         final Firebase ref = new Firebase("https://glowing-inferno-9149.firebaseio.com/RealWorld/" + fullAssignment.getCourseID() + "/Data/Questions");
         Query queryRef = ref.orderByChild("questionnumber");
         queryRef.addChildEventListener(new ChildEventListener() {
@@ -59,45 +55,9 @@ public class StudentAssignmentPanel extends JXPanel {
             public void onChildAdded(DataSnapshot snapshot, String previousChildName) {
                 Question newQuestion = snapshot.getValue(Question.class);
                 if (newQuestion.getLinktoid().equals(fullAssignment.getAssignment().getId())) {
-                    questions.put(newQuestion.getId(), newQuestion);
-                    currentQuestionNumber++;
-
-                    QuestionBar newBar = new QuestionBar(String.valueOf(newQuestion.getNumber()));
-                    final String ID = newQuestion.getId();
-                    newBar.addMouseListener(new MouseListener() {
-
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            questionBarClicked(e, ID);
-                        }
-
-                        @Override
-                        public void mousePressed(MouseEvent e) {
-                            //not needed
-                        }
-
-                        @Override
-                        public void mouseReleased(MouseEvent e) {
-                            //not needed
-                        }
-
-                        @Override
-                        public void mouseEntered(MouseEvent e) {
-                            //not needed
-                        }
-
-                        @Override
-                        public void mouseExited(MouseEvent e) {
-                            //not needed                
-                        }
-                    });
-                    bars.put(currentQuestionID, newBar);
-
-                    questionPanel.add(newBar);
-                    questionPanel.revalidate();
-                    questionPanel.repaint();
+                    questions.add(newQuestion);
+                    totalQuestions++;
                     if (newQuestion.getNumber() == 1) {
-                        currentQuestionID = newQuestion.getId();
                         questionTextBox.setText(newQuestion.getQuestion());
                         scenarioTextBox.setText(newQuestion.getScenario());
                     }
@@ -147,8 +107,6 @@ public class StudentAssignmentPanel extends JXPanel {
         saveButton = new org.jdesktop.swingx.JXButton();
         dictionaryButton = new org.jdesktop.swingx.JXButton();
         cancelButton = new org.jdesktop.swingx.JXButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        questionPanel = new org.jdesktop.swingx.JXPanel();
         submitButton = new org.jdesktop.swingx.JXButton();
         jXLabel1 = new org.jdesktop.swingx.JXLabel();
 
@@ -206,22 +164,6 @@ public class StudentAssignmentPanel extends JXPanel {
             }
         });
 
-        questionPanel.setBackground(new java.awt.Color(255, 255, 255));
-        questionPanel.setPreferredSize(new java.awt.Dimension(265, 518));
-
-        javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
-        questionPanel.setLayout(questionPanelLayout);
-        questionPanelLayout.setHorizontalGroup(
-            questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
-        );
-        questionPanelLayout.setVerticalGroup(
-            questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 518, Short.MAX_VALUE)
-        );
-
-        jScrollPane3.setViewportView(questionPanel);
-
         submitButton.setBackground(Colors.ButtonColorOrange.color());
         submitButton.setForeground(new java.awt.Color(255, 255, 255));
         submitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/submitIcon.png"))); // NOI18N
@@ -240,28 +182,28 @@ public class StudentAssignmentPanel extends JXPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jXLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dictionaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(answerTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(answerTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(dictionaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jXLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,24 +211,20 @@ public class StudentAssignmentPanel extends JXPanel {
                 .addContainerGap()
                 .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(answerTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dictionaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(answerTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dictionaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -307,7 +245,7 @@ public class StudentAssignmentPanel extends JXPanel {
 
         int confirm = JOptionPane.showConfirmDialog(mainFrame, message, "Confirm", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
-            double results = fullAssignment.calculateResults();
+            double results = fullAssignment.calculateResults(questions, studentAnswers);
             JOptionPane.showMessageDialog(mainFrame, "Score: " + String.format("%.2f", results));
             mainFrame.dispose();
         }
@@ -333,28 +271,28 @@ public class StudentAssignmentPanel extends JXPanel {
 
     }//GEN-LAST:event_dictionaryButtonActionPerformed
 
-    private void questionBarClicked(MouseEvent evt, String ID) {
-
-        saveCurrentQuestion();
-
-        currentQuestionID = ID;
-        questionTextBox.setText(questions.get(ID).getQuestion());
-        scenarioTextBox.setText(questions.get(ID).getScenario());
-        if (studentAnswers.containsKey(ID)) {
-            answerTextBox.setText(studentAnswers.get(ID).getStudentAnswer());
-        } else {
-            answerTextBox.setText("");
-        }
-    }
-
     /**
      *
      * called to save a currently selected question
      *
      */
     public void saveCurrentQuestion() {
-        Question cQuestion = questions.get(currentQuestionID);
-        studentAnswers.put(currentQuestionID, new StudentAnswers(cQuestion.getAnswer(), answerTextBox.getText()));
+        
+        
+        if(currentQuestionNumber < totalQuestions)
+        {
+            Question cQuestion = questions.get(currentQuestionNumber);
+            studentAnswers.put(cQuestion.getId(), new StudentAnswers(cQuestion.getAnswer(), answerTextBox.getText()));
+            scenarioTextBox.setText(questions.get(currentQuestionNumber).getScenario());
+            questionTextBox.setText(questions.get(currentQuestionNumber).getQuestion());
+            answerTextBox.setText("");
+            currentQuestionNumber++;
+        }
+        if(currentQuestionNumber == totalQuestions)
+        {
+            JOptionPane.showMessageDialog(scenarioTextBox, "End of Scenario, Press Submit now");
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -363,9 +301,7 @@ public class StudentAssignmentPanel extends JXPanel {
     private org.jdesktop.swingx.JXButton dictionaryButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private org.jdesktop.swingx.JXLabel jXLabel1;
-    private org.jdesktop.swingx.JXPanel questionPanel;
     private org.jdesktop.swingx.JXTextArea questionTextBox;
     private org.jdesktop.swingx.JXButton saveButton;
     private org.jdesktop.swingx.JXTextArea scenarioTextBox;
