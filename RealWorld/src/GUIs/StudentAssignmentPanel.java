@@ -278,17 +278,21 @@ public class StudentAssignmentPanel extends JXPanel {
     public void saveCurrentQuestion() {
         
         
-        if(currentQuestionNumber < totalQuestions)
+        if(currentQuestionNumber < totalQuestions-1)
         {
             Question cQuestion = questions.get(currentQuestionNumber);
             studentAnswers.put(cQuestion.getId(), new StudentAnswers(cQuestion.getAnswer(), answerTextBox.getText()));
+            currentQuestionNumber++;
             scenarioTextBox.setText(questions.get(currentQuestionNumber).getScenario());
             questionTextBox.setText(questions.get(currentQuestionNumber).getQuestion());
             answerTextBox.setText("");
-            currentQuestionNumber++;
+            
         }
-        if(currentQuestionNumber == totalQuestions)
+        else if(currentQuestionNumber == totalQuestions-1)
         {
+            Question cQuestion = questions.get(currentQuestionNumber);
+            studentAnswers.put(cQuestion.getId(), new StudentAnswers(cQuestion.getAnswer(), answerTextBox.getText()));
+            currentQuestionNumber++;
             JOptionPane.showMessageDialog(scenarioTextBox, "End of Scenario, Press Submit now");
         }
         
