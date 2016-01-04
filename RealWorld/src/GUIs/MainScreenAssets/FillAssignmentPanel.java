@@ -81,7 +81,16 @@ public class FillAssignmentPanel {
 
                     @Override
                     public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        assignmentPanel.removeAll();
+                        for (Assignment item : assignments.values()) {
+                            assignmentPanel.add(new AssignmentPanel(teacher, item, String.valueOf(courseID)));
+                            assignmentPanel.revalidate();
+                            assignmentPanel.repaint();
+
+                            assignmentPanel.add(Box.createVerticalStrut(20));
+                            assignmentPanel.revalidate();
+                            assignmentPanel.repaint();
+                        }
                     }
 
                     @Override

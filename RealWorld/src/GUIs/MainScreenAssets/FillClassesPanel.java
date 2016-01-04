@@ -62,8 +62,9 @@ public class FillClassesPanel {
                 }
 
                 for (ClassInfo item : cInfo) {
-                    classPanel.add(Box.createRigidArea(new Dimension(25, 10)));
+                    
                     classPanel.add(new ClassPanel(item, data));
+                    classPanel.add(Box.createRigidArea(new Dimension(25, 10)));
                     classPanel.revalidate();
                     classPanel.repaint();
                 }

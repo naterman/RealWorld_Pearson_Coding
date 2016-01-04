@@ -170,15 +170,20 @@ public class ClassPanel extends JXPanel {
         JXButton newAssignmentButton = (JXButton) MainPanel.getComponent(3);
         newAssignmentButton.setVisible(teacher);
 
-        if (newAssignmentButton.getActionListeners().length == 0) {
-            newAssignmentButton.addActionListener(new ActionListener() {
+        if (newAssignmentButton.getActionListeners().length > 0) {
+            for(ActionListener action: newAssignmentButton.getActionListeners())
+            {
+                newAssignmentButton.removeActionListener(action);
+            }
+        }
+        newAssignmentButton.addActionListener(new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     newAssignmentButtonAction(e);
                 }
             });
-        }
+        
 
         MainPanel.revalidate();
         MainPanel.repaint();
@@ -192,7 +197,8 @@ public class ClassPanel extends JXPanel {
         naFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
         naFrame.setSize(390, 400);
         naFrame.setStartPosition(JXFrame.StartPosition.CenterInScreen);
-        naFrame.add(new CreateAssignment(String.valueOf(classData.getID())));
+        String course = String.valueOf(this.classData.getID());
+        naFrame.add(new CreateAssignment(course));
         naFrame.setLocationRelativeTo(this);
         naFrame.getContentPane().setBackground(Colors.MainBack.color());
         naFrame.setSize(425, 400);

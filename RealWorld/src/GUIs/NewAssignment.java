@@ -323,7 +323,7 @@ public class NewAssignment extends JXPanel {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
 
-        if (currentQuestionID == null) {
+        if (currentQuestionID == "") {
             saveNewQuestion();
 
         } else {
@@ -332,7 +332,7 @@ public class NewAssignment extends JXPanel {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void save_newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_newButtonActionPerformed
-        if (currentQuestionID == null) {
+        if (currentQuestionID == "") {
             saveNewQuestion();
         } else {
             saveCurrentQuestion();
@@ -352,7 +352,7 @@ public class NewAssignment extends JXPanel {
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         final JXFrame mainFrame = SwingXUtilities.getAncestor(JXFrame.class, this);
 
-        if (currentQuestionID == null && !questionTextBox.getText().equals("")) {
+        if (currentQuestionID == "" && !questionTextBox.getText().equals("")) {
             saveNewQuestion();
         } else if (!questionTextBox.getText().equals("")) {
             saveCurrentQuestion();
@@ -400,7 +400,7 @@ public class NewAssignment extends JXPanel {
 
     private void questionBarClicked(MouseEvent evt, String ID) {
 
-        if (currentQuestionID == null && !questionTextBox.getText().equals("")) {
+        if (currentQuestionID == "" && !questionTextBox.getText().equals("")) {
             saveNewQuestion();
         } else if (!questionTextBox.getText().equals("")) {
             saveCurrentQuestion();

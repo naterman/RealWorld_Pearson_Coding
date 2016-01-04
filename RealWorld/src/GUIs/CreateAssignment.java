@@ -25,14 +25,14 @@ public class CreateAssignment extends JXPanel {
     /**
      * Creates new form CreateAssignment
      */
-    String courseID;
+    String ID;
 
     /**
      *
      * @param courseID
      */
     public CreateAssignment(String courseID) {
-        this.courseID = courseID;
+        this.ID = courseID;
         initComponents();
         SimpleDateFormat newSimple = new SimpleDateFormat("MM/dd/yyyy");
         dueDatePicker.setFormats(newSimple);
@@ -142,7 +142,7 @@ public class CreateAssignment extends JXPanel {
         String date = pickerFormat.format(dueDatePicker.getDate());
         Assignment newAssignment = new Assignment(date, UUID.randomUUID().toString(), assignmentInfoTextBox.getText(), assignmentNameTextBox.getText(), false);
         FullAssignmentData fullAssignment = new FullAssignmentData(newAssignment);
-        fullAssignment.setCourseID(courseID);
+        fullAssignment.setCourseID(ID);
         JXFrame editingPane = new JXFrame();
         editingPane.setExtendedState(JXFrame.MAXIMIZED_BOTH);
         editingPane.setLayout(new FlowLayout(FlowLayout.CENTER));

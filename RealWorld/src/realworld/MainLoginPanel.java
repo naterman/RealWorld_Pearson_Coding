@@ -66,10 +66,8 @@ public class MainLoginPanel extends JXPanel {
 
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        usernameTextField.setText("nsmith145537.teacher@troy.edu");
         usernameTextField.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
 
-        passwordTextField.setText("XCFdPxKP");
         passwordTextField.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
 
         loginButton.setBackground(Colors.ButtonColorOrange.color());
