@@ -64,8 +64,6 @@ public class MainLoginPanel extends JXPanel {
         mattePainter1.setFillPaint(Color.white);
         mattePainter1.setFillVertical(true);
 
-        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-
         usernameTextField.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
 
         passwordTextField.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
@@ -114,7 +112,7 @@ public class MainLoginPanel extends JXPanel {
                 .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addContainerGap(316, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
