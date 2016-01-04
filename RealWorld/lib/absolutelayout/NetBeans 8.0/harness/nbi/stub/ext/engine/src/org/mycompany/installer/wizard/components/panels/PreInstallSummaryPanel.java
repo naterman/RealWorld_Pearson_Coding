@@ -117,7 +117,7 @@ public class PreInstallSummaryPanel extends ErrorMessagePanel {
                 DEFAULT_REMOVE_APP_USERDIR_TEXT);
         setProperty(REMOVE_APP_USERDIR_CHECKBOX_PROPERTY,
                 DEFAULT_REMOVE_APP_USERDIR_CHECKBOX);
-        
+
     }
 
     @Override
@@ -131,8 +131,8 @@ public class PreInstallSummaryPanel extends ErrorMessagePanel {
 
     @Override
     public void initialize() {
-        final List<Product> toInstall =
-                Registry.getInstance().getProductsToInstall();
+        final List<Product> toInstall
+                = Registry.getInstance().getProductsToInstall();
 
         if (toInstall.size() > 0) {
             setProperty(NEXT_BUTTON_TEXT_PROPERTY, DEFAULT_NEXT_BUTTON_TEXT);
@@ -210,7 +210,6 @@ public class PreInstallSummaryPanel extends ErrorMessagePanel {
                 installationSize += product.getRequiredDiskSpace();
                 downloadSize += product.getDownloadSize();
 
-
             }
 
             // add top-level components like nb-base, glassfish, tomcat, jdk
@@ -231,7 +230,6 @@ public class PreInstallSummaryPanel extends ErrorMessagePanel {
 
             uninstallListLabel.setText(uninstallLabelText);
 
-            
             installationSizeLabel.setText(
                     panel.getProperty(INSTALLATION_SIZE_PROPERTY));
             installationSizeValue.setText(StringUtils.formatSize(
@@ -275,7 +273,7 @@ public class PreInstallSummaryPanel extends ErrorMessagePanel {
 
             removeUserdirCheckbox.setVisible(false);
             removeUserdirPane.setVisible(false);
-            
+
             for (Product product : Registry.getInstance().getProductsToUninstall()) {
 
                 try {
@@ -286,18 +284,18 @@ public class PreInstallSummaryPanel extends ErrorMessagePanel {
                     if (FileUtils.exists(userDir) && FileUtils.canWrite(userDir)) {
                         removeUserdirCheckbox.setText(
                                 StringUtils.format(
-                                panel.getProperty(REMOVE_APP_USERDIR_CHECKBOX_PROPERTY),
-                                userDir.getAbsolutePath()));
+                                        panel.getProperty(REMOVE_APP_USERDIR_CHECKBOX_PROPERTY),
+                                        userDir.getAbsolutePath()));
                         removeUserdirCheckbox.setBorder(new EmptyBorder(0, 0, 0, 0));
                         removeUserdirCheckbox.setVisible(true);
 
                         removeUserdirPane.setVisible(true);
                         removeUserdirPane.setContentType("text/html");
-                        
+
                         removeUserdirPane.setText(
                                 StringUtils.format(
-                                panel.getProperty(REMOVE_APP_USERDIR_TEXT_PROPERTY),
-                                product.getDisplayName()));
+                                        panel.getProperty(REMOVE_APP_USERDIR_TEXT_PROPERTY),
+                                        product.getDisplayName()));
 
                     }
                     break;
@@ -319,12 +317,12 @@ public class PreInstallSummaryPanel extends ErrorMessagePanel {
         protected String validateInput() {
             try {
                 if (!Boolean.getBoolean(SystemUtils.NO_SPACE_CHECK_PROPERTY)) {
-                    final List<File> roots =
-                            SystemUtils.getFileSystemRoots();
-                    final List<Product> toInstall =
-                            Registry.getInstance().getProductsToInstall();
-                    final Map<File, Long> spaceMap =
-                            new HashMap<File, Long>();
+                    final List<File> roots
+                            = SystemUtils.getFileSystemRoots();
+                    final List<Product> toInstall
+                            = Registry.getInstance().getProductsToInstall();
+                    final Map<File, Long> spaceMap
+                            = new HashMap<File, Long>();
 
                     LogManager.log("Available roots : " + StringUtils.asString(roots));
 
@@ -366,10 +364,10 @@ public class PreInstallSummaryPanel extends ErrorMessagePanel {
 
                     for (File root : spaceMap.keySet()) {
                         try {
-                            final long availableSpace =
-                                    SystemUtils.getFreeSpace(root);
-                            final long requiredSpace =
-                                    spaceMap.get(root) + REQUIRED_SPACE_ADDITION;
+                            final long availableSpace
+                                    = SystemUtils.getFreeSpace(root);
+                            final long requiredSpace
+                                    = spaceMap.get(root) + REQUIRED_SPACE_ADDITION;
 
                             if (availableSpace < requiredSpace) {
                                 return StringUtils.format(
@@ -385,8 +383,8 @@ public class PreInstallSummaryPanel extends ErrorMessagePanel {
                     }
                 }
 
-                final List<Product> toUninstall =
-                        Registry.getInstance().getProductsToUninstall();
+                final List<Product> toUninstall
+                        = Registry.getInstance().getProductsToUninstall();
                 for (Product product : toUninstall) {
                     if (!FileUtils.canWrite(product.getInstallationLocation())) {
                         return StringUtils.format(
@@ -537,84 +535,84 @@ public class PreInstallSummaryPanel extends ErrorMessagePanel {
     }
 /////////////////////////////////////////////////////////////////////////////////
 // Constants
-    public static final String INSTALLATION_FOLDER_PROPERTY =
-            "installation.folder"; // NOI18N
-    public static final String UNINSTALL_LABEL_TEXT_PROPERTY =
-            "uninstall.list.label.text"; // NOI18N
-    public static final String INSTALLATION_SIZE_PROPERTY =
-            "installation.size"; // NOI18N
-    public static final String DOWNLOAD_SIZE_PROPERTY =
-            "download.size"; // NOI18N
-    public static final String ERROR_NOT_ENOUGH_SPACE_PROPERTY =
-            "error.not.enough.space"; // NOI18N
-    public static final String ERROR_CANNOT_CHECK_SPACE_PROPERTY =
-            "error.cannot.check.space"; // NOI18N
-    public static final String ERROR_LOGIC_ACCESS_PROPERTY =
-            "error.logic.access"; // NOI18N
-    public static final String ERROR_FSROOTS_PROPERTY =
-            "error.fsroots"; // NOI18N
-    public static final String ERROR_NON_EXISTENT_ROOT_PROPERTY =
-            "error.non.existent.root"; // NOI18N
-    public static final String ERROR_CANNOT_WRITE_PROPERTY =
-            "error.cannot.write"; // NOI18N
-    public static final String REMOVE_APP_USERDIR_PROPERTY =
-            "remove.app.userdir";
-    public static final String REMOVE_APP_USERDIR_TEXT_PROPERTY =
-            "remove.app.userdir.text";
-    public static final String REMOVE_APP_USERDIR_CHECKBOX_PROPERTY =
-            "remove.app.userdir.checkbox";
-    public static final String DEFAULT_TITLE =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.title"); // NOI18N
-    public static final String DEFAULT_DESCRIPTION =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.description"); // NOI18N
-    public static final String DEFAULT_DESCRIPTION_UNINSTALL =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.description.uninstall"); // NOI18N
-    public static final String DEFAULT_INSTALLATION_FOLDER =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.installation.folder"); // NOI18N
-    public static final String DEFAULT_UNINSTALL_LABEL_TEXT =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.uninstall.list.label.text"); // NOI18N
-    public static final String DEFAULT_INSTALLATION_SIZE =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.installation.size"); // NOI18N
-    public static final String DEFAULT_DOWNLOAD_SIZE =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.download.size"); // NOI18N
-    public static final String DEFAULT_NEXT_BUTTON_TEXT =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.next.button.text"); // NOI18N
-    public static final String DEFAULT_NEXT_BUTTON_TEXT_UNINSTALL =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.next.button.text.uninstall"); // NOI18N
-    public static final String DEFAULT_ERROR_NOT_ENOUGH_SPACE =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.error.not.enough.space"); // NOI18N
-    public static final String DEFAULT_ERROR_CANNOT_CHECK_SPACE =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.error.cannot.check.space");// NOI18N
-    public static final String DEFAULT_ERROR_LOGIC_ACCESS =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.error.logic.access");// NOI18N
-    public static final String DEFAULT_ERROR_FSROOTS =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.error.fsroots"); // NOI18N
-    public static final String DEFAULT_ERROR_NON_EXISTENT_ROOT =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.error.non.existent.root"); // NOI18N
-    public static final String DEFAULT_ERROR_CANNOT_WRITE =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.error.cannot.write"); // NOI18N
-    public static final String DEFAULT_REMOVE_APP_USERDIR_TEXT =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.remove.app.userdir.text"); // NOI18N
-    
-    public static final String DEFAULT_REMOVE_APP_USERDIR_CHECKBOX =
-            ResourceUtils.getString(PreInstallSummaryPanel.class,
-            "PrISP.remove.app.userdir.checkbox"); // NOI18N
-    public static final long REQUIRED_SPACE_ADDITION =
-            10L * 1024L * 1024L; // 10MB
+    public static final String INSTALLATION_FOLDER_PROPERTY
+            = "installation.folder"; // NOI18N
+    public static final String UNINSTALL_LABEL_TEXT_PROPERTY
+            = "uninstall.list.label.text"; // NOI18N
+    public static final String INSTALLATION_SIZE_PROPERTY
+            = "installation.size"; // NOI18N
+    public static final String DOWNLOAD_SIZE_PROPERTY
+            = "download.size"; // NOI18N
+    public static final String ERROR_NOT_ENOUGH_SPACE_PROPERTY
+            = "error.not.enough.space"; // NOI18N
+    public static final String ERROR_CANNOT_CHECK_SPACE_PROPERTY
+            = "error.cannot.check.space"; // NOI18N
+    public static final String ERROR_LOGIC_ACCESS_PROPERTY
+            = "error.logic.access"; // NOI18N
+    public static final String ERROR_FSROOTS_PROPERTY
+            = "error.fsroots"; // NOI18N
+    public static final String ERROR_NON_EXISTENT_ROOT_PROPERTY
+            = "error.non.existent.root"; // NOI18N
+    public static final String ERROR_CANNOT_WRITE_PROPERTY
+            = "error.cannot.write"; // NOI18N
+    public static final String REMOVE_APP_USERDIR_PROPERTY
+            = "remove.app.userdir";
+    public static final String REMOVE_APP_USERDIR_TEXT_PROPERTY
+            = "remove.app.userdir.text";
+    public static final String REMOVE_APP_USERDIR_CHECKBOX_PROPERTY
+            = "remove.app.userdir.checkbox";
+    public static final String DEFAULT_TITLE
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.title"); // NOI18N
+    public static final String DEFAULT_DESCRIPTION
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.description"); // NOI18N
+    public static final String DEFAULT_DESCRIPTION_UNINSTALL
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.description.uninstall"); // NOI18N
+    public static final String DEFAULT_INSTALLATION_FOLDER
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.installation.folder"); // NOI18N
+    public static final String DEFAULT_UNINSTALL_LABEL_TEXT
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.uninstall.list.label.text"); // NOI18N
+    public static final String DEFAULT_INSTALLATION_SIZE
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.installation.size"); // NOI18N
+    public static final String DEFAULT_DOWNLOAD_SIZE
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.download.size"); // NOI18N
+    public static final String DEFAULT_NEXT_BUTTON_TEXT
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.next.button.text"); // NOI18N
+    public static final String DEFAULT_NEXT_BUTTON_TEXT_UNINSTALL
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.next.button.text.uninstall"); // NOI18N
+    public static final String DEFAULT_ERROR_NOT_ENOUGH_SPACE
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.error.not.enough.space"); // NOI18N
+    public static final String DEFAULT_ERROR_CANNOT_CHECK_SPACE
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.error.cannot.check.space");// NOI18N
+    public static final String DEFAULT_ERROR_LOGIC_ACCESS
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.error.logic.access");// NOI18N
+    public static final String DEFAULT_ERROR_FSROOTS
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.error.fsroots"); // NOI18N
+    public static final String DEFAULT_ERROR_NON_EXISTENT_ROOT
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.error.non.existent.root"); // NOI18N
+    public static final String DEFAULT_ERROR_CANNOT_WRITE
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.error.cannot.write"); // NOI18N
+    public static final String DEFAULT_REMOVE_APP_USERDIR_TEXT
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.remove.app.userdir.text"); // NOI18N
+
+    public static final String DEFAULT_REMOVE_APP_USERDIR_CHECKBOX
+            = ResourceUtils.getString(PreInstallSummaryPanel.class,
+                    "PrISP.remove.app.userdir.checkbox"); // NOI18N
+    public static final long REQUIRED_SPACE_ADDITION
+            = 10L * 1024L * 1024L; // 10MB
 }

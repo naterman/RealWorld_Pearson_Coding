@@ -1,12 +1,11 @@
-
 package pearson.CourseInstructors;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Generated;
 
 /**
  *
@@ -33,16 +32,16 @@ public class Instructor {
     private String emailAddress;
     @JsonProperty("links")
     private List<Link> links = new ArrayList<>();
-    
+
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Instructor() {
     }
 
     /**
-     * 
+     *
      * @param id
      * @param lastName
      * @param emailAddress
@@ -58,9 +57,8 @@ public class Instructor {
     }
 
     /**
-     * 
-     * @return
-     *     The id
+     *
+     * @return The id
      */
     @JsonProperty("id")
     public Integer getId() {
@@ -68,9 +66,8 @@ public class Instructor {
     }
 
     /**
-     * 
-     * @param id
-     *     The id
+     *
+     * @param id The id
      */
     @JsonProperty("id")
     public void setId(Integer id) {
@@ -78,9 +75,8 @@ public class Instructor {
     }
 
     /**
-     * 
-     * @return
-     *     The firstName
+     *
+     * @return The firstName
      */
     @JsonProperty("firstName")
     public String getFirstName() {
@@ -88,9 +84,8 @@ public class Instructor {
     }
 
     /**
-     * 
-     * @param firstName
-     *     The firstName
+     *
+     * @param firstName The firstName
      */
     @JsonProperty("firstName")
     public void setFirstName(String firstName) {
@@ -98,9 +93,8 @@ public class Instructor {
     }
 
     /**
-     * 
-     * @return
-     *     The lastName
+     *
+     * @return The lastName
      */
     @JsonProperty("lastName")
     public String getLastName() {
@@ -108,9 +102,8 @@ public class Instructor {
     }
 
     /**
-     * 
-     * @param lastName
-     *     The lastName
+     *
+     * @param lastName The lastName
      */
     @JsonProperty("lastName")
     public void setLastName(String lastName) {
@@ -118,9 +111,8 @@ public class Instructor {
     }
 
     /**
-     * 
-     * @return
-     *     The emailAddress
+     *
+     * @return The emailAddress
      */
     @JsonProperty("emailAddress")
     public String getEmailAddress() {
@@ -128,9 +120,8 @@ public class Instructor {
     }
 
     /**
-     * 
-     * @param emailAddress
-     *     The emailAddress
+     *
+     * @param emailAddress The emailAddress
      */
     @JsonProperty("emailAddress")
     public void setEmailAddress(String emailAddress) {
@@ -138,9 +129,8 @@ public class Instructor {
     }
 
     /**
-     * 
-     * @return
-     *     The links
+     *
+     * @return The links
      */
     @JsonProperty("links")
     public List<Link> getLinks() {
@@ -148,9 +138,8 @@ public class Instructor {
     }
 
     /**
-     * 
-     * @param links
-     *     The links
+     *
+     * @param links The links
      */
     @JsonProperty("links")
     public void setLinks(List<Link> links) {

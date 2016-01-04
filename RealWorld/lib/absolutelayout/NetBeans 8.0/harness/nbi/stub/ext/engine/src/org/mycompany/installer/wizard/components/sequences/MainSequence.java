@@ -87,7 +87,7 @@ public class MainSequence extends WizardSequence {
         installAction.setProperty(InstallAction.DESCRIPTION_PROPERTY,
                 DEFAULT_IA_DESCRIPTION);
     }
-    
+
     @Override
     public void executeForward() {
         final Registry registry = Registry.getInstance();
@@ -102,7 +102,6 @@ public class MainSequence extends WizardSequence {
         // mode - if we're installing, we ask for input, run a wizard sequence for
         // each selected component and then download and install; if we're creating
         // a bundle, we only need to download and package things
-
         if (toInstall.size() > 0) {
             addChild(downloadConfigurationLogicAction);
             addChild(licensesPanel);
@@ -126,29 +125,29 @@ public class MainSequence extends WizardSequence {
 
         if (toInstall.size() > 0) {
             addChild(downloadInstallationDataAction);
-            addChild(installAction);            
+            addChild(installAction);
         }
 
         addChild(postInstallSummaryPanel);
-        
+
         super.executeForward();
     }
 
     @Override
     public boolean canExecuteForward() {
-        return ExecutionMode.NORMAL == ExecutionMode.getCurrentExecutionMode() &&
-                (Registry.getInstance().getProductsToInstall().size() > 0 ||
-                Registry.getInstance().getProductsToUninstall().size() > 0);
+        return ExecutionMode.NORMAL == ExecutionMode.getCurrentExecutionMode()
+                && (Registry.getInstance().getProductsToInstall().size() > 0
+                || Registry.getInstance().getProductsToUninstall().size() > 0);
     }
     /////////////////////////////////////////////////////////////////////////////////
     // Constants
-    public static final String DEFAULT_IA_TITLE =
-            ResourceUtils.getString(
-            MainSequence.class,
-            "MS.IA.title"); // NOI18N
-    public static final String DEFAULT_IA_DESCRIPTION =
-            ResourceUtils.getString(
-            MainSequence.class,
-            "MS.IA.description"); // NOI18N   
-    
+    public static final String DEFAULT_IA_TITLE
+            = ResourceUtils.getString(
+                    MainSequence.class,
+                    "MS.IA.title"); // NOI18N
+    public static final String DEFAULT_IA_DESCRIPTION
+            = ResourceUtils.getString(
+                    MainSequence.class,
+                    "MS.IA.description"); // NOI18N   
+
 }

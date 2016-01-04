@@ -43,7 +43,7 @@
     
     <property file="build.properties"/>
     
-        <target name="-post-compile" depends="-unjar-core-engine,create-jar-contents-list"/>
+    <target name="-post-compile" depends="-unjar-core-engine,create-jar-contents-list"/>
     <target name="-unjar-core-engine">
         <!-- Add the contents of the core engine to the engine we're building -->
         <unjar 
@@ -54,15 +54,15 @@
 
     <target name="create-jar-contents-list">
         <pathconvert property="build.classes.dir.normalized" dirsep="/">
-           <path location="${build.classes.dir}"/>
+            <path location="${build.classes.dir}"/>
         </pathconvert>
         <pathconvert pathsep="${line.separator}" property="engine.files" dirsep="/">
-        <fileset dir="${build.classes.dir}" includes="${jar.contents.includes}"/>
-        <mapper>
-          <chainedmapper>
-            <globmapper handledirsep="true" from="${build.classes.dir.normalized}/*" to="*"/>
-          </chainedmapper>
-        </mapper>
+            <fileset dir="${build.classes.dir}" includes="${jar.contents.includes}"/>
+            <mapper>
+                <chainedmapper>
+                    <globmapper handledirsep="true" from="${build.classes.dir.normalized}/*" to="*"/>
+                </chainedmapper>
+            </mapper>
         </pathconvert>
         <echo file="${build.classes.dir}/${jar.contents.list}">${engine.files}</echo>
     </target>

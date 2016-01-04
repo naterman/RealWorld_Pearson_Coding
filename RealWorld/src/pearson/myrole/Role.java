@@ -1,10 +1,9 @@
-
 package pearson.myrole;
 
-import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import javax.annotation.Generated;
 
 /**
  *
@@ -25,16 +24,16 @@ public class Role {
     private String type;
     @JsonProperty("name")
     private String name;
-    
+
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Role() {
     }
 
     /**
-     * 
+     *
      * @param id
      * @param name
      * @param type
@@ -46,9 +45,8 @@ public class Role {
     }
 
     /**
-     * 
-     * @return
-     *     The id
+     *
+     * @return The id
      */
     @JsonProperty("id")
     public Integer getId() {
@@ -56,9 +54,8 @@ public class Role {
     }
 
     /**
-     * 
-     * @param id
-     *     The id
+     *
+     * @param id The id
      */
     @JsonProperty("id")
     public void setId(Integer id) {
@@ -66,9 +63,8 @@ public class Role {
     }
 
     /**
-     * 
-     * @return
-     *     The type
+     *
+     * @return The type
      */
     @JsonProperty("type")
     public String getType() {
@@ -76,9 +72,8 @@ public class Role {
     }
 
     /**
-     * 
-     * @param type
-     *     The type
+     *
+     * @param type The type
      */
     @JsonProperty("type")
     public void setType(String type) {
@@ -86,9 +81,8 @@ public class Role {
     }
 
     /**
-     * 
-     * @return
-     *     The name
+     *
+     * @return The name
      */
     @JsonProperty("name")
     public String getName() {
@@ -96,9 +90,8 @@ public class Role {
     }
 
     /**
-     * 
-     * @param name
-     *     The name
+     *
+     * @param name The name
      */
     @JsonProperty("name")
     public void setName(String name) {

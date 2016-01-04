@@ -5,6 +5,7 @@
  */
 package GUIs.NewAssignmentAssets;
 
+import Design.Colors;
 import org.jdesktop.swingx.JXPanel;
 
 /**
@@ -25,6 +26,8 @@ public class QuestionBar extends JXPanel {
     public QuestionBar(String number) {
         this.questionNumber = number;
         initComponents();
+
+        this.setBackground(Colors.MainBack.color());
     }
 
     /**
@@ -39,9 +42,11 @@ public class QuestionBar extends JXPanel {
         jXLabel1 = new org.jdesktop.swingx.JXLabel();
         numberLabel = new org.jdesktop.swingx.JXLabel();
 
+        jXLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jXLabel1.setText("Question");
         jXLabel1.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
 
+        numberLabel.setForeground(new java.awt.Color(255, 255, 255));
         numberLabel.setText(questionNumber);
         numberLabel.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
 
@@ -50,20 +55,22 @@ public class QuestionBar extends JXPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(2, 2, 2)
+                .addContainerGap()
                 .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(numberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(numberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 11, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXLabel jXLabel1;

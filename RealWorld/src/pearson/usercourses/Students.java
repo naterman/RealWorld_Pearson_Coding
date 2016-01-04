@@ -1,12 +1,11 @@
-
 package pearson.usercourses;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Generated;
 
 /**
  *
@@ -21,16 +20,16 @@ public class Students {
 
     @JsonProperty("links")
     private List<Link___> links = new ArrayList<>();
-    
+
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Students() {
     }
 
     /**
-     * 
+     *
      * @param links
      */
     public Students(List<Link___> links) {
@@ -38,9 +37,8 @@ public class Students {
     }
 
     /**
-     * 
-     * @return
-     *     The links
+     *
+     * @return The links
      */
     @JsonProperty("links")
     public List<Link___> getLinks() {
@@ -48,9 +46,8 @@ public class Students {
     }
 
     /**
-     * 
-     * @param links
-     *     The links
+     *
+     * @param links The links
      */
     @JsonProperty("links")
     public void setLinks(List<Link___> links) {

@@ -7,6 +7,7 @@ package GUIs.MainScreenAssets;
 
 import Design.Colors;
 import GUIs.NewAssignment;
+import GUIs.StudentAssignmentPanel;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -21,8 +22,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.JXDialog;
 import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXPanel;
+import org.jdesktop.swingx.JXTextArea;
 
 /**
  *
@@ -49,21 +52,27 @@ public class AssignmentPanel extends JXPanel {
         this.courseID = courseID;
 
         initComponents();
-        
+
+        this.setBackground(Color.white);
         this.setBorder(BorderFactory.createLineBorder(Color.black, 2, true));
         if (teach == true) {
             startButton.setVisible(false);
             infoButton.setVisible(false);
-            this.revalidate();
+            
+            if (!assignment.isEnable()) {
+                disableButton.setText("Enable");
+                disableButton.repaint();
+            }
+            
         } else {
             editButton.setVisible(false);
             disableButton.setVisible(false);
             deleteButton.setVisible(false);
-            if(!assignment.isEnable())
-            {
-                disableButton.setText("Enable");
-                disableButton.repaint();
+            
+            if (!assignment.isEnable()) {
+                startButton.setVisible(false);
             }
+            
             this.revalidate();
         }
 
@@ -89,6 +98,26 @@ public class AssignmentPanel extends JXPanel {
         infoButton.setText("Info");
 
         startButton.setText("Start");
+
+        editButton.setBackground(Colors.ButtonColorOrange.color());
+
+        disableButton.setBackground(Colors.ButtonColorOrange.color());
+
+        deleteButton.setBackground(Colors.ButtonColorOrange.color());
+
+        infoButton.setBackground(Colors.ButtonColorOrange.color());
+
+        startButton.setBackground(Colors.ButtonColorOrange.color());
+
+        editButton.setForeground(Color.white);
+
+        disableButton.setForeground(Color.white);
+
+        deleteButton.setForeground(Color.white);
+
+        infoButton.setForeground(Color.white);
+
+        startButton.setForeground(Color.white);
 
         editButton.addActionListener(new ActionListener() {
 
@@ -178,19 +207,16 @@ public class AssignmentPanel extends JXPanel {
 
     private void disableButtonAction(ActionEvent evt) {
         final Firebase ref = new Firebase("https://glowing-inferno-9149.firebaseio.com/RealWorld/" + courseID + "/Assignments/" + assignment.getId());
-        if(assignment.isEnable())
-        {
+        if (assignment.isEnable()) {
             assignment.setEnable(false);
             disableButton.setText("Enable");
-        }
-        else
-        {
+        } else {
             assignment.setEnable(true);
             disableButton.setText("Disable");
         }
-        
+
         disableButton.repaint();
-        ref.setValue(assignment);   
+        ref.setValue(assignment);
     }
 
     private void deleteButtonAction(ActionEvent evt) {
@@ -205,10 +231,9 @@ public class AssignmentPanel extends JXPanel {
                 @Override
                 public void onChildAdded(DataSnapshot snapshot, String previousChildName) {
                     Question newQuestion = snapshot.getValue(Question.class);
-                        if(newQuestion.getLinktoid().equals(assignment.getId()))
-                        {
-                            ref.child("Data").child("Questions").child(newQuestion.getId()).removeValue();
-                        }
+                    if (newQuestion.getLinktoid().equals(assignment.getId())) {
+                        ref.child("Data").child("Questions").child(newQuestion.getId()).removeValue();
+                    }
                 }
 
                 @Override
@@ -230,16 +255,37 @@ public class AssignmentPanel extends JXPanel {
                 public void onCancelled(FirebaseError error) {
                     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                 }
-            });            
+            });
         }
-        
+
     }
 
     private void startButtonAction(ActionEvent evt) {
 
+        JXFrame assignmentPanel = new JXFrame();
+        assignmentPanel.setExtendedState(JXFrame.MAXIMIZED_BOTH);
+        assignmentPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        assignmentPanel.setDefaultCloseOperation(JXFrame.DISPOSE_ON_CLOSE);
+        FullAssignmentData fullAssignment = new FullAssignmentData(assignment);
+        fullAssignment.setCourseID(courseID);
+        StudentAssignmentPanel newAssignmentPanel = new StudentAssignmentPanel(fullAssignment);
+
+        assignmentPanel.add(newAssignmentPanel);
+        assignmentPanel.getContentPane().setBackground(Colors.BackgroundGray.color());
+        assignmentPanel.setVisible(true);
+
     }
 
     private void infoButtonAction(ActionEvent evt) {
+
+        JXTextArea info = new JXTextArea();
+        info.setText(assignment.getInfo());
+        info.setEditable(false);
+        info.setWrapStyleWord(true);
+        JXDialog infoDialog = new JXDialog(info);
+        infoDialog.setSize(500, 500);
+        infoDialog.setLocationRelativeTo(this);
+        infoDialog.setVisible(true);
 
     }
 

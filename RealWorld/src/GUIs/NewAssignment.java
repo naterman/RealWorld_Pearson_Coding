@@ -14,7 +14,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.security.token.TokenGenerator;
-import firebase.*;
+import firebase.FullAssignmentData;
+import firebase.Question;
 import java.awt.FlowLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -38,7 +39,7 @@ public class NewAssignment extends JXPanel {
     FullAssignmentData fullAssignment;
     HashMap<String, Question> questions = new HashMap<>();
     HashMap<String, QuestionBar> bars = new HashMap<>();
-    String currentQuestionID = null;
+    String currentQuestionID = "";
     int currentQuestionNumber = 0;
 
     /**
@@ -49,97 +50,91 @@ public class NewAssignment extends JXPanel {
     public NewAssignment(FullAssignmentData f, boolean isItNew) {
         this.fullAssignment = f;
         initComponents();
-        
-        if(fullAssignment.getAssignment().isEnable())
-        {
+
+        if (fullAssignment.getAssignment().isEnable()) {
             enableCheckBox.setSelected(true);
         }
-        
+
         questionPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        
-        if(isItNew == false)
-        {
+
+        if (isItNew == false) {
             createButton.setText("Update");
             createButton.repaint();
             final Firebase ref = new Firebase("https://glowing-inferno-9149.firebaseio.com/RealWorld/" + fullAssignment.getCourseID() + "/Data/Questions");
             Query queryRef = ref.orderByChild("questionnumber");
             queryRef.addChildEventListener(new ChildEventListener() {
 
-                    @Override
-                    public void onChildAdded(DataSnapshot snapshot, String previousChildName) {
-                        Question newQuestion = snapshot.getValue(Question.class);
-                        if(newQuestion.getLinktoid().equals(fullAssignment.getAssignment().getId()))
-                        {
-                            questions.put(newQuestion.getId(), newQuestion);
-                            currentQuestionNumber++;
-                            
-                            QuestionBar newBar = new QuestionBar(String.valueOf(newQuestion.getNumber()));
-                            final String ID = newQuestion.getId();
-                            newBar.addMouseListener(new MouseListener() {
+                @Override
+                public void onChildAdded(DataSnapshot snapshot, String previousChildName) {
+                    Question newQuestion = snapshot.getValue(Question.class);
+                    if (newQuestion.getLinktoid().equals(fullAssignment.getAssignment().getId())) {
+                        questions.put(newQuestion.getId(), newQuestion);
+                        currentQuestionNumber++;
 
-                                @Override
-                                public void mouseClicked(MouseEvent e) {
-                                    questionBarClicked(e, ID);
-                                }
+                        QuestionBar newBar = new QuestionBar(String.valueOf(newQuestion.getNumber()));
+                        final String ID = newQuestion.getId();
+                        newBar.addMouseListener(new MouseListener() {
 
-                                @Override
-                                public void mousePressed(MouseEvent e) {
-                                    //not needed
-                                }
-
-                                @Override
-                                public void mouseReleased(MouseEvent e) {
-                                    //not needed
-                                }
-
-                                @Override
-                                public void mouseEntered(MouseEvent e) {
-                                    //not needed
-                                }
-
-                                @Override
-                                public void mouseExited(MouseEvent e) {
-                                    //not needed                
-                                }
-                            });
-                            bars.put(currentQuestionID, newBar);
-
-                            questionPanel.add(newBar);
-                            questionPanel.revalidate();
-                            questionPanel.repaint();
-                            if(newQuestion.getNumber() == 1)
-                            {
-                                currentQuestionID = newQuestion.getId();
-                                questionTextBox.setText(newQuestion.getQuestion());
-                                answerTextBox.setText(newQuestion.getAnswer());
-                                scenarioTextBox.setText(newQuestion.getScenario());
+                            @Override
+                            public void mouseClicked(MouseEvent e) {
+                                questionBarClicked(e, ID);
                             }
-                        }   
-                    }
 
-                    @Override
-                    public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
+                            @Override
+                            public void mousePressed(MouseEvent e) {
+                                //not needed
+                            }
 
-                    @Override
-                    public void onChildRemoved(DataSnapshot snapshot) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
+                            @Override
+                            public void mouseReleased(MouseEvent e) {
+                                //not needed
+                            }
 
-                    @Override
-                    public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
+                            @Override
+                            public void mouseEntered(MouseEvent e) {
+                                //not needed
+                            }
 
-                    @Override
-                    public void onCancelled(FirebaseError error) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                            @Override
+                            public void mouseExited(MouseEvent e) {
+                                //not needed                
+                            }
+                        });
+                        bars.put(currentQuestionID, newBar);
+
+                        questionPanel.add(newBar);
+                        questionPanel.revalidate();
+                        questionPanel.repaint();
+                        if (newQuestion.getNumber() == 1) {
+                            currentQuestionID = newQuestion.getId();
+                            questionTextBox.setText(newQuestion.getQuestion());
+                            answerTextBox.setText(newQuestion.getAnswer());
+                            scenarioTextBox.setText(newQuestion.getScenario());
+                        }
                     }
-                });
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot snapshot) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+
+                @Override
+                public void onCancelled(FirebaseError error) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            });
         }
-        
-        
 
         MattePainter backPaint = new MattePainter(Colors.BackgroundGray.color());
         this.setBackgroundPainter(backPaint);
@@ -193,7 +188,10 @@ public class NewAssignment extends JXPanel {
         enableCheckBox.setText("Enable?");
         enableCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        saveButton.setText("Save");
+        saveButton.setBackground(Colors.ButtonGreen.color());
+        saveButton.setForeground(new java.awt.Color(255, 255, 255));
+        saveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/saveIcon.png"))); // NOI18N
+        saveButton.setText("   Save");
         saveButton.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +199,10 @@ public class NewAssignment extends JXPanel {
             }
         });
 
-        deleteButton.setText("Delete");
+        deleteButton.setBackground(Colors.Red.color());
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TrashCan.png"))); // NOI18N
+        deleteButton.setText("   Delete");
         deleteButton.setToolTipText("");
         deleteButton.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +211,10 @@ public class NewAssignment extends JXPanel {
             }
         });
 
-        save_newButton.setText("Save/New");
+        save_newButton.setBackground(Colors.ButtonColorOrange.color());
+        save_newButton.setForeground(new java.awt.Color(255, 255, 255));
+        save_newButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/saveNewIcon.png"))); // NOI18N
+        save_newButton.setText("   Save/New");
         save_newButton.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
         save_newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +222,10 @@ public class NewAssignment extends JXPanel {
             }
         });
 
-        cancelButton.setText("Cancel");
+        cancelButton.setBackground(Colors.Black.color());
+        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelIcon.png"))); // NOI18N
+        cancelButton.setText(" Cancel");
         cancelButton.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,7 +248,10 @@ public class NewAssignment extends JXPanel {
 
         jScrollPane3.setViewportView(questionPanel);
 
-        createButton.setText("Create");
+        createButton.setBackground(Colors.ButtonGreen.color());
+        createButton.setForeground(new java.awt.Color(255, 255, 255));
+        createButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/createIcon.png"))); // NOI18N
+        createButton.setText(" Create");
         createButton.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,28 +276,34 @@ public class NewAssignment extends JXPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(answerTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(60, 60, 60)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(save_newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addGap(56, 56, 56)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(save_newButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(0, 0, 0))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(answerTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(enableCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(67, 67, 67)
-                                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(enableCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(90, 90, 90))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(69, 69, 69))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,25 +317,22 @@ public class NewAssignment extends JXPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(answerTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(save_newButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(13, 13, 13)
+                                .addComponent(save_newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(enableCheckBox)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -340,39 +353,33 @@ public class NewAssignment extends JXPanel {
             saveCurrentQuestion();
         }
 
-        currentQuestionID = null;
+        currentQuestionID = "";
         questionTextBox.setText("");
         answerTextBox.setText("");
     }//GEN-LAST:event_save_newButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        int response = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the current question? (Any Triggers associated with it will be deleted)", "Confirm Cancel", JOptionPane.YES_NO_OPTION);
-        if (response == JOptionPane.YES_OPTION) {
-            questions.remove(currentQuestionID);
-            currentQuestionID = null;
-            questionTextBox.setText("");
-            answerTextBox.setText("");
-
-        }
+       
+        JOptionPane.showMessageDialog(scenarioTextBox, "Not Implemented Yet");
+        
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         final JXFrame mainFrame = SwingXUtilities.getAncestor(JXFrame.class, this);
-        
+
         if (currentQuestionID == null && !questionTextBox.getText().equals("")) {
             saveNewQuestion();
-        } else if(!questionTextBox.getText().equals("")) {
+        } else if (!questionTextBox.getText().equals("")) {
             saveCurrentQuestion();
         }
-            
+
         fullAssignment.getAssignment().setEnable(enableCheckBox.isSelected());
-        
-        
+
         final Firebase ref = new Firebase("https://glowing-inferno-9149.firebaseio.com/RealWorld");
         UUID id = UUID.randomUUID();
         HashMap<String, Object> payload = new HashMap<>();
-        payload.put("uid", id.toString());        
-        
+        payload.put("uid", id.toString());
+
         TokenGenerator tokenGenerator = new TokenGenerator("5o0SAwAWTiOLYdfoLXKgqRATnYWQzIqmV9fuqDNq");
         String token = tokenGenerator.createToken(payload);
         ref.authWithCustomToken(token, new Firebase.AuthResultHandler() {
@@ -380,27 +387,20 @@ public class NewAssignment extends JXPanel {
             public void onAuthenticationError(FirebaseError error) {
                 System.err.println("Login Failed! " + error.getMessage());
             }
+
             @Override
             public void onAuthenticated(AuthData authData) {
-                
-                
-                
-                
+
                 Firebase assignmentsRef = ref.child(fullAssignment.getCourseID()).child("Assignments").child(fullAssignment.getAssignment().getId());
                 assignmentsRef.setValue(fullAssignment.getAssignment());
-                      
-                
-                
-                
-                for(Question question: questions.values())
-                {
+
+                for (Question question : questions.values()) {
                     Firebase questionRef = ref.child(fullAssignment.getCourseID()).child("Data").child("Questions").child(question.getId());
                     questionRef.setValue(question);
                 }
-                               
-                
+
                 mainFrame.dispose();
-                
+
             }
         });
     }//GEN-LAST:event_createButtonActionPerformed
@@ -417,82 +417,87 @@ public class NewAssignment extends JXPanel {
 
         if (currentQuestionID == null && !questionTextBox.getText().equals("")) {
             saveNewQuestion();
-        } else if(!questionTextBox.getText().equals("")) {
+        } else if (!questionTextBox.getText().equals("")) {
             saveCurrentQuestion();
         }
 
-        currentQuestionID = ID;
-        questionTextBox.setText(questions.get(ID).getQuestion());
-        answerTextBox.setText(questions.get(ID).getAnswer());
-        scenarioTextBox.setText(questions.get(ID).getScenario());
+        try {
+            currentQuestionID = ID;
+            questionTextBox.setText(questions.get(ID).getQuestion());
+            answerTextBox.setText(questions.get(ID).getAnswer());
+            scenarioTextBox.setText(questions.get(ID).getScenario());
+        }
+        catch (NullPointerException nex)
+        {
+            JOptionPane.showMessageDialog(scenarioTextBox, "That Question No Longer Exists");
+            currentQuestionID = "";
+        }
+        
 
     }
 
     /**
      *
      * Called to save a new question
-     * 
+     *
      */
-    public void saveNewQuestion()
-    {
+    public void saveNewQuestion() {
 
-            currentQuestionNumber++;
+        currentQuestionNumber++;
 
-            Question newQuestion = new Question();
-            newQuestion.setQuestion(questionTextBox.getText());
-            newQuestion.setAnswer(answerTextBox.getText());
-            currentQuestionID = UUID.randomUUID().toString();
-            newQuestion.setId(currentQuestionID);
-            newQuestion.setLinktoid(fullAssignment.getAssignment().getId());
-            newQuestion.setScenario(scenarioTextBox.getText());
-            newQuestion.setNumber(currentQuestionNumber);
-            newQuestion.setScenario(scenarioTextBox.getText());
-            questions.put(currentQuestionID, newQuestion);
-            QuestionBar newBar = new QuestionBar(String.valueOf(currentQuestionNumber));
-            final String ID = currentQuestionID;
-            newBar.addMouseListener(new MouseListener() {
+        Question newQuestion = new Question();
+        newQuestion.setQuestion(questionTextBox.getText());
+        newQuestion.setAnswer(answerTextBox.getText());
+        currentQuestionID = UUID.randomUUID().toString();
+        newQuestion.setId(currentQuestionID);
+        newQuestion.setLinktoid(fullAssignment.getAssignment().getId());
+        newQuestion.setScenario(scenarioTextBox.getText());
+        newQuestion.setNumber(currentQuestionNumber);
+        newQuestion.setScenario(scenarioTextBox.getText());
+        questions.put(currentQuestionID, newQuestion);
+        QuestionBar newBar = new QuestionBar(String.valueOf(currentQuestionNumber));
+        final String ID = currentQuestionID;
+        newBar.addMouseListener(new MouseListener() {
 
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    questionBarClicked(e, ID);
-                }
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                questionBarClicked(e, ID);
+            }
 
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    //not needed
-                }
+            @Override
+            public void mousePressed(MouseEvent e) {
+                //not needed
+            }
 
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    //not needed
-                }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                //not needed
+            }
 
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    //not needed
-                }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                //not needed
+            }
 
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    //not needed                
-                }
-            });
-            bars.put(currentQuestionID, newBar);
+            @Override
+            public void mouseExited(MouseEvent e) {
+                //not needed                
+            }
+        });
+        bars.put(currentQuestionID, newBar);
 
-            questionPanel.add(newBar);
-            questionPanel.revalidate();
-            questionPanel.repaint();
+        questionPanel.add(newBar);
+        questionPanel.revalidate();
+        questionPanel.repaint();
 
-        
     }
-    
+
     /**
      *
      * called to save a currently selected question
-     * 
+     *
      */
-    public void saveCurrentQuestion()
-    {
+    public void saveCurrentQuestion() {
         Question cQuestion = questions.get(currentQuestionID);
         cQuestion.setAnswer(answerTextBox.getText());
         cQuestion.setQuestion(questionTextBox.getText());

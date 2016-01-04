@@ -60,25 +60,25 @@
     
     <target name="-init-properties">
         <echo file="${nbi.all.dir}/environment.tmp" encoding="utf-8">
-checkout.sources=false
-sources.dir=${nbi.all.dir}
-cvs.module=ext
+            checkout.sources=false
+            sources.dir=${nbi.all.dir}
+            cvs.module=ext
 
-release.to.server=false
-release.registry.dir=${output.dir}/registry-temp
+            release.to.server=false
+            release.registry.dir=${output.dir}/registry-temp
 
-dont.build.custom.tasks=true
-custom.tasks.cls=${custom.tasks.cls}
+            dont.build.custom.tasks=true
+            custom.tasks.cls=${custom.tasks.cls}
 
-build.engine=false
+            build.engine=false
 
-engine.dist.file.name=nbi-engine.jar
-engine.dist.file=${nbi.core.dir}/infra/build/engine/dist/nbi-engine.jar
+            engine.dist.file.name=nbi-engine.jar
+            engine.dist.file=${nbi.core.dir}/infra/build/engine/dist/nbi-engine.jar
 
-packaged.data.dir=${basedir}/cache/packaged
-downloads.cache.dir=${basedir}/cache/raw
+            packaged.data.dir=${basedir}/cache/packaged
+            downloads.cache.dir=${basedir}/cache/raw
 
-jarsigner.enabled=${jarsigner.enabled}
+            jarsigner.enabled=${jarsigner.enabled}
         </echo>
         <replace file="${nbi.all.dir}/environment.tmp" token="\" value="/" encoding="utf-8"/>
         <native2ascii src="${nbi.all.dir}" dest="${nbi.all.dir}" encoding="utf-8" includes="environment.tmp" ext=".properties"/>
@@ -112,7 +112,7 @@ jarsigner.enabled=${jarsigner.enabled}
         </ant>
 
 
-	<echo message="BUILDING HELLOWORLD PRODUCT =================================="/>
+        <echo message="BUILDING HELLOWORLD PRODUCT =================================="/>
         <ant dir="${nbi.ext.dir}/infra/build/products/helloworld" target="release-all">
             <property 
                 name="basedir" 
@@ -146,23 +146,23 @@ jarsigner.enabled=${jarsigner.enabled}
         <for-each property="platform" list="${target.platforms}" separator=" ">
 
             <condition property="bundle.extention.${platform}" value="exe">
-                 <contains string="${platform}" substring="windows"/>
+                <contains string="${platform}" substring="windows"/>
             </condition>
             <condition property="bundle.extention.${platform}" value="sh">
-                 <or>
-                     <contains string="${platform}" substring="linux"/>
-                     <contains string="${platform}" substring="solaris"/>
-                 </or>
+                <or>
+                    <contains string="${platform}" substring="linux"/>
+                    <contains string="${platform}" substring="solaris"/>
+                </or>
             </condition>
             <condition property="bundle.extention.${platform}" value="zip">
-                 <contains string="${platform}" substring="macosx"/>
+                <contains string="${platform}" substring="macosx"/>
             </condition>
 
             <set property="bundle.extention" source="bundle.extention.${platform}"/>
 
             <create-bundle root="${output.dir}/registry-temp" 
-                       platform="${platform}" 
-                       target="${bundles.release.dir}/${bundle.files.prefix}-${platform}.${bundle.extention}">
+                           platform="${platform}" 
+                           target="${bundles.release.dir}/${bundle.files.prefix}-${platform}.${bundle.extention}">
                 <component uid="${main.product.uid}" version="1.0.0.0.0"/>
             </create-bundle>
             <if property="bundle.extention" value="zip">
@@ -170,33 +170,33 @@ jarsigner.enabled=${jarsigner.enabled}
                     <param name="input.file"  value="${bundles.release.dir}/${bundle.files.prefix}-${platform}.zip"/>
                     <param name="output.file" value="${bundles.release.dir}/${bundle.files.prefix}-${platform}.tgz"/>
                 </antcall>
-	        <delete file="${bundles.release.dir}/${bundle.files.prefix}-${platform}.zip"/>
+                <delete file="${bundles.release.dir}/${bundle.files.prefix}-${platform}.zip"/>
             </if>
         </for-each>
         <echo>Installer(s) for [${target.platforms}] are available at ${bundles.release.dir}</echo>
     </target>
 
     <target name="zip-to-tgz">
-	<set property="tar.tmpdir"
+        <set property="tar.tmpdir"
              value="${bundles.release.dir}/tempdir"/>
 
-	<mkdir dir="${tar.tmpdir}"/>
+        <mkdir dir="${tar.tmpdir}"/>
 
-	<unzip 
-		src="${input.file}"
-		dest="${tar.tmpdir}"/>
+        <unzip 
+            src="${input.file}"
+            dest="${tar.tmpdir}"/>
 
         <tar tarfile="${output.file}" 
              compression="gzip">
             <tarfileset dir="${tar.tmpdir}" mode="644">
                 <include name="**/*.*"/>
-		<exclude name="**/executable"/>
+                <exclude name="**/executable"/>
             </tarfileset>
-	    <tarfileset dir="${tar.tmpdir}" mode="755">
-		<include name="**/executable"/>
+            <tarfileset dir="${tar.tmpdir}" mode="755">
+                <include name="**/executable"/>
             </tarfileset>
         </tar>
-	<delete dir="${tar.tmpdir}"/>
+        <delete dir="${tar.tmpdir}"/>
     </target>
 
 </project>

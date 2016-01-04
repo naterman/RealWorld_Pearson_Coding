@@ -16,68 +16,73 @@ public enum Colors {
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 // various colors in the pallete
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
     /**
      *
      */
-        Pink(255, 175, 175),
-
+    Pink(255, 175, 175),
     /**
      *
      */
     Green(159, 205, 20),
-
     /**
      *
      */
     Orange(213, 113, 13),
-
     /**
      *
      */
     Yellow(Color.yellow),
-
     /**
      *
      */
     Red(189, 67, 67),
-
     /**
      *
      */
     LightBlue(208, 223, 245),
-
     /**
      *
      */
     Blue(Color.blue),
-
     /**
      *
      */
     Black(0, 0, 0),
-
     /**
      *
      */
     White(255, 255, 255),
-
     /**
      *
      */
     Gray(Color.gray.getRed(), Color.gray.getGreen(), Color.gray.getBlue()),
-    
     /**
-     * 
+     *
      */
-    BackgroundGray(233,236,241);
+    BackgroundGray(233, 236, 241),
+    /**
+     *
+     */
+    PromptText(29, 186, 165),
+    /**
+     *
+     */
+    MainBack(2, 78, 74),
+    /**
+     *
+     */
+    ButtonColorOrange(254, 149, 14),
+    /**
+     *
+     */
+    ButtonGreen(31, 186, 167);
 
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     // constructors
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     /**
-     * 
-     * @param c 
+     *
+     * @param c
      */
     Colors(Color c) {
         _myColor = c;
@@ -95,21 +100,20 @@ public enum Colors {
         _myColor = new Color(r, g, b, alpha);
     }
 
-  //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     // data
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     private final Color _myColor;
 
-  //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     // methods
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
     /**
      *
      * @param t
      * @return
      */
-        public Color alpha(float t) {
+    public Color alpha(float t) {
         return new Color(_myColor.getRed(), _myColor.getGreen(), _myColor.getBlue(), (int) (t * 255f));
     }
 
@@ -140,7 +144,7 @@ public enum Colors {
         return alpha(f);
     }
 
-        @Override
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("r=")

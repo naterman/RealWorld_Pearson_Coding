@@ -324,7 +324,7 @@ made subject to such option by the copyright holder.
     </target>
 
     <target name="verify-class-linkage" depends="jar,release">
-<!--        <verifyclasslinkage jar="${cluster}/${module.jar}" failonerror="false" ignores="${module.jar.verifylinkageignores}" maxwarnings="10">
+        <!--        <verifyclasslinkage jar="${cluster}/${module.jar}" failonerror="false" ignores="${module.jar.verifylinkageignores}" maxwarnings="10">
             <classpath refid="cp"/>
             <classpath path="${nbjdk.bootclasspath}"/>
         </verifyclasslinkage>-->
@@ -459,7 +459,7 @@ made subject to such option by the copyright holder.
                  releasedate="${nbm.release.date}"
                  moduleauthor="${nbm.module.author}"
                  locales="${nbm.locales}"
-                 >
+        >
             <license file="${license.file.override}"/>
             <signature keystore="${keystore}" storepass="${storepass}" alias="${nbm_alias}"/>
             <updaterjar>
@@ -529,15 +529,15 @@ made subject to such option by the copyright holder.
                         <propertyref name="test.timeout"/>
                         <mapper type="glob" from="test.timeout" to="nbjunit.hard.timeout"/>
                     </propertyset>
-                    </propertyset>
-                    <condition property="exists.test.@{test.type}.src.dir">
-                        <and>
-                            <available file="${test.@{test.type}.src.dir}" type="dir"/>
-                            <not>
-                                <istrue value="${disable.@{test.type}.tests}"/>
-                            </not>
-                        </and>
-                    </condition>
+                </propertyset>
+                <condition property="exists.test.@{test.type}.src.dir">
+                    <and>
+                        <available file="${test.@{test.type}.src.dir}" type="dir"/>
+                        <not>
+                            <istrue value="${disable.@{test.type}.tests}"/>
+                        </not>
+                    </and>
+                </condition>
 
             </sequential>
         </macrodef>
@@ -712,7 +712,7 @@ made subject to such option by the copyright holder.
                         outputdir="${build.test.@{test.type}.results.dir}"
                         workingDir="${build.test.@{test.type}.results.dir}"
                         suitename="${code.name.base}"
-			listener="org.testng.reporters.VerboseReporter"
+                        listener="org.testng.reporters.VerboseReporter"
                 >
                     <classfileset dir="${build.test.@{test.type}.classes.dir}" excludes="${test.excludes}" includes="${test.includes}"/>
                     <propertyset refid="test.@{test.type}.properties"/>
@@ -812,7 +812,7 @@ made subject to such option by the copyright holder.
                          outputdir="${build.test.@{test.type}.results.dir}"
                          workingDir="${build.test.@{test.type}.results.dir}"
                          suitename="${code.name.base}"
-			 listener="org.testng.reporters.VerboseReporter"
+                         listener="org.testng.reporters.VerboseReporter"
                 >
                     <propertyset refid="test.@{test.type}.properties"/>
                     <classpath refid="test.@{test.type}.run.cp"/>
@@ -839,7 +839,7 @@ made subject to such option by the copyright holder.
                          outputdir="${build.test.@{test.type}.results.dir}"
                          workingDir="${build.test.@{test.type}.results.dir}"
                          suitename="${code.name.base}"
-			 listener="org.testng.reporters.VerboseReporter"
+                         listener="org.testng.reporters.VerboseReporter"
                 >
                     <propertyset refid="test.@{test.type}.properties"/>
                     <classpath refid="test.@{test.type}.run.cp"/>
@@ -964,7 +964,7 @@ made subject to such option by the copyright holder.
                          outputdir="${build.test.@{test.type}.results.dir}"
                          workingDir="${build.test.@{test.type}.results.dir}"
                          suitename="${code.name.base}"
-			 listener="org.testng.reporters.VerboseReporter"
+                         listener="org.testng.reporters.VerboseReporter"
                 >
                     <propertyset refid="test.@{test.type}.properties"/>
                     <classpath refid="test.@{test.type}.run.cp"/>
@@ -1054,7 +1054,7 @@ made subject to such option by the copyright holder.
                         outputdir="${build.test.@{test.type}.results.dir}"
                         workingDir="${build.test.@{test.type}.results.dir}"
                         suitename="${code.name.base}"
-			listener="org.testng.reporters.VerboseReporter"
+                        listener="org.testng.reporters.VerboseReporter"
                 >
                     <propertyset refid="test.@{test.type}.properties"/>
                     <classpath refid="test.@{test.type}.run.cp"/>
@@ -1209,9 +1209,9 @@ made subject to such option by the copyright holder.
         <loadproperties srcFile="${manifest.mf}" prefix="mf.">
             <filterchain>
                 <replaceregex pattern="[\n\r]+ ([^ ][^\n\r]*)"
-                            replace="\1"
-                            flags="g"
-                            byline="false"/>
+                              replace="\1"
+                              flags="g"
+                              byline="false"/>
             </filterchain>
         </loadproperties>
         <property file="${src.dir}/${mf.OpenIDE-Module-Localizing-Bundle}" prefix="bundle."/>

@@ -12,7 +12,6 @@ import java.awt.FlowLayout;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
-import org.jdesktop.swingx.JXDialog;
 import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXPanel;
 import org.jdesktop.swingx.SwingXUtilities;
@@ -26,9 +25,8 @@ public class CreateAssignment extends JXPanel {
     /**
      * Creates new form CreateAssignment
      */
-    
     String courseID;
-    
+
     /**
      *
      * @param courseID
@@ -60,6 +58,8 @@ public class CreateAssignment extends JXPanel {
         jXLabel3 = new org.jdesktop.swingx.JXLabel();
         createButton = new org.jdesktop.swingx.JXButton();
 
+        setBackground(Colors.MainBack.color());
+
         assignmentInfoTextBox.setColumns(20);
         assignmentInfoTextBox.setLineWrap(true);
         assignmentInfoTextBox.setRows(5);
@@ -72,18 +72,23 @@ public class CreateAssignment extends JXPanel {
         dueDatePicker.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         dueDatePicker.setFormats("MM/DD/YYYY");
 
+        jXLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jXLabel1.setText("Assignment Name");
         jXLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jXLabel1.setTextAlignment(org.jdesktop.swingx.JXLabel.TextAlignment.RIGHT);
 
+        jXLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jXLabel2.setText("Assignment Info");
         jXLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jXLabel2.setTextAlignment(org.jdesktop.swingx.JXLabel.TextAlignment.RIGHT);
 
+        jXLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jXLabel3.setText("Due Date");
         jXLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jXLabel3.setTextAlignment(org.jdesktop.swingx.JXLabel.TextAlignment.RIGHT);
 
+        createButton.setBackground(Colors.ButtonColorOrange.color());
+        createButton.setForeground(new java.awt.Color(255, 255, 255));
         createButton.setText("Create");
         createButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         createButton.addActionListener(new java.awt.event.ActionListener() {
@@ -102,11 +107,11 @@ public class CreateAssignment extends JXPanel {
                     .addComponent(jXLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(dueDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                        .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
                     .addComponent(assignmentNameTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -132,7 +137,7 @@ public class CreateAssignment extends JXPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-       
+
         SimpleDateFormat pickerFormat = new SimpleDateFormat("MM/dd/yyyy");
         String date = pickerFormat.format(dueDatePicker.getDate());
         Assignment newAssignment = new Assignment(date, UUID.randomUUID().toString(), assignmentInfoTextBox.getText(), assignmentNameTextBox.getText(), false);
@@ -146,12 +151,10 @@ public class CreateAssignment extends JXPanel {
         editingPane.add(newAssignmentPanel);
         editingPane.getContentPane().setBackground(Colors.BackgroundGray.color());
         editingPane.setVisible(true);
-        JXDialog currentDialog = SwingXUtilities.getAncestor(JXDialog.class, this);
+        JXFrame currentDialog = SwingXUtilities.getAncestor(JXFrame.class, this);
         currentDialog.dispose();
-        
-        
-    }//GEN-LAST:event_createButtonActionPerformed
 
+    }//GEN-LAST:event_createButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXTextArea assignmentInfoTextBox;

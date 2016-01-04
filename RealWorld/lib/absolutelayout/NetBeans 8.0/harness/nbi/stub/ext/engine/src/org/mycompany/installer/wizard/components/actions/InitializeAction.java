@@ -36,7 +36,6 @@
  * the option applies only if the new code is made subject to such option by the
  * copyright holder.
  */
-
 package org.mycompany.installer.wizard.components.actions;
 
 import org.netbeans.installer.product.Registry;
@@ -53,12 +52,13 @@ import org.netbeans.installer.wizard.components.actions.*;
  * @author Dmitry Lipin
  */
 public class InitializeAction extends WizardAction {
+
     /////////////////////////////////////////////////////////////////////////////////
     // Instance
     public InitializeAction() {
-        setProperty(TITLE_PROPERTY, 
+        setProperty(TITLE_PROPERTY,
                 DEFAULT_TITLE);
-        setProperty(DESCRIPTION_PROPERTY, 
+        setProperty(DESCRIPTION_PROPERTY,
                 DEFAULT_DESCRIPTION);
 
         downloadLogic = new DownloadConfigurationLogicAction();
@@ -66,28 +66,25 @@ public class InitializeAction extends WizardAction {
     }
     private DownloadConfigurationLogicAction downloadLogic;
     private InitializeRegistryAction initReg;
-    
+
     public void execute() {
         final Progress progress = new Progress();
-        
-        //getWizardUi().setProgress(progress);
-        
 
+        //getWizardUi().setProgress(progress);
         progress.setTitle(getProperty(PROGRESS_TITLE_PROPERTY));
 
         //progress.synchronizeDetails(false);
-
         if (initReg.canExecuteForward()) {
             initReg.setWizard(getWizard());
             initReg.execute();
         }
-    
+
         if (downloadLogic.canExecuteForward()) {
             downloadLogic.setWizard(getWizard());
             downloadLogic.execute();
         }
     }
-    
+
     @Override
     public boolean isCancelable() {
         return false;
@@ -96,17 +93,17 @@ public class InitializeAction extends WizardAction {
     public WizardActionUi getWizardUi() {
         return null; // this action does not have a ui
     }
-    
+
     /////////////////////////////////////////////////////////////////////////////////
     // Constants
     public static final String DEFAULT_TITLE = ResourceUtils.getString(
-            InitializeAction.class, 
+            InitializeAction.class,
             "IA.title"); // NOI18N
     public static final String PROGRESS_TITLE_PROPERTY = ResourceUtils.getString(
-            InitializeAction.class, 
+            InitializeAction.class,
             "IA.progress.title"); // NOI18N
     public static final String DEFAULT_DESCRIPTION = ResourceUtils.getString(
-            InitializeAction.class, 
+            InitializeAction.class,
             "IA.description"); // NOI18N
-    
+
 }

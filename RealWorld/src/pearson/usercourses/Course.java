@@ -1,12 +1,11 @@
-
 package pearson.usercourses;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Generated;
 
 /**
  *
@@ -42,16 +41,16 @@ public class Course {
     private List<String> callNumbers = new ArrayList<>();
     @JsonProperty("links")
     private List<Link____> links = new ArrayList<>();
-    
+
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Course() {
     }
 
     /**
-     * 
+     *
      * @param id
      * @param title
      * @param students
@@ -73,9 +72,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @return
-     *     The instructors
+     *
+     * @return The instructors
      */
     @JsonProperty("instructors")
     public Instructors getInstructors() {
@@ -83,9 +81,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @param instructors
-     *     The instructors
+     *
+     * @param instructors The instructors
      */
     @JsonProperty("instructors")
     public void setInstructors(Instructors instructors) {
@@ -93,9 +90,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @return
-     *     The teachingAssistants
+     *
+     * @return The teachingAssistants
      */
     @JsonProperty("teachingAssistants")
     public TeachingAssistants getTeachingAssistants() {
@@ -103,9 +99,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @param teachingAssistants
-     *     The teachingAssistants
+     *
+     * @param teachingAssistants The teachingAssistants
      */
     @JsonProperty("teachingAssistants")
     public void setTeachingAssistants(TeachingAssistants teachingAssistants) {
@@ -113,9 +108,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @return
-     *     The students
+     *
+     * @return The students
      */
     @JsonProperty("students")
     public Students getStudents() {
@@ -123,9 +117,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @param students
-     *     The students
+     *
+     * @param students The students
      */
     @JsonProperty("students")
     public void setStudents(Students students) {
@@ -133,9 +126,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @return
-     *     The id
+     *
+     * @return The id
      */
     @JsonProperty("id")
     public Integer getId() {
@@ -143,9 +135,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @param id
-     *     The id
+     *
+     * @param id The id
      */
     @JsonProperty("id")
     public void setId(Integer id) {
@@ -153,9 +144,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @return
-     *     The displayCourseCode
+     *
+     * @return The displayCourseCode
      */
     @JsonProperty("displayCourseCode")
     public String getDisplayCourseCode() {
@@ -163,9 +153,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @param displayCourseCode
-     *     The displayCourseCode
+     *
+     * @param displayCourseCode The displayCourseCode
      */
     @JsonProperty("displayCourseCode")
     public void setDisplayCourseCode(String displayCourseCode) {
@@ -173,9 +162,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @return
-     *     The title
+     *
+     * @return The title
      */
     @JsonProperty("title")
     public String getTitle() {
@@ -183,9 +171,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @param title
-     *     The title
+     *
+     * @param title The title
      */
     @JsonProperty("title")
     public void setTitle(String title) {
@@ -193,9 +180,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @return
-     *     The callNumbers
+     *
+     * @return The callNumbers
      */
     @JsonProperty("callNumbers")
     public List<String> getCallNumbers() {
@@ -203,9 +189,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @param callNumbers
-     *     The callNumbers
+     *
+     * @param callNumbers The callNumbers
      */
     @JsonProperty("callNumbers")
     public void setCallNumbers(List<String> callNumbers) {
@@ -213,9 +198,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @return
-     *     The links
+     *
+     * @return The links
      */
     @JsonProperty("links")
     public List<Link____> getLinks() {
@@ -223,9 +207,8 @@ public class Course {
     }
 
     /**
-     * 
-     * @param links
-     *     The links
+     *
+     * @param links The links
      */
     @JsonProperty("links")
     public void setLinks(List<Link____> links) {

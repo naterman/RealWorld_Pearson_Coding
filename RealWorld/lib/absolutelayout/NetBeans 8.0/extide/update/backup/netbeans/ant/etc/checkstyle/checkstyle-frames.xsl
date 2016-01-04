@@ -14,12 +14,12 @@
 
        http://www.apache.org/licenses/LICENSE-2.0
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
--->
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+    -->
 
     <xsl:output method="html" indent="yes" encoding="US-ASCII"/>
     <xsl:decimal-format decimal-separator="." grouping-separator="," />
@@ -74,12 +74,14 @@
     <xsl:template name="pageHeader">
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td class="text-align:right"><h2>CheckStyle Audit</h2></td>
+                <td class="text-align:right">
+                    <h2>CheckStyle Audit</h2>
+                </td>
             </tr>
             <tr>
                 <td class="text-align:right">Designed for use with
-                  <a href='http://checkstyle.sourceforge.net/'>CheckStyle</a> and
-                  <a href='http://ant.apache.org/'>Ant</a>.</td>
+                    <a href='http://checkstyle.sourceforge.net/'>CheckStyle</a> and
+                    <a href='http://ant.apache.org/'>Ant</a>.</td>
             </tr>
         </table>
         <hr size="1"/>
@@ -197,12 +199,16 @@
             <td nowrap="nowrap">
                 <a>
                     <xsl:attribute name="href">
-                        <xsl:text>files/</xsl:text><xsl:value-of select="substring-after(@name, $basedir)"/><xsl:text>.html</xsl:text>
+                        <xsl:text>files/</xsl:text>
+                        <xsl:value-of select="substring-after(@name, $basedir)"/>
+                        <xsl:text>.html</xsl:text>
                     </xsl:attribute>
                     <xsl:value-of select="substring-after(@name, $basedir)"/>
                 </a>
             </td>
-            <td><xsl:value-of select="count(error)"/></td>
+            <td>
+                <xsl:value-of select="count(error)"/>
+            </td>
         </tr>
     </xsl:template>
 
@@ -211,7 +217,9 @@
             <td nowrap="nowrap">
                 <a target="fileFrame">
                     <xsl:attribute name="href">
-                        <xsl:text>files/</xsl:text><xsl:value-of select="substring-after(@name, $basedir)"/><xsl:text>.html</xsl:text>
+                        <xsl:text>files/</xsl:text>
+                        <xsl:value-of select="substring-after(@name, $basedir)"/>
+                        <xsl:text>.html</xsl:text>
                     </xsl:attribute>
                     <xsl:value-of select="substring-after(@name, $basedir)"/>
                 </a>
@@ -233,7 +241,9 @@
         <xsl:if test="contains($path2,'/')">
             <xsl:text>../</xsl:text>
             <xsl:call-template name="path">
-                <xsl:with-param name="path"><xsl:value-of select="substring-after($path2,'/')"/></xsl:with-param>
+                <xsl:with-param name="path">
+                    <xsl:value-of select="substring-after($path2,'/')"/>
+                </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
         <xsl:if test="not(contains($path2,'/')) and not($path2 = '')">
@@ -246,7 +256,12 @@
             <html>
                 <head>
                     <link rel="stylesheet" type="text/css">
-                        <xsl:attribute name="href"><xsl:call-template name="path"><xsl:with-param name="path" select="substring-after(@name, $basedir)"/></xsl:call-template><xsl:text>stylesheet.css</xsl:text></xsl:attribute>
+                        <xsl:attribute name="href">
+                            <xsl:call-template name="path">
+                                <xsl:with-param name="path" select="substring-after(@name, $basedir)"/>
+                            </xsl:call-template>
+                            <xsl:text>stylesheet.css</xsl:text>
+                        </xsl:attribute>
                     </link>
                 </head>
                 <body>
@@ -260,8 +275,15 @@
                         <xsl:for-each select="error">
                             <tr>
                                 <xsl:call-template name="alternated-row"/>
-                                <td><a title="{@source}"><xsl:value-of select="@message"/></a></td>
-                                <td align="center"><xsl:value-of select="@line"/><xsl:if test="@column">:<xsl:value-of select="@column"/></xsl:if></td>
+                                <td>
+                                    <a title="{@source}">
+                                        <xsl:value-of select="@message"/>
+                                    </a>
+                                </td>
+                                <td align="center">
+                                    <xsl:value-of select="@line"/>
+                                    <xsl:if test="@column">:<xsl:value-of select="@column"/></xsl:if>
+                                </td>
                             </tr>
                         </xsl:for-each>
                     </table>
@@ -283,9 +305,15 @@
             </tr>
             <tr>
                 <xsl:call-template name="alternated-row"/>
-                <td><xsl:value-of select="$fileCount"/></td>
-                <td><xsl:value-of select="$fileErrorCount"/></td>
-                <td><xsl:value-of select="$errorCount"/></td>
+                <td>
+                    <xsl:value-of select="$fileCount"/>
+                </td>
+                <td>
+                    <xsl:value-of select="$fileErrorCount"/>
+                </td>
+                <td>
+                    <xsl:value-of select="$errorCount"/>
+                </td>
             </tr>
         </table>
     </xsl:template>

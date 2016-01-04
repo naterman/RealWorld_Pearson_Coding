@@ -385,9 +385,9 @@ made subject to such option by the copyright holder.
     
     <target name="sign-branding-jars" unless="unsign-the-jars" depends="copy-branding-jars">
         <jnlpupdatemanifestbranding appname="${app.name}"
-            alias="${jnlp.signjar.alias}" 
-            keystore="${jnlp.signjar.keystore}" 
-            storepass="${jnlp.signjar.password}">
+                                    alias="${jnlp.signjar.alias}" 
+                                    keystore="${jnlp.signjar.keystore}" 
+                                    storepass="${jnlp.signjar.password}">
             <fileset dir="${jnlp.dest.dir}/branding">
                 <include name="*_${branding.token}.jar"/>
             </fileset>

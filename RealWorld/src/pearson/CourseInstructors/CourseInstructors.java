@@ -1,12 +1,11 @@
-
 package pearson.CourseInstructors;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Generated;
 
 /**
  *
@@ -24,13 +23,13 @@ public class CourseInstructors {
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public CourseInstructors() {
     }
 
     /**
-     * 
+     *
      * @param instructors
      */
     public CourseInstructors(List<Instructor> instructors) {
@@ -38,9 +37,8 @@ public class CourseInstructors {
     }
 
     /**
-     * 
-     * @return
-     *     The instructors
+     *
+     * @return The instructors
      */
     @JsonProperty("instructors")
     public List<Instructor> getInstructors() {
@@ -48,9 +46,8 @@ public class CourseInstructors {
     }
 
     /**
-     * 
-     * @param instructors
-     *     The instructors
+     *
+     * @param instructors The instructors
      */
     @JsonProperty("instructors")
     public void setInstructors(List<Instructor> instructors) {

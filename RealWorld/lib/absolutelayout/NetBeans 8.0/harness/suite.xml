@@ -47,7 +47,7 @@ made subject to such option by the copyright holder.
 
     <import file="jdk.xml"/>
     <condition property="testcoverage.import"
-        value="testcoverage-suite.xml" else="no-testcoverage.xml">
+               value="testcoverage-suite.xml" else="no-testcoverage.xml">
         <available file="testcoverage-suite.xml" filepath="${harness.dir}"/>
     </condition>
     <import file="${testcoverage.import}"/>
@@ -348,7 +348,7 @@ made subject to such option by the copyright holder.
     <target name="build-zip" depends="build,build-launchers" description="Builds a ZIP distribution of the suite, launchers, and selected modules from the platform.">
         <mkdir dir="${dist.dir}"/>
         <!-- pathfileset does not support 'prefix' and 'filemode' parameters,
-             we have to copy them to temp location -->
+        we have to copy them to temp location -->
         <tempfile property="temp.dir.nbexec" destdir="${suite.build.dir}" deleteonexit="true" prefix="nbexec"/>
         <tempfile property="temp.dir.rest" destdir="${suite.build.dir}" deleteonexit="delete" prefix="rest"/>
         <subant genericantfile="${harness.dir}/suite.xml" target="copy-cluster" inheritrefs="true">
@@ -407,8 +407,8 @@ made subject to such option by the copyright holder.
             <globmapper from="${app.name}/*" to="*"/>
         </unzip>
         <echo level="warning">
-Note: As of NetBeans 6.7, you can use the property 'cluster.path' instead of the 'create-platform' target.
-See: http://wiki.netbeans.org/DevFaqHowToReuseModules
+            Note: As of NetBeans 6.7, you can use the property 'cluster.path' instead of the 'create-platform' target.
+            See: http://wiki.netbeans.org/DevFaqHowToReuseModules
         </echo>
     </target>
     
@@ -460,8 +460,8 @@ See: http://wiki.netbeans.org/DevFaqHowToReuseModules
         <!-- zipping in ant doesn't preserve symlinks that seem to be required.
         zip destfile="${dist.dir}/${app.name}-MacOS.zip" basedir="${dist.dir}" includes="${app.name}.app/**" duplicate="preserve"/-->
         <echo>
-You MacOS Application bundle was created at ${dist.dir}/${app.name}.app. For final packaging, use hdiutil or other tools to create a .dmg image.
-Alternatively use "zip -yr ${app.name}.app" to create a simple zipped distribution.
+            You MacOS Application bundle was created at ${dist.dir}/${app.name}.app. For final packaging, use hdiutil or other tools to create a .dmg image.
+            Alternatively use "zip -yr ${app.name}.app" to create a simple zipped distribution.
         </echo>
     </target>
 
@@ -612,9 +612,9 @@ Alternatively use "zip -yr ${app.name}.app" to create a simple zipped distributi
     </target>
 
     <target name="display-coverage-report" depends="coverage-report"
-        description="Generates and displays test coverage report for entire suite">
+            description="Generates and displays test coverage report for entire suite">
         <fail unless="testcoverage.report.dir">
-Property testcoverage.report.dir not set. Test coverage script may be missing in ${harness.dir}.
+            Property testcoverage.report.dir not set. Test coverage script may be missing in ${harness.dir}.
         </fail>
         <nbbrowse file="${testcoverage.report.dir}/index.html"/>
     </target>

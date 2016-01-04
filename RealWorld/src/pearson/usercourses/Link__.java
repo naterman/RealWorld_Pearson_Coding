@@ -1,10 +1,9 @@
-
 package pearson.usercourses;
 
-import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import javax.annotation.Generated;
 
 /**
  *
@@ -25,16 +24,16 @@ public class Link__ {
     private String rel;
     @JsonProperty("title")
     private String title;
-    
+
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Link__() {
     }
 
     /**
-     * 
+     *
      * @param title
      * @param rel
      * @param href
@@ -46,9 +45,8 @@ public class Link__ {
     }
 
     /**
-     * 
-     * @return
-     *     The href
+     *
+     * @return The href
      */
     @JsonProperty("href")
     public String getHref() {
@@ -56,9 +54,8 @@ public class Link__ {
     }
 
     /**
-     * 
-     * @param href
-     *     The href
+     *
+     * @param href The href
      */
     @JsonProperty("href")
     public void setHref(String href) {
@@ -66,9 +63,8 @@ public class Link__ {
     }
 
     /**
-     * 
-     * @return
-     *     The rel
+     *
+     * @return The rel
      */
     @JsonProperty("rel")
     public String getRel() {
@@ -76,9 +72,8 @@ public class Link__ {
     }
 
     /**
-     * 
-     * @param rel
-     *     The rel
+     *
+     * @param rel The rel
      */
     @JsonProperty("rel")
     public void setRel(String rel) {
@@ -86,9 +81,8 @@ public class Link__ {
     }
 
     /**
-     * 
-     * @return
-     *     The title
+     *
+     * @return The title
      */
     @JsonProperty("title")
     public String getTitle() {
@@ -96,9 +90,8 @@ public class Link__ {
     }
 
     /**
-     * 
-     * @param title
-     *     The title
+     *
+     * @param title The title
      */
     @JsonProperty("title")
     public void setTitle(String title) {

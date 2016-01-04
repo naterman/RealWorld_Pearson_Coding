@@ -41,7 +41,6 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-
 package org.mycompany.wizard.panels;
 
 import java.awt.GridBagConstraints;
@@ -74,7 +73,7 @@ public class HelloWorldPanel extends DestinationPanel {
                 DEFAULT_DESTINATION_LABEL_TEXT);
         setProperty(DESTINATION_BUTTON_TEXT_PROPERTY,
                 DEFAULT_DESTINATION_BUTTON_TEXT);
-        
+
         setProperty(ERROR_CONTAINS_NON_ASCII_CHARS,
                 DEFAULT_ERROR_CONTAINS_NON_ASCII_CHARS);
     }
@@ -91,14 +90,13 @@ public class HelloWorldPanel extends DestinationPanel {
     @Override
     public void initialize() {
         super.initialize();
-        if(getWizard().getProperty(CREATE_DESKTOP_SHORTCUT_PROPERTY) == null) {
+        if (getWizard().getProperty(CREATE_DESKTOP_SHORTCUT_PROPERTY) == null) {
             getWizard().setProperty(CREATE_DESKTOP_SHORTCUT_PROPERTY, "" + true);
         }
-        if(getWizard().getProperty(CREATE_START_MENU_SHORTCUT_PROPERTY) == null) {
+        if (getWizard().getProperty(CREATE_START_MENU_SHORTCUT_PROPERTY) == null) {
             getWizard().setProperty(CREATE_START_MENU_SHORTCUT_PROPERTY, "" + true);
         }
     }
-
 
     public static class HelloWorldPanelUi extends DestinationPanelUi {
 
@@ -106,7 +104,6 @@ public class HelloWorldPanel extends DestinationPanel {
 
         public HelloWorldPanelUi(HelloWorldPanel panel) {
             super(panel);
-
 
             this.panel = panel;
         }
@@ -140,18 +137,18 @@ public class HelloWorldPanel extends DestinationPanel {
         // protected ////////////////////////////////////////////////////////////////
         @Override
         protected void initialize() {
-            desktopShortcutComboBox.setText(CREATE_DESKTOP_SHORTCUT_NAME);            
+            desktopShortcutComboBox.setText(CREATE_DESKTOP_SHORTCUT_NAME);
             desktopShortcutComboBox.setSelected(false);
-            if(Boolean.parseBoolean(panel.getWizard().getProperty(CREATE_DESKTOP_SHORTCUT_PROPERTY))) {
+            if (Boolean.parseBoolean(panel.getWizard().getProperty(CREATE_DESKTOP_SHORTCUT_PROPERTY))) {
                 desktopShortcutComboBox.doClick();
             }
 
             startMenuShortcutComboBox.setText(
-                    SystemUtils.isWindows() ? CREATE_START_MENU_SHORTCUT_NAME_WINDOWS :
-                        (SystemUtils.isMacOS() ? CREATE_START_MENU_SHORTCUT_NAME_MAC :
-                            CREATE_START_MENU_SHORTCUT_NAME_UNIX));
+                    SystemUtils.isWindows() ? CREATE_START_MENU_SHORTCUT_NAME_WINDOWS
+                            : (SystemUtils.isMacOS() ? CREATE_START_MENU_SHORTCUT_NAME_MAC
+                                    : CREATE_START_MENU_SHORTCUT_NAME_UNIX));
             startMenuShortcutComboBox.setSelected(false);
-            if(Boolean.parseBoolean(panel.getWizard().getProperty(CREATE_START_MENU_SHORTCUT_PROPERTY))) {
+            if (Boolean.parseBoolean(panel.getWizard().getProperty(CREATE_START_MENU_SHORTCUT_PROPERTY))) {
                 startMenuShortcutComboBox.doClick();
             }
 
@@ -164,7 +161,7 @@ public class HelloWorldPanel extends DestinationPanel {
             panel.getWizard().setProperty(
                     CREATE_DESKTOP_SHORTCUT_PROPERTY,
                     StringUtils.EMPTY_STRING + desktopShortcutComboBox.isSelected());
-            
+
             panel.getWizard().setProperty(
                     CREATE_START_MENU_SHORTCUT_PROPERTY,
                     StringUtils.EMPTY_STRING + startMenuShortcutComboBox.isSelected());
@@ -173,7 +170,7 @@ public class HelloWorldPanel extends DestinationPanel {
         @Override
         protected String validateInput() {
             String errorMessage = super.validateInput();
-            
+
             if (errorMessage == null) {
                 // #222846 - non-ascii characters in installation path
                 File installationFolder = new File(getDestinationPath());
@@ -182,7 +179,7 @@ public class HelloWorldPanel extends DestinationPanel {
                     return StringUtils.format(panel.getProperty(ERROR_CONTAINS_NON_ASCII_CHARS));
                 }
             }
-            
+
             return errorMessage;
         }
 
@@ -214,38 +211,38 @@ public class HelloWorldPanel extends DestinationPanel {
     }
     /////////////////////////////////////////////////////////////////////////////////
     // Constants
-    public static final String CREATE_DESKTOP_SHORTCUT_PROPERTY =
-            "create.desktop.shortcut";
-    public static final String CREATE_START_MENU_SHORTCUT_PROPERTY =
-            "create.start.menu.shortcut";    
-    public static final String ERROR_CONTAINS_NON_ASCII_CHARS =
-            "error.contains.non.ascii.chars"; // NOI18N
-    
-    public static final String DEFAULT_TITLE =
-            ResourceUtils.getString(HelloWorldPanel.class,
-            "P.title"); // NOI18N
-    public static final String DEFAULT_DESCRIPTION =
-            ResourceUtils.getString(HelloWorldPanel.class,
-            "P.description"); // NOI18N
-    public static final String DEFAULT_DESTINATION_LABEL_TEXT =
-            ResourceUtils.getString(HelloWorldPanel.class,
-            "P.destination.label.text"); // NOI18N
-    public static final String DEFAULT_DESTINATION_BUTTON_TEXT =
-            ResourceUtils.getString(HelloWorldPanel.class,
-            "P.destination.button.text"); // NOI18N
-    public static final String CREATE_DESKTOP_SHORTCUT_NAME =
-            ResourceUtils.getString(HelloWorldPanel.class,
-            "P.create.desktop.shortcut"); // NOI18N
-    public static final String CREATE_START_MENU_SHORTCUT_NAME_WINDOWS =
-            ResourceUtils.getString(HelloWorldPanel.class,
-            "P.create.start.menu.shortcut.windows"); // NOI18N
-    public static final String CREATE_START_MENU_SHORTCUT_NAME_UNIX =
-            ResourceUtils.getString(HelloWorldPanel.class,
-            "P.create.start.menu.shortcut.unix"); // NOI18N
-    public static final String CREATE_START_MENU_SHORTCUT_NAME_MAC =
-            ResourceUtils.getString(HelloWorldPanel.class,
-            "P.create.start.menu.shortcut.macosx"); // NOI18N
-    public static final String DEFAULT_ERROR_CONTAINS_NON_ASCII_CHARS =
-            ResourceUtils.getString(HelloWorldPanel.class,
-            "P.error.contains.non.ascii.chars"); // NOI18N   
+    public static final String CREATE_DESKTOP_SHORTCUT_PROPERTY
+            = "create.desktop.shortcut";
+    public static final String CREATE_START_MENU_SHORTCUT_PROPERTY
+            = "create.start.menu.shortcut";
+    public static final String ERROR_CONTAINS_NON_ASCII_CHARS
+            = "error.contains.non.ascii.chars"; // NOI18N
+
+    public static final String DEFAULT_TITLE
+            = ResourceUtils.getString(HelloWorldPanel.class,
+                    "P.title"); // NOI18N
+    public static final String DEFAULT_DESCRIPTION
+            = ResourceUtils.getString(HelloWorldPanel.class,
+                    "P.description"); // NOI18N
+    public static final String DEFAULT_DESTINATION_LABEL_TEXT
+            = ResourceUtils.getString(HelloWorldPanel.class,
+                    "P.destination.label.text"); // NOI18N
+    public static final String DEFAULT_DESTINATION_BUTTON_TEXT
+            = ResourceUtils.getString(HelloWorldPanel.class,
+                    "P.destination.button.text"); // NOI18N
+    public static final String CREATE_DESKTOP_SHORTCUT_NAME
+            = ResourceUtils.getString(HelloWorldPanel.class,
+                    "P.create.desktop.shortcut"); // NOI18N
+    public static final String CREATE_START_MENU_SHORTCUT_NAME_WINDOWS
+            = ResourceUtils.getString(HelloWorldPanel.class,
+                    "P.create.start.menu.shortcut.windows"); // NOI18N
+    public static final String CREATE_START_MENU_SHORTCUT_NAME_UNIX
+            = ResourceUtils.getString(HelloWorldPanel.class,
+                    "P.create.start.menu.shortcut.unix"); // NOI18N
+    public static final String CREATE_START_MENU_SHORTCUT_NAME_MAC
+            = ResourceUtils.getString(HelloWorldPanel.class,
+                    "P.create.start.menu.shortcut.macosx"); // NOI18N
+    public static final String DEFAULT_ERROR_CONTAINS_NON_ASCII_CHARS
+            = ResourceUtils.getString(HelloWorldPanel.class,
+                    "P.error.contains.non.ascii.chars"); // NOI18N   
 }

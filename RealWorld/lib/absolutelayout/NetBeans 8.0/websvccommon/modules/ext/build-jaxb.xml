@@ -46,12 +46,12 @@ made subject to such option by the copyright holder.
 <project name="JAX-B Jars" default="createJaxbJars" basedir=".">
     <description>
         A script to invoke xjc. Requires following properties:
-            xsd.file : absolute location of schema file
-            packageName : package name for generated JAXB classes
-            jaxb.base : work directory for generating sources and classes into
-            jaxb.jar : jaxb jar path relative to jaxb.base
-            jaxb.src.jar : jaxb source jar path relative to jaxb.base
-            user.build.properties.file : NetBeans build.properties file under userdir
+        xsd.file : absolute location of schema file
+        packageName : package name for generated JAXB classes
+        jaxb.base : work directory for generating sources and classes into
+        jaxb.jar : jaxb jar path relative to jaxb.base
+        jaxb.src.jar : jaxb source jar path relative to jaxb.base
+        user.build.properties.file : NetBeans build.properties file under userdir
     </description>
     
     <target name="xjc-jar" depends="-run-xjc, -create-jars"/>
@@ -80,9 +80,9 @@ made subject to such option by the copyright holder.
     
     <target name="-run-xjc" depends="-init-user, -init-xjc">
         <xjc schema="${xsd.file}"
-            target="2.1"
-            package="${packageName}"
-            destdir="${jaxb.base}/src">
+             target="2.1"
+             package="${packageName}"
+             destdir="${jaxb.base}/src">
         </xjc>
         
         <delete dir="${jaxb.base}/build"/>

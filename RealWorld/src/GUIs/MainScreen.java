@@ -5,9 +5,16 @@
  */
 package GUIs;
 
+import Design.Colors;
 import GUIs.MainScreenAssets.FillClassesPanel;
-import org.jdesktop.swingx.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.awt.Color;
+import java.net.URL;
+import javax.net.ssl.HttpsURLConnection;
+import org.jdesktop.swingx.JXPanel;
+import org.jdesktop.swingx.painter.MattePainter;
 import pearson.AuthenticationData;
+import pearson.myinfo.MyInfo;
 
 /**
  *
@@ -27,6 +34,31 @@ public class MainScreen extends JXPanel {
     public MainScreen(AuthenticationData data) {
         this.data = data;
         initComponents();
+
+        this.setBackgroundPainter(new MattePainter(Colors.MainBack.color()));
+        headerPanel.setBackgroundPainter(new MattePainter(Color.white));
+        this.repaint();
+        try {
+            URL apiUrl = new URL("https://api.learningstudio.com/me");
+            HttpsURLConnection httpConn = (HttpsURLConnection) apiUrl.openConnection();
+            httpConn.setRequestMethod("GET");
+
+            for (Object headerName : data.getMapHttpHeaders().keySet()) {
+                httpConn.addRequestProperty((String) headerName, (String) data.getMapHttpHeaders().get(headerName));
+            }
+
+            int responseCode = httpConn.getResponseCode();
+            if (responseCode == 200) {
+                ObjectMapper mapper = new ObjectMapper();
+                MyInfo me = mapper.readValue(httpConn.getInputStream(), MyInfo.class);
+                usernameLabel.setText(me.getMe().getFirstName() + " " + me.getMe().getLastName());
+                usernameLabel.repaint();
+            }
+        } catch (RuntimeException rex) {
+            throw rex;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
         newAssignmentButton.setVisible(false);
         this.revalidate();
         this.repaint();
@@ -35,7 +67,6 @@ public class MainScreen extends JXPanel {
         Classes_Panel.revalidate();
         FillClassesPanel FillCPanel = new FillClassesPanel(Classes_Panel, data);
         FillCPanel.fill();
-
     }
 
     /**
@@ -47,37 +78,90 @@ public class MainScreen extends JXPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jXLabel1 = new org.jdesktop.swingx.JXLabel();
-        jXLabel2 = new org.jdesktop.swingx.JXLabel();
-        jXLabel3 = new org.jdesktop.swingx.JXLabel();
         Classes_Panel = new org.jdesktop.swingx.JXPanel();
         Assignments_Panel = new org.jdesktop.swingx.JXPanel();
         jXLabel5 = new org.jdesktop.swingx.JXLabel();
         jXLabel6 = new org.jdesktop.swingx.JXLabel();
         newAssignmentButton = new org.jdesktop.swingx.JXButton();
+        headerPanel = new org.jdesktop.swingx.JXPanel();
+        jXLabel1 = new org.jdesktop.swingx.JXLabel();
+        jXLabel2 = new org.jdesktop.swingx.JXLabel();
+        usernameLabel = new org.jdesktop.swingx.JXLabel();
+        jXLabel4 = new org.jdesktop.swingx.JXLabel();
+        jXLabel3 = new org.jdesktop.swingx.JXLabel();
 
-        jXLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bad-profile-pic-2.jpeg"))); // NOI18N
+        Classes_Panel.setBackground(Colors.MainBack.color());
+        Classes_Panel.setAutoscrolls(true);
+
+        Assignments_Panel.setBackground(Colors.MainBack.color());
+        Assignments_Panel.setLayout(new javax.swing.BoxLayout(Assignments_Panel, javax.swing.BoxLayout.Y_AXIS));
+
+        jXLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/classesheader.png"))); // NOI18N
+        jXLabel5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+
+        jXLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/assignmentsheader.png"))); // NOI18N
+        jXLabel6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+
+        newAssignmentButton.setBackground(null);
+        newAssignmentButton.setBorder(null);
+        newAssignmentButton.setForeground(null);
+        newAssignmentButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newAssignment.png"))); // NOI18N
+        newAssignmentButton.setBackgroundPainter(null);
+        newAssignmentButton.setBorderPainted(false);
+        newAssignmentButton.setContentAreaFilled(false);
+        newAssignmentButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        newAssignmentButton.setPaintBorderInsets(false);
+
+        jXLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/profileimage.png"))); // NOI18N
 
         jXLabel2.setText("Hello,");
         jXLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
 
-        jXLabel3.setText("<User Name>");
-        jXLabel3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        usernameLabel.setText("<User Name>");
+        usernameLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
 
-        Classes_Panel.setBorder(javax.swing.BorderFactory.createCompoundBorder(new org.jdesktop.swingx.border.DropShadowBorder(), new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true)));
-        Classes_Panel.setAutoscrolls(true);
+        jXLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/mainLogo.png"))); // NOI18N
 
-        Assignments_Panel.setBorder(javax.swing.BorderFactory.createCompoundBorder(new org.jdesktop.swingx.border.DropShadowBorder(), new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true)));
-        Assignments_Panel.setLayout(new javax.swing.BoxLayout(Assignments_Panel, javax.swing.BoxLayout.Y_AXIS));
+        jXLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/border.png"))); // NOI18N
 
-        jXLabel5.setText("Classes");
-        jXLabel5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-
-        jXLabel6.setText("Assignments");
-        jXLabel6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-
-        newAssignmentButton.setText("New Assignment");
-        newAssignmentButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85)
+                .addComponent(jXLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jXLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1549, Short.MAX_VALUE)
+        );
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(headerPanelLayout.createSequentialGroup()
+                        .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(headerPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(headerPanelLayout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jXLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)))
+                .addComponent(jXLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -85,61 +169,47 @@ public class MainScreen extends JXPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Classes_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jXLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jXLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(632, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jXLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Classes_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Assignments_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jXLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(newAssignmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
+                        .addComponent(jXLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(newAssignmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Assignments_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
+            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jXLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jXLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jXLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(newAssignmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Classes_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
-                    .addComponent(Assignments_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(newAssignmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Assignments_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Classes_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(392, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXPanel Assignments_Panel;
     private org.jdesktop.swingx.JXPanel Classes_Panel;
+    private org.jdesktop.swingx.JXPanel headerPanel;
     private org.jdesktop.swingx.JXLabel jXLabel1;
     private org.jdesktop.swingx.JXLabel jXLabel2;
     private org.jdesktop.swingx.JXLabel jXLabel3;
+    private org.jdesktop.swingx.JXLabel jXLabel4;
     private org.jdesktop.swingx.JXLabel jXLabel5;
     private org.jdesktop.swingx.JXLabel jXLabel6;
     private org.jdesktop.swingx.JXButton newAssignmentButton;
+    private org.jdesktop.swingx.JXLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

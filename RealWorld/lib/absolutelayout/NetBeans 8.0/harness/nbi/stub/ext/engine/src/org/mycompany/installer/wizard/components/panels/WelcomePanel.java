@@ -67,6 +67,7 @@ import org.netbeans.installer.wizard.ui.WizardUi;
  * @author Dmitry Lipin
  */
 public class WelcomePanel extends ErrorMessagePanel {
+
     /////////////////////////////////////////////////////////////////////////////////
     private Registry bundledRegistry;
     private Registry defaultRegistry;
@@ -85,7 +86,7 @@ public class WelcomePanel extends ErrorMessagePanel {
         setProperty(WELCOME_ALREADY_INSTALLED_NEXT_BUTTON_TEXT_PROPERTY,
                 DEFAULT_WELCOME_ALREADY_INSTALLED_NEXT_BUTTON_TEXT);
 
-       try {
+        try {
             defaultRegistry = Registry.getInstance();
             bundledRegistry = new Registry();
 
@@ -126,7 +127,7 @@ public class WelcomePanel extends ErrorMessagePanel {
         return canExecute();
     }
 
-        // private //////////////////////////////////////////////////////////////////////
+    // private //////////////////////////////////////////////////////////////////////
     private boolean canExecute() {
         return bundledRegistry.getNodes().size() > 1;
     }
@@ -190,27 +191,27 @@ public class WelcomePanel extends ErrorMessagePanel {
             textPane.setContentType("text/html");
             textPane.setText(StringUtils.format(panel.getProperty(WELCOME_TEXT_PROPERTY)));
             List<Product> toInstall = Registry.getInstance().getProductsToInstall();
-            if(toInstall.isEmpty()) {
-                List <Product> list = panel.getBundledRegistry().getProducts();
-                if(list.size() == 1) {
-                    if(SystemUtils.getCurrentPlatform().isCompatibleWith(list.get(0).getPlatforms())) {
+            if (toInstall.isEmpty()) {
+                List<Product> list = panel.getBundledRegistry().getProducts();
+                if (list.size() == 1) {
+                    if (SystemUtils.getCurrentPlatform().isCompatibleWith(list.get(0).getPlatforms())) {
                         File installationLocation = list.get(0).getInstallationLocation();
                         textPane.setText(
-                            StringUtils.format(
-                            panel.getProperty(WELCOME_ALREADY_INSTALLED_TEXT_PROPERTY),
-                            list.get(0).getDisplayName(),
-                            installationLocation.getAbsolutePath()));
+                                StringUtils.format(
+                                        panel.getProperty(WELCOME_ALREADY_INSTALLED_TEXT_PROPERTY),
+                                        list.get(0).getDisplayName(),
+                                        installationLocation.getAbsolutePath()));
                     } else {
                         textPane.setText(
-                            StringUtils.format(
-                            WELCOME_INCOMPATIBLE_PLATFORM_TEXT,
-                            list.get(0).getDisplayName()));
+                                StringUtils.format(
+                                        WELCOME_INCOMPATIBLE_PLATFORM_TEXT,
+                                        list.get(0).getDisplayName()));
                     }
                     container.getCancelButton().setVisible(false);
                     container.getNextButton().setText(panel.getProperty(
                             WELCOME_ALREADY_INSTALLED_NEXT_BUTTON_TEXT_PROPERTY));
                 }
-            }            
+            }
 
             super.initialize();
         }
@@ -225,10 +226,10 @@ public class WelcomePanel extends ErrorMessagePanel {
             int height = 0;
             final String topLeftImage = SystemUtils.resolveString(
                     System.getProperty(
-                    WELCOME_PAGE_LEFT_TOP_IMAGE_PROPERTY));
+                            WELCOME_PAGE_LEFT_TOP_IMAGE_PROPERTY));
             final String bottomLeftImage = SystemUtils.resolveString(
                     System.getProperty(
-                    WELCOME_PAGE_LEFT_BOTTOM_IMAGE_PROPERTY));
+                            WELCOME_PAGE_LEFT_BOTTOM_IMAGE_PROPERTY));
 
             int bottomAnchor = NbiPanel.ANCHOR_BOTTOM_LEFT;
 
@@ -267,7 +268,7 @@ public class WelcomePanel extends ErrorMessagePanel {
                     GridBagConstraints.HORIZONTAL, // fill
                     new Insets(10, 11, 11, 11), // padding
                     0, 0));                           // padx, pady - ???
-            
+
             NbiTextPane separatorPane = new NbiTextPane();
 
             separatorPane = new NbiTextPane();
@@ -279,7 +280,6 @@ public class WelcomePanel extends ErrorMessagePanel {
                     GridBagConstraints.BOTH, // fill
                     new Insets(0, 0, 0, 0), // padding
                     0, 0));                           // padx, pady - ???
-
 
             // move error label after the left welcome image
             Component errorLabel = getComponent(0);
@@ -293,41 +293,40 @@ public class WelcomePanel extends ErrorMessagePanel {
                     new Insets(4, 11, 4, 0), // padding
                     0, 0));                            // ??? (padx, pady)
 
-
         }
     }
     /////////////////////////////////////////////////////////////////////////////////
     // Constants
-    public static final String DEFAULT_TITLE =
-            ResourceUtils.getString(WelcomePanel.class,
-            "WP.title");
-    public static final String DEFAULT_DESCRIPTION =
-            ResourceUtils.getString(WelcomePanel.class,
-            "WP.description"); // NOI18N
-    public static final String WELCOME_TEXT_PROPERTY =
-            "welcome.text"; // NOI18N
-    public static final String WELCOME_ALREADY_INSTALLED_TEXT_PROPERTY =
-            "welcome.already.installed.text"; // NOI18N
-    public static final String WELCOME_ALREADY_INSTALLED_NEXT_BUTTON_TEXT_PROPERTY =
-            "welcome.already.installed.next.button.text";//NOI18N
-    public static final String WELCOME_INCOMPATIBLE_PLATFORM_TEXT =
-            ResourceUtils.getString(WelcomePanel.class,
-            "WP.incompatible.platform.text");//NOI18N
+    public static final String DEFAULT_TITLE
+            = ResourceUtils.getString(WelcomePanel.class,
+                    "WP.title");
+    public static final String DEFAULT_DESCRIPTION
+            = ResourceUtils.getString(WelcomePanel.class,
+                    "WP.description"); // NOI18N
+    public static final String WELCOME_TEXT_PROPERTY
+            = "welcome.text"; // NOI18N
+    public static final String WELCOME_ALREADY_INSTALLED_TEXT_PROPERTY
+            = "welcome.already.installed.text"; // NOI18N
+    public static final String WELCOME_ALREADY_INSTALLED_NEXT_BUTTON_TEXT_PROPERTY
+            = "welcome.already.installed.next.button.text";//NOI18N
+    public static final String WELCOME_INCOMPATIBLE_PLATFORM_TEXT
+            = ResourceUtils.getString(WelcomePanel.class,
+                    "WP.incompatible.platform.text");//NOI18N
 
-    public static final String DEFAULT_WELCOME_ALREADY_INSTALLED_NEXT_BUTTON_TEXT =
-            ResourceUtils.getString(WelcomePanel.class,
-            "WP.already.installed.next.button.text");//NOI18N
-    
-    public static final String DEFAULT_WELCOME_TEXT =
-            ResourceUtils.getString(WelcomePanel.class,
-            "WP.welcome.text"); // NOI18N
+    public static final String DEFAULT_WELCOME_ALREADY_INSTALLED_NEXT_BUTTON_TEXT
+            = ResourceUtils.getString(WelcomePanel.class,
+                    "WP.already.installed.next.button.text");//NOI18N
 
-    public static final String DEFAULT_WELCOME_ALREADY_INSTALLED_TEXT =
-            ResourceUtils.getString(WelcomePanel.class,
-            "WP.already.installed.text"); // NOI18N
+    public static final String DEFAULT_WELCOME_TEXT
+            = ResourceUtils.getString(WelcomePanel.class,
+                    "WP.welcome.text"); // NOI18N
 
-    public static final String WELCOME_PAGE_LEFT_TOP_IMAGE_PROPERTY =
-            "nbi.wizard.ui.swing.welcome.left.top.image";//NOI18N
-    public static final String WELCOME_PAGE_LEFT_BOTTOM_IMAGE_PROPERTY =
-            "nbi.wizard.ui.swing.welcome.left.bottom.image";//NOI18N
+    public static final String DEFAULT_WELCOME_ALREADY_INSTALLED_TEXT
+            = ResourceUtils.getString(WelcomePanel.class,
+                    "WP.already.installed.text"); // NOI18N
+
+    public static final String WELCOME_PAGE_LEFT_TOP_IMAGE_PROPERTY
+            = "nbi.wizard.ui.swing.welcome.left.top.image";//NOI18N
+    public static final String WELCOME_PAGE_LEFT_BOTTOM_IMAGE_PROPERTY
+            = "nbi.wizard.ui.swing.welcome.left.bottom.image";//NOI18N
 }

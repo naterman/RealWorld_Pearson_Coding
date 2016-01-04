@@ -64,10 +64,10 @@ made subject to such option by the copyright holder.
         </pathconvert>
         
         <!-- clear modulename_hidden files from external clusters so they do not influence the availability of
-              modules selected by the current cluster -->
+        modules selected by the current cluster -->
         <!-- We'll clear only clusters under 'build' folder to avoid deleting
-             files in binary platform/clusters (e.g. user hacks), while
-             un-hiding modules hidden by depended-upon suites. Cf. issue #172727 -->
+        files in binary platform/clusters (e.g. user hacks), while
+        un-hiding modules hidden by depended-upon suites. Cf. issue #172727 -->
         <pathconvert property="cluster.path.projects" refid="cluster.path.id">
             <regexpmapper handledirsep="true" from="^.*/build/[^/]+$$" to="\0"/>
         </pathconvert>
@@ -89,7 +89,7 @@ made subject to such option by the copyright holder.
         <property name="run.app.sh" value="bin/netbeans"/>
         <property name="run.exe.candidate" location="${install}\${run.app.exe}"/>
         <property name="run.sh.candidate" location="${install}/${run.app.sh}"/>
-         <!-- #63976: if disabling things, better to treat as a platform-based app -->
+        <!-- #63976: if disabling things, better to treat as a platform-based app -->
         <condition property="app.name" value="test">
             <or>
                 <and>
@@ -125,7 +125,7 @@ made subject to such option by the copyright holder.
                 <path refid="cluster.path.id"/>
             </path>
             <!-- Exclude all clusters located in NB install dir;
-                 not exactly what netbeans.clusters specify, but good enough -->
+            not exactly what netbeans.clusters specify, but good enough -->
             <filtermapper>
                 <linecontains negate="true">
                     <contains value="${install}"/>

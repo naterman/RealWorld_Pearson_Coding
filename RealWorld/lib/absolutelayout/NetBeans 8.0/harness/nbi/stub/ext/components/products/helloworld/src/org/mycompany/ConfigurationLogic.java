@@ -41,7 +41,6 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-
 package org.mycompany;
 
 import java.util.List;
@@ -101,20 +100,18 @@ public class ConfigurationLogic extends ProductConfigurationLogic {
 
         if (SystemUtils.isMacOS()) {
             File f = new File(installLocation, ICON_MACOSX);
-            if(!f.exists()) {
+            if (!f.exists()) {
                 try {
-                FileUtils.writeFile(f,
-                        ResourceUtils.getResource(ICON_MACOSX_RESOURCE,
-                        getClass().getClassLoader()));
-                getProduct().getInstalledFiles().add(f);
+                    FileUtils.writeFile(f,
+                            ResourceUtils.getResource(ICON_MACOSX_RESOURCE,
+                                    getClass().getClassLoader()));
+                    getProduct().getInstalledFiles().add(f);
                 } catch (IOException e) {
                     LogManager.log(
-                                "... cannot handle icns icon " + f, e); // NOI18N
+                            "... cannot handle icns icon " + f, e); // NOI18N
                 }
             }
         }
-
-
 
         if (Boolean.parseBoolean(getProperty(HelloWorldPanel.CREATE_DESKTOP_SHORTCUT_PROPERTY))) {
             LogManager.logIndent(
@@ -220,8 +217,8 @@ public class ConfigurationLogic extends ProductConfigurationLogic {
             try {
                 progress.setDetail(getString("CL.uninstall.start.menu")); // NOI18N
 
-                final String shortcutLocation =
-                        getProduct().getProperty(START_MENU_SHORTCUT_LOCATION_PROPERTY);
+                final String shortcutLocation
+                        = getProduct().getProperty(START_MENU_SHORTCUT_LOCATION_PROPERTY);
 
                 if ((shortcutLocation == null)
                         || shortcutLocation.equals(CURRENT_USER_PROPERTY_VALUE)) {
@@ -271,7 +268,6 @@ public class ConfigurationLogic extends ProductConfigurationLogic {
             }
         }
 
-
         if (Boolean.getBoolean("remove.app.userdir")) {
             try {
                 progress.setDetail(getString("CL.uninstall.remove.userdir")); // NOI18N
@@ -293,19 +289,19 @@ public class ConfigurationLogic extends ProductConfigurationLogic {
         /////////////////////////////////////////////////////////////////////////////
         //remove cluster/update files
         /*
-        try {
-        progress.setDetail(getString("CL.uninstall.update.files")); // NOI18N
-        for(String cluster : CLUSTERS) {
-        File updateDir = new File(installLocation, cluster + File.separator + "update");
-        if ( updateDir.exists()) {
-        FileUtils.deleteFile(updateDir, true);
-        }
-        }
-        } catch (IOException e) {
-        LogManager.log(
-        getString("CL.uninstall.error.update.files"), // NOI18N
-        e);
-        }
+         try {
+         progress.setDetail(getString("CL.uninstall.update.files")); // NOI18N
+         for(String cluster : CLUSTERS) {
+         File updateDir = new File(installLocation, cluster + File.separator + "update");
+         if ( updateDir.exists()) {
+         FileUtils.deleteFile(updateDir, true);
+         }
+         }
+         } catch (IOException e) {
+         LogManager.log(
+         getString("CL.uninstall.error.update.files"), // NOI18N
+         e);
+         }
          */
         /////////////////////////////////////////////////////////////////////////////
         progress.setPercentage(Progress.COMPLETE);
@@ -355,8 +351,6 @@ public class ConfigurationLogic extends ProductConfigurationLogic {
         return true;
     }
 
-
-
     private Shortcut getDesktopShortcut(final File directory) {
         return getShortcut(
                 getStrings("CL.desktop.shortcut.name"), // NOI18N
@@ -396,12 +390,12 @@ public class ConfigurationLogic extends ProductConfigurationLogic {
         } else {
             icon = new File(location, ICON_UNIX);
             LogManager.log("... icon file: " + icon);
-            if(!FileUtils.exists(icon)) {
+            if (!FileUtils.exists(icon)) {
                 LogManager.log("... icon file does not exist: " + icon);
                 InputStream is = null;
                 is = ResourceUtils.getResource(ICON_UNIX_RESOURCE, this.getClass().getClassLoader());
-                if(is!=null) {
-                    FileOutputStream fos =null;
+                if (is != null) {
+                    FileOutputStream fos = null;
                     try {
                         fos = new FileOutputStream(icon);
                         StreamUtils.transferData(is, fos);
@@ -411,7 +405,7 @@ public class ConfigurationLogic extends ProductConfigurationLogic {
                     } catch (IOException e) {
                         LogManager.log(e);
                     } finally {
-                        if(fos!=null) {
+                        if (fos != null) {
                             try {
                                 fos.close();
                             } catch (IOException e) {
@@ -440,40 +434,40 @@ public class ConfigurationLogic extends ProductConfigurationLogic {
 
         return shortcut;
     }
-    public static final String SHORTCUT_FILENAME =
-            ResourceUtils.getString(ConfigurationLogic.class, "CL.app.name") + ".desktop"; // NOI18N
+    public static final String SHORTCUT_FILENAME
+            = ResourceUtils.getString(ConfigurationLogic.class, "CL.app.name") + ".desktop"; // NOI18N
     public static final String[] SHORTCUT_CATEGORIES = new String[]{
         "Application"
     };
-    public static final String BIN_SUBDIR =
-            "bin/";
-    public static final String EXECUTABLE_WINDOWS =
-            BIN_SUBDIR
+    public static final String BIN_SUBDIR
+            = "bin/";
+    public static final String EXECUTABLE_WINDOWS
+            = BIN_SUBDIR
             + ResourceUtils.getString(ConfigurationLogic.class, "CL.app.name") + ".exe"; // NOI18N
-    public static final String EXECUTABLE_UNIX =
-            BIN_SUBDIR
+    public static final String EXECUTABLE_UNIX
+            = BIN_SUBDIR
             + ResourceUtils.getString(ConfigurationLogic.class, "CL.app.name"); // NOI18N
-    public static final String ICON_WINDOWS =
-            EXECUTABLE_WINDOWS;
-    public static final String ICON_UNIX =
-            ResourceUtils.getString(ConfigurationLogic.class,
-            "CL.unix.icon.name"); // NOI18N
-    public static final String ICON_UNIX_RESOURCE =
-            ResourceUtils.getString(ConfigurationLogic.class,
-            "CL.unix.icon.resource"); // NOI18N
-    public static final String ICON_MACOSX =
-            ResourceUtils.getString(ConfigurationLogic.class, "CL.app.name") + ".icns"; // NOI18N
-    public static final String ICON_MACOSX_RESOURCE =
-            "org/mycompany/" + ResourceUtils.getString(ConfigurationLogic.class, "CL.app.name") + ".icns"; // NOI18N
-    public static final String WIZARD_COMPONENTS_URI =
-            "resource:" + // NOI18N
+    public static final String ICON_WINDOWS
+            = EXECUTABLE_WINDOWS;
+    public static final String ICON_UNIX
+            = ResourceUtils.getString(ConfigurationLogic.class,
+                    "CL.unix.icon.name"); // NOI18N
+    public static final String ICON_UNIX_RESOURCE
+            = ResourceUtils.getString(ConfigurationLogic.class,
+                    "CL.unix.icon.resource"); // NOI18N
+    public static final String ICON_MACOSX
+            = ResourceUtils.getString(ConfigurationLogic.class, "CL.app.name") + ".icns"; // NOI18N
+    public static final String ICON_MACOSX_RESOURCE
+            = "org/mycompany/" + ResourceUtils.getString(ConfigurationLogic.class, "CL.app.name") + ".icns"; // NOI18N
+    public static final String WIZARD_COMPONENTS_URI
+            = "resource:" + // NOI18N
             "org/mycompany/wizard.xml"; // NOI18N
-    private static final String DESKTOP_SHORTCUT_LOCATION_PROPERTY =
-            "desktop.shortcut.location"; // NOI18N
-    private static final String START_MENU_SHORTCUT_LOCATION_PROPERTY =
-            "start.menu.shortcut.location"; // NOI18N
-    private static final String ALL_USERS_PROPERTY_VALUE =
-            "all.users"; // NOI18N
-    private static final String CURRENT_USER_PROPERTY_VALUE =
-            "current.user"; // NOI18N
+    private static final String DESKTOP_SHORTCUT_LOCATION_PROPERTY
+            = "desktop.shortcut.location"; // NOI18N
+    private static final String START_MENU_SHORTCUT_LOCATION_PROPERTY
+            = "start.menu.shortcut.location"; // NOI18N
+    private static final String ALL_USERS_PROPERTY_VALUE
+            = "all.users"; // NOI18N
+    private static final String CURRENT_USER_PROPERTY_VALUE
+            = "current.user"; // NOI18N
 }

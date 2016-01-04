@@ -53,7 +53,7 @@ public class FillClassesPanel {
 
             int responseCode = httpConn.getResponseCode();
             if (responseCode == 200) {
-                
+
                 MyCourses myCourses = mapper.readValue(httpConn.getInputStream(), MyCourses.class);
                 for (Courses item : myCourses.getCourses()) {
                     ClassInfo newClass = new ClassInfo(item.getLinks().get(0).getCourse().getTitle(), item.getLinks().get(0).getCourse().getId());
@@ -70,12 +70,9 @@ public class FillClassesPanel {
                 classPanel.revalidate();
                 classPanel.repaint();
             }
-        } 
-        catch (RuntimeException rex)
-        {
+        } catch (RuntimeException rex) {
             throw rex;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }

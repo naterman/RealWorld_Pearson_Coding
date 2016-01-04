@@ -5,9 +5,11 @@
  */
 package GUIs.MainScreenAssets;
 
+import Design.Colors;
 import GUIs.CreateAssignment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,9 +19,11 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.swing.BorderFactory;
 import org.jdesktop.swingx.JXButton;
 import org.jdesktop.swingx.JXDialog;
+import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXList;
 import org.jdesktop.swingx.JXPanel;
 import org.jdesktop.swingx.SwingXUtilities;
+import org.jdesktop.swingx.painter.MattePainter;
 import pearson.AuthenticationData;
 import pearson.ClassInfo;
 import pearson.CourseInstructors.CourseInstructors;
@@ -72,6 +76,8 @@ public class ClassPanel extends JXPanel {
         initComponents();
 
         this.setBorder(BorderFactory.createLineBorder(Color.black, 2, true));
+        this.setBackgroundPainter(new MattePainter(Color.white));
+        this.repaint();
 
     }
 
@@ -84,18 +90,19 @@ public class ClassPanel extends JXPanel {
         jXLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jXLabel1.setText(classData.getName());
         jXLabel1.setToolTipText("");
-        jXLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jXLabel1.setFont(new java.awt.Font("Arial", Font.BOLD, 18)); // NOI18N
         jXLabel1.setLineWrap(true);
         jXLabel1.setTextAlignment(org.jdesktop.swingx.JXLabel.TextAlignment.CENTER);
 
         viewButton.setText(buttonText);
-        viewButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        viewButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         viewButton.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewButtonActionPerformed(evt);
             }
         });
+        viewButton.setForeground(Color.white);
 
         viewButton1.setText("View Assignments");
         viewButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -105,6 +112,10 @@ public class ClassPanel extends JXPanel {
                 viewButton1ActionPerformed(evt);
             }
         });
+        viewButton1.setForeground(Color.white);
+
+        viewButton.setBackground(Colors.ButtonColorOrange.color());
+        viewButton1.setBackground(Colors.ButtonColorOrange.color());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,7 +126,7 @@ public class ClassPanel extends JXPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                         .addComponent(viewButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(30, 30, 30)
+                                        .addGap(40, 40, 40)
                                         .addComponent(viewButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addComponent(jXLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
@@ -124,11 +135,11 @@ public class ClassPanel extends JXPanel {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(viewButton, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                                .addComponent(viewButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                                .addComponent(viewButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                .addComponent(viewButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                         .addContainerGap())
         );
     }
@@ -155,8 +166,8 @@ public class ClassPanel extends JXPanel {
 
     private void viewButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         JXPanel MainPanel = SwingXUtilities.getAncestor(JXPanel.class, this.getParent());
-        JXPanel assignmentsPanel = (JXPanel) MainPanel.getComponent(5);
-        JXButton newAssignmentButton = (JXButton) MainPanel.getComponent(7);
+        JXPanel assignmentsPanel = (JXPanel) MainPanel.getComponent(4);
+        JXButton newAssignmentButton = (JXButton) MainPanel.getComponent(3);
         newAssignmentButton.setVisible(teacher);
 
         if (newAssignmentButton.getActionListeners().length == 0) {
@@ -177,9 +188,13 @@ public class ClassPanel extends JXPanel {
     }
 
     private void newAssignmentButtonAction(ActionEvent evt) {
-        JXDialog naFrame = new JXDialog(new CreateAssignment(String.valueOf(classData.getID())));
+        JXFrame naFrame = new JXFrame();
+        naFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
+        naFrame.setSize(390, 400);
+        naFrame.setStartPosition(JXFrame.StartPosition.CenterInScreen);
+        naFrame.add(new CreateAssignment(String.valueOf(classData.getID())));
         naFrame.setLocationRelativeTo(this);
-
+        naFrame.getContentPane().setBackground(Colors.MainBack.color());
         naFrame.setSize(425, 400);
         naFrame.setVisible(true);
     }
@@ -214,12 +229,9 @@ public class ClassPanel extends JXPanel {
 
                 return names;
             }
-        }
-        catch (RuntimeException rex)
-        {
+        } catch (RuntimeException rex) {
             throw rex;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -253,12 +265,9 @@ class GetRole {
                 MyRole myRole = mapper.readValue(httpConn.getInputStream(), MyRole.class);
                 role = myRole.getRole().getType();
             }
-        } 
-        catch (RuntimeException rex)
-        {
+        } catch (RuntimeException rex) {
             throw rex;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 

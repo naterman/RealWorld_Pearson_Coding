@@ -107,7 +107,6 @@ public class PostInstallSummaryPanel extends WizardPanel {
         setProperty(MESSAGE_CONTENT_TYPE_ERRORS_UNINSTALL_PROPERTY,
                 DEFAULT_MESSAGE_CONTENT_TYPE_ERRORS_UNINSTALL);
 
-
         setProperty(NEXT_BUTTON_TEXT_PROPERTY,
                 DEFAULT_NEXT_BUTTON_TEXT);
     }
@@ -152,7 +151,6 @@ public class PostInstallSummaryPanel extends WizardPanel {
         protected PostInstallSummaryPanel component;
         private NbiTextPane messagePaneInstall;
         private NbiTextPane messagePaneUninstall;
-
 
         private NbiTextPane messagePaneFinish;
         private NbiCheckBox runAppNow;
@@ -271,8 +269,6 @@ public class PostInstallSummaryPanel extends WizardPanel {
                 messagePaneUninstall.setVisible(false);
             }
 
-    
-
             final List<Product> products = new LinkedList<Product>();
             products.addAll(successfulInstall);
             products.addAll(warningInstall);
@@ -282,10 +278,9 @@ public class PostInstallSummaryPanel extends WizardPanel {
                         products.get(0).getDisplayName()));
                 runAppNow.doClick();
                 app = products.get(0);
-            } else {                
+            } else {
                 runAppNow.setVisible(false);
             }
-
 
         }
 
@@ -297,12 +292,9 @@ public class PostInstallSummaryPanel extends WizardPanel {
             messagePaneUninstall = new NbiTextPane();
 
             // messagePaneRunApplication ///////////////////////////////////////////////////
-            
-
             messagePaneFinish = new NbiTextPane();
 
             runAppNow = new NbiCheckBox();
-
 
             // this /////////////////////////////////////////////////////////////////
             add(messagePaneInstall, new GridBagConstraints(
@@ -331,15 +323,15 @@ public class PostInstallSummaryPanel extends WizardPanel {
                     new Insets(11, 11, 0, 11), // padding
                     0, 0));                           // padx, pady - ???
             /*
-            add(new NbiPanel(), new GridBagConstraints(
-                    0, 4, // x, y
-                    1, 1, // width, height
-                    1.0, 1.0, // weight-x, weight-y
-                    GridBagConstraints.CENTER, // anchor
-                    GridBagConstraints.BOTH, // fill
-                    new Insets(0, 11, 0, 11), // padding
-                    0, 0));                           // padx, pady - ???
-            */
+             add(new NbiPanel(), new GridBagConstraints(
+             0, 4, // x, y
+             1, 1, // width, height
+             1.0, 1.0, // weight-x, weight-y
+             GridBagConstraints.CENTER, // anchor
+             GridBagConstraints.BOTH, // fill
+             new Insets(0, 11, 0, 11), // padding
+             0, 0));                           // padx, pady - ???
+             */
             add(runAppNow, new GridBagConstraints(
                     0, 4, // x, y
                     1, 1, // width, height
@@ -348,8 +340,6 @@ public class PostInstallSummaryPanel extends WizardPanel {
                     GridBagConstraints.HORIZONTAL, // fill
                     new Insets(11, 11, 0, 11), // padding
                     0, 0));                           // padx, pady - ???
-
-
 
             if (container instanceof SwingFrameContainer) {
                 final SwingFrameContainer sfc = (SwingFrameContainer) container;
@@ -375,83 +365,83 @@ public class PostInstallSummaryPanel extends WizardPanel {
     }
     /////////////////////////////////////////////////////////////////////////////////
     // Constants
-    public static final String MESSAGE_TEXT_SUCCESS_PROPERTY =
-            "message.text.success"; // NOI18N
-    public static final String MESSAGE_CONTENT_TYPE_SUCCESS_PROPERTY =
-            "message.content.type.success"; // NOI18N
-    public static final String MESSAGE_TEXT_WARNINGS_PROPERTY =
-            "message.text.warnings"; // NOI18N
-    public static final String MESSAGE_CONTENT_TYPE_WARNINGS_PROPERTY =
-            "message.content.type.warnings"; // NOI18N
-    public static final String MESSAGE_TEXT_ERRORS_PROPERTY =
-            "message.text.errors"; // NOI18N
-    public static final String MESSAGE_CONTENT_TYPE_ERRORS_PROPERTY =
-            "message.content.type.errors"; // NOI18N
-    public static final String MESSAGE_TEXT_SUCCESS_UNINSTALL_PROPERTY =
-            "message.text.success.uninstall"; // NOI18N
-    public static final String MESSAGE_CONTENT_TYPE_SUCCESS_UNINSTALL_PROPERTY =
-            "message.content.type.success.uninstall"; // NOI18N
-    public static final String MESSAGE_TEXT_WARNINGS_UNINSTALL_PROPERTY =
-            "message.text.warnings.uninstall"; // NOI18N
-    public static final String MESSAGE_CONTENT_TYPE_WARNINGS_UNINSTALL_PROPERTY =
-            "message.content.type.warnings.uninstall"; // NOI18N
-    public static final String MESSAGE_TEXT_ERRORS_UNINSTALL_PROPERTY =
-            "message.text.errors.uninstall"; // NOI18N
-    public static final String MESSAGE_CONTENT_TYPE_ERRORS_UNINSTALL_PROPERTY =
-            "message.content.type.errors.uninstall"; // NOI18N
-    public static final String DEFAULT_MESSAGE_TEXT_SUCCESS =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.text.success"); // NOI18N
-    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_SUCCESS =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.content.type.success"); // NOI18N
-    public static final String DEFAULT_MESSAGE_TEXT_WARNINGS =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.text.warnings"); // NOI18N
-    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_WARNINGS =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.content.type.warnings"); // NOI18N
-    public static final String DEFAULT_MESSAGE_TEXT_ERRORS =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.text.errors"); // NOI18N
-    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_ERRORS =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.content.type.errors"); // NOI18N
-    public static final String DEFAULT_MESSAGE_TEXT_SUCCESS_UNINSTALL =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.text.success.uninstall"); // NOI18N
-    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_SUCCESS_UNINSTALL =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.content.type.success.uninstall"); // NOI18N
-    public static final String DEFAULT_MESSAGE_TEXT_WARNINGS_UNINSTALL =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.text.warnings.uninstall"); // NOI18N
-    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_WARNINGS_UNINSTALL =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.content.type.warnings.uninstall"); // NOI18N
-    public static final String DEFAULT_MESSAGE_TEXT_ERRORS_UNINSTALL =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.text.errors.uninstall"); // NOI18N
-    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_ERRORS_UNINSTALL =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.content.type.errors.uninstall"); // NOI18N
-    
+    public static final String MESSAGE_TEXT_SUCCESS_PROPERTY
+            = "message.text.success"; // NOI18N
+    public static final String MESSAGE_CONTENT_TYPE_SUCCESS_PROPERTY
+            = "message.content.type.success"; // NOI18N
+    public static final String MESSAGE_TEXT_WARNINGS_PROPERTY
+            = "message.text.warnings"; // NOI18N
+    public static final String MESSAGE_CONTENT_TYPE_WARNINGS_PROPERTY
+            = "message.content.type.warnings"; // NOI18N
+    public static final String MESSAGE_TEXT_ERRORS_PROPERTY
+            = "message.text.errors"; // NOI18N
+    public static final String MESSAGE_CONTENT_TYPE_ERRORS_PROPERTY
+            = "message.content.type.errors"; // NOI18N
+    public static final String MESSAGE_TEXT_SUCCESS_UNINSTALL_PROPERTY
+            = "message.text.success.uninstall"; // NOI18N
+    public static final String MESSAGE_CONTENT_TYPE_SUCCESS_UNINSTALL_PROPERTY
+            = "message.content.type.success.uninstall"; // NOI18N
+    public static final String MESSAGE_TEXT_WARNINGS_UNINSTALL_PROPERTY
+            = "message.text.warnings.uninstall"; // NOI18N
+    public static final String MESSAGE_CONTENT_TYPE_WARNINGS_UNINSTALL_PROPERTY
+            = "message.content.type.warnings.uninstall"; // NOI18N
+    public static final String MESSAGE_TEXT_ERRORS_UNINSTALL_PROPERTY
+            = "message.text.errors.uninstall"; // NOI18N
+    public static final String MESSAGE_CONTENT_TYPE_ERRORS_UNINSTALL_PROPERTY
+            = "message.content.type.errors.uninstall"; // NOI18N
+    public static final String DEFAULT_MESSAGE_TEXT_SUCCESS
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.text.success"); // NOI18N
+    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_SUCCESS
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.content.type.success"); // NOI18N
+    public static final String DEFAULT_MESSAGE_TEXT_WARNINGS
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.text.warnings"); // NOI18N
+    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_WARNINGS
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.content.type.warnings"); // NOI18N
+    public static final String DEFAULT_MESSAGE_TEXT_ERRORS
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.text.errors"); // NOI18N
+    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_ERRORS
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.content.type.errors"); // NOI18N
+    public static final String DEFAULT_MESSAGE_TEXT_SUCCESS_UNINSTALL
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.text.success.uninstall"); // NOI18N
+    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_SUCCESS_UNINSTALL
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.content.type.success.uninstall"); // NOI18N
+    public static final String DEFAULT_MESSAGE_TEXT_WARNINGS_UNINSTALL
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.text.warnings.uninstall"); // NOI18N
+    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_WARNINGS_UNINSTALL
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.content.type.warnings.uninstall"); // NOI18N
+    public static final String DEFAULT_MESSAGE_TEXT_ERRORS_UNINSTALL
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.text.errors.uninstall"); // NOI18N
+    public static final String DEFAULT_MESSAGE_CONTENT_TYPE_ERRORS_UNINSTALL
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.content.type.errors.uninstall"); // NOI18N
+
     public static final String DEFAULT_TITLE = ResourceUtils.getString(
             PostInstallSummaryPanel.class,
             "PoISP.title"); // NOI18N
-    public static final String DEFAULT_DESCRIPTION =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.description"); // NOI18N
-    public static final String DEFAULT_NEXT_BUTTON_TEXT =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.next.button.text"); // NOI18N
-    public static final String DEFAULT_MESSAGE_FINISH_PROCESS =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.text.finish"); // NOI18N
-    public static final String DEFAULT_MESSAGE_FINISH_PROCESS_CONTENT_TYPE =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.text.finish.content.type"); // NOI18N
-    public static final String DEFAULT_MESSAGE_LAUNCH_APPLICATION_NOW =
-            ResourceUtils.getString(PostInstallSummaryPanel.class,
-            "PoISP.message.run.application.now");//NOI18N
+    public static final String DEFAULT_DESCRIPTION
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.description"); // NOI18N
+    public static final String DEFAULT_NEXT_BUTTON_TEXT
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.next.button.text"); // NOI18N
+    public static final String DEFAULT_MESSAGE_FINISH_PROCESS
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.text.finish"); // NOI18N
+    public static final String DEFAULT_MESSAGE_FINISH_PROCESS_CONTENT_TYPE
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.text.finish.content.type"); // NOI18N
+    public static final String DEFAULT_MESSAGE_LAUNCH_APPLICATION_NOW
+            = ResourceUtils.getString(PostInstallSummaryPanel.class,
+                    "PoISP.message.run.application.now");//NOI18N
 }
