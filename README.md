@@ -12,13 +12,19 @@ A student can memorize and regurgitate information; however, if they fail to und
 
 ### Demo
 
-[Watch a video of the application in action!](#)
+[Watch a video of the application in action!](https://youtu.be/zY34jSNbx1E)
 
 ### Screenshots
 
-<!--
-The "App Details" section intends to explain how your app works. Describe the major components, what APIs were used, and what is missing to make this production ready.
--->
+![Screen Shot](https://github.com/naterman/RealWorld_Pearson_Coding/blob/master/resources/2016-01-04.png)
+![Screen Shot](https://github.com/naterman/RealWorld_Pearson_Coding/blob/master/resources/2016-01-04%20(3).png)
+![Screen Shot](https://github.com/naterman/RealWorld_Pearson_Coding/blob/master/resources/2016-01-04%20(4).png)
+![Screen Shot](https://github.com/naterman/RealWorld_Pearson_Coding/blob/master/resources/2016-01-04%20(6).png)
+![Screen Shot](https://github.com/naterman/RealWorld_Pearson_Coding/blob/master/resources/2016-01-04%20(7).png)
+![Screen Shot](https://github.com/naterman/RealWorld_Pearson_Coding/blob/master/resources/2016-01-04%20(8).png)
+![Screen Shot](https://github.com/naterman/RealWorld_Pearson_Coding/blob/master/resources/2016-01-04%20(9).png)
+![Screen Shot](https://github.com/naterman/RealWorld_Pearson_Coding/blob/master/resources/2016-01-04%20(10).png)
+![Screen Shot](https://github.com/naterman/RealWorld_Pearson_Coding/blob/master/resources/2016-01-04%20(11).png)
 
 ## App Details
 
