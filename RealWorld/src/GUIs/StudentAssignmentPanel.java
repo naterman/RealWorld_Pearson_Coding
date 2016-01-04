@@ -6,7 +6,6 @@
 package GUIs;
 
 import Design.Colors;
-import GUIs.NewAssignmentAssets.QuestionBar;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;

@@ -1,0 +1,3 @@
+GUIs.MainScreenAssets.getRole
+GUIs.MainScreenAssets.GetRole
+GUIs.MainScreenAssets.ClassPanel

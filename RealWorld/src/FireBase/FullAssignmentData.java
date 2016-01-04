@@ -7,6 +7,7 @@ package firebase;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import org.bouncycastle.util.Strings;
 
 /**
  *
@@ -117,14 +118,17 @@ public class FullAssignmentData {
 
     /**
      *
+     * @param questions
+     * @param answers
      * @return
      */
-    public double calculateResults() {
+    public double calculateResults(LinkedList<Question> questions, HashMap<String, StudentAnswers> answers) {
         double correct = 0;
-        double totalQuestions = studentsAnswers.size();
+        double totalQuestions = questions.size();
+        
 
-        for (String CorrectAnswer : studentsAnswers.keySet()) {
-            if (CorrectAnswer.equals(studentsAnswers.get(CorrectAnswer))) {
+        for (String ID : answers.keySet()) {
+            if (answers.get(ID).getCorrectAnswer().equals((answers.get(ID).getStudentAnswer()))) {
                 correct++;
             }
         }
